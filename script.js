@@ -1,3 +1,43 @@
+// Question Sender: Custom mailto with name/email/question, no visible destination
+document.addEventListener('DOMContentLoaded', () => {
+    const questionForm = document.getElementById('question-form');
+    const questionSuccess = document.getElementById('question-success');
+    if (questionForm && questionSuccess) {
+        questionForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const question = document.getElementById('question').value.trim();
+            const mailto = `mailto:s.mujtaba.naqvi@outlook.com?subject=New%20Question%20from%20${encodeURIComponent(name)}&body=Name:%20${encodeURIComponent(name)}%0AEmail:%20${encodeURIComponent(email)}%0AQuestion:%20${encodeURIComponent(question)}`;
+            window.location.href = mailto;
+            setTimeout(() => {
+                questionSuccess.classList.remove('hidden');
+                questionForm.reset();
+            }, 500);
+        });
+    }
+});
+// Typing Test Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const typingSentence = document.getElementById('typing-sentence');
+    const typingInput = document.getElementById('typing-input');
+    const typingResult = document.getElementById('typing-result');
+    let startTime = null;
+
+    if (typingInput && typingSentence && typingResult) {
+        typingInput.addEventListener('focus', () => {
+            typingInput.value = '';
+            typingResult.textContent = '';
+            startTime = Date.now();
+        });
+        typingInput.addEventListener('input', () => {
+            if (typingInput.value === typingSentence.textContent) {
+                const timeTaken = (Date.now() - startTime) / 1000;
+                typingResult.textContent = `Great job! Time: ${timeTaken.toFixed(2)} seconds.`;
+            }
+        });
+    }
+});
 // Theme Toggle Logic
 
 
