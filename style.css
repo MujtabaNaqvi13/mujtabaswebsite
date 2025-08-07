@@ -1,0 +1,51 @@
+/* Theme base styles */
+body {
+  background-color: #18181b;
+  color: #f3f4f6;
+  transition: background 0.3s, color 0.3s;
+}
+
+.header-bg {
+  background: #18181b;
+  transition: background 0.3s;
+}
+
+/* Light mode styles */
+body.light-mode {
+  background-color: #f3f4f6;
+  color: #18181b;
+}
+
+body.light-mode .header-bg {
+  background: #e5e7eb;
+}
+
+body.light-mode .section-title,
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3 {
+  color: #18181b;
+}
+
+body .section-title,
+body h1,
+body h2,
+body h3 {
+  color: #fff;
+}
+
+/* Toggle button style for visibility */
+#theme-toggle {
+  background: #27272a;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.light-mode #theme-toggle {
+  background: #d1d5db;
+  color: #18181b;
+}
