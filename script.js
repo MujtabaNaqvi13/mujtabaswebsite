@@ -1,4 +1,5 @@
 // Theme Toggle Logic
+
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
@@ -17,13 +18,16 @@ document.addEventListener('DOMContentLoaded', () => {
     setTheme(savedTheme);
 });
 
-themeToggle.addEventListener('click', () => {
-    if (body.classList.contains('light-mode')) {
-        setTheme('dark');
-    } else {
-        setTheme('light');
-    }
-});
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        if (body.classList.contains('light-mode')) {
+            setTheme('dark');
+        } else {
+            setTheme('light');
+        }
+    });
+}
 
 // Quotes Rotation Logic
 const quotes = [
