@@ -5,13 +5,15 @@
       /* Fade-in on scroll */
       .fade-in-section {
         opacity: 0;
-        transform: translateY(32px);
-        transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
-        will-change: opacity, transform;
+        transform: translateY(40px) scale(0.98);
+        filter: blur(6px);
+        transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1), filter 0.8s cubic-bezier(.4,0,.2,1);
+        will-change: opacity, transform, filter;
       }
       .fade-in-section.visible {
         opacity: 1;
         transform: none;
+        filter: none;
       }
       /* Button, link, card hover effects */
       button, .btn, .card, .section-bg, .section-bg-light, a {
@@ -61,7 +63,7 @@
       .navbar-bg {
         background: var(--navbar-bg, #252945) !important;
         color: var(--navbar-fg, #fff) !important;
-        box-shadow: 0 4px 18px 0 rgba(30,32,60,0.13);
+  box-shadow: 0 6px 24px 0 rgba(30,32,60,0.18), 0 1.5px 0 0 #222c44;
         border-bottom: 1.5px solid #222c44;
         transition: background 0.3s, color 0.3s, box-shadow 0.3s;
         opacity: 1 !important;
@@ -110,7 +112,7 @@
       [data-theme="dark"] .section-bg {
         --section-bg: #FFFFFF;
         --section-fg: #222222;
-        box-shadow: 0 2px 12px 0 rgba(60,60,60,0.04);
+  box-shadow: 0 4px 24px 0 rgba(30,32,60,0.10), 0 1.5px 0 0 #222c44;
         border-radius: 14px;
         border: 1px solid #ececec;
         transition: background 0.3s, color 0.3s, box-shadow 0.3s;
