@@ -17,9 +17,11 @@
 
 
 
-        <!-- New Section: Ask a Science Question -->
+
+        <!-- BOTTOM SECTIONS: Science Q, Science Facts, Typing Test, Ideas -->
+
         <section id="question-sender" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">❓ Ask a Science Question</h3>
+            <h3 class="text-4xl text-center section-title mb-8">❓ Ask a Question</h3>
             <div class="card mb-8 max-w-xl mx-auto">
                 <?php include 'send-question.php'; ?>
                 <form id="question-form" class="flex flex-col gap-4" action="send-question.php" method="POST" autocomplete="off">
@@ -27,14 +29,13 @@
                     <input type="text" id="name" name="name" class="border rounded px-3 py-2 text-black" required placeholder="Enter your name">
                     <label for="email" class="text-lg font-semibold">Your Email:</label>
                     <input type="email" id="email" name="email" class="border rounded px-3 py-2 text-black" required placeholder="Enter your email">
-                    <label for="question" class="text-lg font-semibold">Your Science Question:</label>
-                    <textarea id="question" name="question" rows="4" class="border rounded px-3 py-2 text-black" required placeholder="Type your science question here..."></textarea>
+                    <label for="question" class="text-lg font-semibold">Your Question:</label>
+                    <textarea id="question" name="question" rows="4" class="border rounded px-3 py-2 text-black" required placeholder="Type your question here..."></textarea>
                     <button type="submit" class="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition">Send Question</button>
                 </form>
             </div>
         </section>
 
-        <!-- New Section: Science Facts -->
         <section id="science-facts" class="py-12">
             <h3 class="text-4xl text-center section-title mb-8">🧪 Science Facts</h3>
             <div class="card mb-8">
@@ -47,7 +48,6 @@
             </div>
         </section>
 
-        <!-- New Section: Typing Test -->
         <section id="typing-test" class="py-12">
             <h3 class="text-4xl text-center section-title mb-8">⌨️ Typing Test</h3>
             <div class="card mb-8 text-center">
@@ -59,7 +59,6 @@
             </div>
         </section>
 
-        <!-- New Section: Ideas I'm Working On -->
         <section id="ideas" class="py-12">
             <h3 class="text-4xl text-center section-title mb-8">💡 Ideas I'm Working On</h3>
             <div class="card mb-8">
