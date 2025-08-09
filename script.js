@@ -1,24 +1,68 @@
 // Theme toggle logic (dark/light)
+// Unified theme toggle logic using data-theme and CSS variables
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = document.getElementById('theme-icon');
 const root = document.documentElement;
 
-function setTheme(dark) {
-  if (dark) {
-    document.body.classList.add('dark');
-    themeIcon.innerHTML = '<i class="fas fa-sun"></i>';
-  } else {
-    document.body.classList.remove('dark');
-    themeIcon.innerHTML = '<i class="fas fa-moon"></i>';
+function setTheme(theme) {
+  root.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+  // Update icon
+  if (themeIcon) {
+    if (theme === 'light') {
+      themeIcon.innerHTML = '<i class="fas fa-sun animate__animated animate__fadeIn" style="color:#fbbf24"></i>';
+    } else {
+      themeIcon.innerHTML = '<i class="fas fa-moon animate__animated animate__fadeIn" style="color:#facc15"></i>';
+    }
   }
 }
 
-// Initial theme (system preference)
-setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
+function toggleTheme() {
+  const currentTheme = root.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  setTheme(newTheme);
+  themeToggle.classList.add('animate__tada');
+  setTimeout(() => themeToggle.classList.remove('animate__tada'), 700);
+}
 
-themeToggle.addEventListener('click', () => {
-  const isDark = document.body.classList.toggle('dark');
-  setTheme(isDark);
+if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+
+// On load, set theme
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+  setTheme(savedTheme);
+} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  setTheme('dark');
+} else {
+  setTheme('light');
+}
+// Typewriter effect for all .typewriter elements with data-typewriter, supporting line breaks
+document.addEventListener('DOMContentLoaded', function() {
+  function typewriterEffect(el, text, speed = 28, cb) {
+    let i = 0;
+    el.innerHTML = '';
+    el.classList.add('typewriter');
+    function type() {
+      if (i < text.length) {
+        if (text.charAt(i) === '\n') {
+          el.innerHTML += '<br>';
+        } else {
+          el.innerHTML += text.charAt(i);
+        }
+        i++;
+        setTimeout(type, speed + Math.random()*40);
+      } else if (cb) {
+        cb();
+      }
+    }
+    type();
+  }
+  document.querySelectorAll('.typewriter[data-typewriter]').forEach((el, idx) => {
+    el.innerHTML = '';
+    setTimeout(() => {
+      typewriterEffect(el, el.getAttribute('data-typewriter'));
+    }, idx * 600); // stagger if multiple
+  });
 });
 
 // Navbar typewriter underline animation

@@ -1,6 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+      html { scroll-behavior: smooth; }
+      body, .site-bg {
+        background: var(--site-bg, #FAFAFA);
+        color: var(--site-fg, #222222);
+        transition: background 0.3s, color 0.3s;
+      }
+      .section-bg {
+        background: var(--section-bg, #FFFFFF) !important;
+        color: var(--section-fg, #222222) !important;
+        box-shadow: 0 2px 12px 0 rgba(60,60,60,0.04);
+        border-radius: 14px;
+        border: 1px solid #ececec;
+        transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+      }
+      [data-theme="light"] .section-bg {
+        --section-bg: #18181b;
+        --section-fg: #f3f4f6;
+        box-shadow: 0 4px 18px 0 rgba(30,32,60,0.10);
+        border: 1.5px solid #22222222;
+      }
+      .section-bg-light {
+        background: var(--section-bg-light, #F5F5F7) !important;
+        color: var(--section-fg-light, #222222) !important;
+        box-shadow: 0 2px 12px 0 rgba(60,60,60,0.04);
+        border-radius: 14px;
+        border: 1px solid #ececec;
+      }
+      .navbar-bg {
+        background: var(--navbar-bg, #FFFFFF) !important;
+        color: var(--navbar-fg, #222222) !important;
+        box-shadow: 0 4px 18px 0 rgba(30,32,60,0.08);
+        border-bottom: 1.5px solid #ececec;
+        backdrop-filter: blur(6px);
+        transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+      }
+      [data-theme="light"] body, [data-theme="light"] .site-bg {
+        --site-bg: #FAFAFA;
+        --site-fg: #222222;
+      }
+      [data-theme="light"] .section-bg {
+        --section-bg: #FFFFFF;
+        --section-fg: #222222;
+      }
+      [data-theme="light"] .section-bg-light {
+        --section-bg-light: #F5F5F7;
+        --section-fg-light: #222222;
+      }
+      [data-theme="light"] .navbar-bg {
+        --navbar-bg: #FFFFFF;
+        --navbar-fg: #222222;
+      }
+      [data-theme="dark"] body, [data-theme="dark"] .site-bg {
+        --site-bg: #121212;
+        --site-fg: #E0E0E0;
+      }
+      [data-theme="dark"] .section-bg {
+        --section-bg: #1C1C28;
+        --section-fg: #E0E0E0;
+      }
+      [data-theme="dark"] .section-bg-light {
+        --section-bg-light: #232336;
+        --section-fg-light: #E0E0E0;
+      }
+      [data-theme="dark"] .navbar-bg {
+        --navbar-bg: #252945;
+        --navbar-fg: #E0E0E0;
+      }
+      .typewriter {
+        display: inline-block;
+        border-right: 2px solid #3b82f6;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        max-width: 100%;
+        font-family: inherit;
+        font-size: inherit;
+        animation: blink-cursor 0.8s steps(1) infinite;
+        overflow: hidden;
+      }
+      @keyframes blink-cursor { 0%, 100% { border-color: #3b82f6; } 50% { border-color: transparent; } }
+    </style>
+  <!-- Removed duplicate and broken .typewriter CSS block -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mujtaba Naqvi – The Coder, The Gamer, The Thinker</title>
@@ -22,7 +105,8 @@
         document.documentElement.setAttribute('data-theme', theme);
       })();
     </script>
-    <nav class="bg-blue-600 text-white fixed top-0 left-0 w-full shadow-lg z-50 transition-all duration-300 animate__animated animate__fadeInDown navbar-gradient-border">
+  <body class="site-bg">
+  <nav class="navbar-bg fixed top-0 left-0 w-full shadow-lg z-50 transition-all duration-300 animate__animated animate__fadeInDown navbar-gradient-border">
         <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
             <h1 id="site-title" class="text-2xl font-extrabold tracking-wide animate__animated animate__pulse animate__infinite cursor-pointer" title="Click for a quote!">Mujtaba Naqvi</h1>
             <ul class="flex space-x-6">
@@ -41,7 +125,7 @@
     <main class="pt-24 max-w-6xl mx-auto px-4 space-y-12">
 
         <!-- Quote Section -->
-        <section id="quotes" class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow animate__animated animate__fadeInUp">
+  <section id="quotes" class="section-bg p-6 rounded-lg shadow animate__animated animate__fadeInUp">
             <h2 class="text-2xl font-bold mb-4">💬 Quotes</h2>
             <div id="quote-widget" class="relative">
                 <div id="quote-box" class="text-lg italic text-blue-700 dark:text-blue-300 cursor-pointer transition-colors duration-300 animate__animated" tabindex="0" aria-live="polite" aria-label="Quote">"Creativity is intelligence having fun."</div>
@@ -51,13 +135,62 @@
         </section>
 
         <!-- About -->
-        <section id="about" class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow animate__animated animate__fadeInUp">
+  <section id="about" class="section-bg p-6 rounded-lg shadow animate__animated animate__fadeInUp">
             <h2 class="text-2xl font-bold mb-4">About Me</h2>
-            <p class="mb-3">Hi, I’m Mujtaba Naqvi — a coder, gamer, and creative thinker who loves turning ideas into reality. Whether I’m building a new project, exploring a game world, or solving a tricky problem, I always bring curiosity and energy to everything I do.</p>
-            <p class="text-lg leading-relaxed">I’m passionate about technology and learning. I work with languages like C, C#, Go, JavaScript, HTML, and CSS, and I enjoy experimenting with new tools and concepts. My approach is all about thinking outside the box, staying persistent, and having fun along the way. I believe in the power of stories, values, and critical thinking — and I’m always ready for the next challenge, armed with a sense of humor and a drive to innovate.</p>
+            <p class="mb-3 typewriter" data-typewriter="Hi, I’m Mujtaba Naqvi — a coder, gamer, and creative thinker who loves turning ideas into reality. Whether I’m building a new project, exploring a game world, or solving a tricky problem, I always bring curiosity and energy to everything I do."></p>
+            <p class="text-lg leading-relaxed typewriter" data-typewriter="I’m passionate about technology and learning. I work with languages like C, C#, Go, JavaScript, HTML, and CSS, and I enjoy experimenting with new tools and concepts. My approach is all about thinking outside the box, staying persistent, and having fun along the way. I believe in the power of stories, values, and critical thinking — and I’m always ready for the next challenge, armed with a sense of humor and a drive to innovate."></p>
+    <script>
+      // Navbar smooth scroll with offset for fixed navbar
+      document.addEventListener('DOMContentLoaded', function() {
+        const navbar = document.querySelector('nav');
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+              const target = document.querySelector(href);
+              if (target) {
+                e.preventDefault();
+                const navHeight = navbar.offsetHeight;
+                const rect = target.getBoundingClientRect();
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const top = rect.top + scrollTop - navHeight;
+                window.scrollTo({ top, behavior: 'smooth' });
+                // Optionally update URL hash
+                history.replaceState(null, '', href);
+              }
+            }
+          });
+        });
+      });
+    </script>
+    <script>
+      // Typewriter effect for all .typewriter elements with data-typewriter
+      document.addEventListener('DOMContentLoaded', function() {
+        function typewriterEffect(el, text, speed = 28, cb) {
+          let i = 0;
+          function type() {
+            el.textContent = text.slice(0, i);
+            if (i < text.length) {
+              i++;
+              setTimeout(type, speed + Math.random()*40);
+            } else if (cb) {
+              cb();
+            }
+          }
+          type();
+        }
+        document.querySelectorAll('.typewriter[data-typewriter]').forEach((el, idx) => {
+          el.textContent = '';
+          setTimeout(() => {
+            typewriterEffect(el, el.getAttribute('data-typewriter'));
+          }, idx * 600); // stagger if multiple
+        });
+      });
+    </script>
         </section>
         <!-- Contact Area -->
-        <section id="contact" class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow animate__animated animate__fadeInUp">
+  <section id="contact" class="section-bg p-6 rounded-lg shadow animate__animated animate__fadeInUp">
             <h2 class="text-2xl font-bold mb-4">Contact Me</h2>
             <div class="mb-4">
                 <button id="signup-btn" class="bg-blue-600 text-white px-4 py-2 rounded mr-2">Sign Up</button>
@@ -77,7 +210,7 @@
         </section>
 
         <!-- Skills -->
-        <section id="skills" class="bg-white p-6 rounded-lg shadow">
+  <section id="skills" class="section-bg-light p-6 rounded-lg shadow">
             <h2 class="text-2xl font-bold mb-4">Skills</h2>
             <ul class="list-disc pl-6 space-y-2">
                 <li>HTML, CSS, JavaScript</li>
@@ -87,7 +220,7 @@
         </section>
 
         <!-- Projects -->
-        <section id="projects" class="bg-white p-6 rounded-lg shadow">
+  <section id="projects" class="section-bg-light p-6 rounded-lg shadow">
             <h2 class="text-2xl font-bold mb-4">Projects</h2>
             <ul class="list-disc pl-6 space-y-2">
                 <li>Portfolio Website</li>
@@ -97,7 +230,7 @@
         </section>
 
         <!-- Fun Section at Bottom -->
-        <section id="fun" class="bg-white p-6 rounded-lg shadow space-y-8">
+  <section id="fun" class="section-bg p-6 rounded-lg shadow space-y-8">
             
             <!-- Ask a Question (demo, localStorage only) -->
             <div>
@@ -115,18 +248,6 @@
                 <div id="ask-success" class="text-green-600 mt-2 hidden">Question sent (demo only)!</div>
             </div>
 
-            <!-- Ask a Science Question -->
-            <div>
-                <h3 class="text-xl font-bold mb-4">❓ Ask a Science Question</h3>
-                <label>Your Name:</label>
-                <input type="text" placeholder="Enter your name" class="border p-2 w-full mb-3">
-                <label>Your Email:</label>
-                <input type="email" placeholder="Enter your email" class="border p-2 w-full mb-3">
-                <label>Your Science Question:</label>
-                <textarea placeholder="Type your science question here..." class="border p-2 w-full mb-3"></textarea>
-                <button class="bg-green-600 text-white px-4 py-2 rounded">Send Question</button>
-            </div>
-
             <!-- Science Facts -->
             <div>
                 <h3 class="text-xl font-bold mb-4">🧪 Science Facts</h3>
@@ -142,8 +263,9 @@
             <section id="typing-test" class="typing-test-container">
               <h2>Typing Test</h2>
               <label for="typing-input" id="passage-label" class="block mb-1 font-semibold">Type this sentence:</label>
-              <div id="passage" aria-live="polite" class="passage"></div>
-              <textarea id="typing-input" aria-label="Typing input" spellcheck="false" autocomplete="off" placeholder="Start typing here..."></textarea>
+              <div id="passage" aria-live="polite" class="passage" tabindex="-1" role="region" aria-label="Typing passage" style="background: var(--tt-bg, #222); color: var(--tt-fg, #fff); border: 2px solid var(--tt-border, #3b82f6); font-size: 20px; padding: 18px; border-radius: 8px; margin-bottom: 10px; min-height: 48px; letter-spacing: 1px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); font-family: 'JetBrains Mono', 'Fira Sans', Arial, sans-serif; font-weight: 500; transition: background 0.3s, color 0.3s, border 0.3s; user-select: none;">
+              </div>
+              <textarea id="typing-input" aria-label="Typing input" spellcheck="false" autocomplete="off" placeholder="Start typing here..." style="background: var(--tt-input-bg, #18181b); color: var(--tt-input-fg, #e5e7eb); border: 1.5px solid #3b82f6; font-size: 18px; font-family: 'JetBrains Mono', 'Fira Sans', Arial, sans-serif; margin-bottom: 0.5rem;"></textarea>
               <div class="stats">
                 <div>WPM: <span id="wpm">0</span></div>
                 <div>Accuracy: <span id="accuracy">100%</span></div>
@@ -167,19 +289,30 @@
                 font-family: Arial, sans-serif;
               }
               #passage {
-                background: #f0f0f0;
-                padding: 15px;
-                border-radius: 6px;
-                font-size: 18px;
-                line-height: 1.5;
-                min-height: 100px;
+                background: var(--tt-bg, #222);
+                color: var(--tt-fg, #fff);
+                border: 2px solid var(--tt-border, #3b82f6);
+                font-size: 20px;
+                font-family: 'JetBrains Mono', 'Fira Sans', Arial, sans-serif;
+                font-weight: 500;
+                padding: 18px;
+                border-radius: 8px;
                 margin-bottom: 10px;
+                min-height: 48px;
+                letter-spacing: 1px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                line-height: 1.5;
                 user-select: none;
                 white-space: pre-wrap;
+                transition: background 0.3s, color 0.3s, border 0.3s;
               }
-              #passage .correct { color: green; }
-              #passage .incorrect { color: red; text-decoration: underline wavy; }
-              #passage .current { border-bottom: 2px solid blue; }
+              #passage .correct { color: #22c55e; background: none; }
+              #passage .incorrect { color: #ef4444; background: none; text-decoration: underline wavy #ef4444; }
+              #passage .current { border-bottom: 2px solid #3b82f6; background: #1e293b; color: #60a5fa; }
+              @media (prefers-color-scheme: light) {
+                #passage { background: #f8fafc; color: #222; border-color: #3b82f6; }
+                #passage .current { background: #e0e7ef; color: #2563eb; }
+              }
               #typing-input {
                 width: 100%;
                 height: 80px;
