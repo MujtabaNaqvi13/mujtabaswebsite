@@ -16,9 +16,27 @@
         </section>
 
 
-        <!-- New Section: Science Facts or Animations -->
+
+        <!-- New Section: Ask a Science Question -->
+        <section id="question-sender" class="py-12">
+            <h3 class="text-4xl text-center section-title mb-8">❓ Ask a Science Question</h3>
+            <div class="card mb-8 max-w-xl mx-auto">
+                <?php include 'send-question.php'; ?>
+                <form id="question-form" class="flex flex-col gap-4" action="send-question.php" method="POST" autocomplete="off">
+                    <label for="name" class="text-lg font-semibold">Your Name:</label>
+                    <input type="text" id="name" name="name" class="border rounded px-3 py-2 text-black" required placeholder="Enter your name">
+                    <label for="email" class="text-lg font-semibold">Your Email:</label>
+                    <input type="email" id="email" name="email" class="border rounded px-3 py-2 text-black" required placeholder="Enter your email">
+                    <label for="question" class="text-lg font-semibold">Your Science Question:</label>
+                    <textarea id="question" name="question" rows="4" class="border rounded px-3 py-2 text-black" required placeholder="Type your science question here..."></textarea>
+                    <button type="submit" class="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition">Send Question</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- New Section: Science Facts -->
         <section id="science-facts" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">🧪 Science Facts & Animations</h3>
+            <h3 class="text-4xl text-center section-title mb-8">🧪 Science Facts</h3>
             <div class="card mb-8">
                 <ul class="list-disc list-inside text-lg leading-relaxed space-y-2">
                     <li>The speed of light is about 299,792 kilometers per second!</li>
@@ -26,18 +44,18 @@
                     <li>Octopuses have three hearts and blue blood.</li>
                     <li>Bananas are berries, but strawberries are not.</li>
                 </ul>
-
             </div>
         </section>
 
-        <!-- New Section: Typing Test or Keyboard Game -->
+        <!-- New Section: Typing Test -->
         <section id="typing-test" class="py-12">
             <h3 class="text-4xl text-center section-title mb-8">⌨️ Typing Test</h3>
             <div class="card mb-8 text-center">
-                <p class="mb-4">Test your typing speed! Type the sentence below as fast as you can:</p>
-                <div class="mb-2 font-mono text-lg" id="typing-sentence">The quick brown fox jumps over the lazy dog.</div>
+                <p class="mb-4">Test your typing speed! Type the random sentence below as fast as you can:</p>
+                <div class="mb-2 font-mono text-lg" id="typing-sentence"></div>
                 <input type="text" id="typing-input" class="border rounded px-3 py-2 w-80 text-black" placeholder="Start typing...">
                 <div class="mt-2" id="typing-result"></div>
+                <button id="typing-reset" class="mt-4 bg-gray-700 text-white rounded px-4 py-2 hover:bg-gray-800 transition">New Sentence</button>
             </div>
         </section>
 
@@ -53,6 +71,7 @@
                     <li>Making a meme generator for fun!</li>
                 </ul>
             </div>
+        </section>
         </section>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +91,11 @@
                 <i class="fas fa-book-open text-3xl text-white mr-3"></i>
                 <h1 class="text-white text-2xl font-bold">Mujtaba Naqvi – The Coder, The Gamer, The Thinker</h1>
             </div>
-            <button id="theme-toggle" class="toggle-button mb-4 md:mb-0">Toggle Mode</button>
+            <button id="theme-toggle" class="toggle-button mb-4 md:mb-0" aria-label="Toggle theme">
+                <span id="theme-icon" class="text-2xl align-middle">
+                    <i class="fas fa-moon"></i>
+                </span>
+            </button>
             <nav class="w-full md:w-auto">
                 <ul class="flex flex-wrap justify-center md:justify-end space-x-4">
                     <li><a href="#home" class="nav-link">Home</a></li>
