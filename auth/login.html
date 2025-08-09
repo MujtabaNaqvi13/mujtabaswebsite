@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In – Mujtaba Naqvi</title>
+  <link rel="stylesheet" href="../styles.css">
+  <script defer src="auth.js"></script>
+</head>
+<body>
+  <main class="auth-center">
+    <h1>Sign In</h1>
+    <form id="login-form" autocomplete="off" aria-labelledby="login-heading">
+      <label for="login-email">Email</label>
+      <input type="email" id="login-email" required aria-required="true" autocomplete="username">
+      <label for="login-password">Password</label>
+      <input type="password" id="login-password" required aria-required="true" autocomplete="current-password">
+      <div id="login-error" class="form-error" aria-live="polite"></div>
+      <button type="submit">Sign In</button>
+      <div class="oauth-buttons">
+        <button type="button" class="oauth-google" aria-label="Sign in with Google">Google</button>
+        <button type="button" class="oauth-github" aria-label="Sign in with GitHub">GitHub</button>
+      </div>
+      <div class="auth-links">
+        <a href="signup.html">Create account</a> |
+        <a href="reset.html">Forgot password?</a> |
+        <a href="guest.html">Sign in as Guest</a>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

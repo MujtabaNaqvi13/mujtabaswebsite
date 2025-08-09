@@ -1,3 +1,36 @@
+/* Navbar animated gradient border */
+.navbar-gradient-border {
+  border-bottom: 4px solid;
+  border-image: linear-gradient(90deg, #38bdf8, #6366f1, #f472b6, #fbbf24, #38bdf8) 1;
+  animation: gradient-move 4s linear infinite;
+}
+@keyframes gradient-move {
+  0% { border-image-source: linear-gradient(90deg, #38bdf8, #6366f1, #f472b6, #fbbf24, #38bdf8); }
+  100% { border-image-source: linear-gradient(270deg, #38bdf8, #6366f1, #f472b6, #fbbf24, #38bdf8); }
+}
+
+/* Theme toggle glowing animation */
+.theme-toggle-anim {
+  box-shadow: 0 0 0 0 #fbbf24;
+  transition: box-shadow 0.3s;
+}
+.theme-toggle-anim:active {
+  box-shadow: 0 0 16px 4px #fbbf24, 0 0 32px 8px #6366f1;
+}
+/* Animate.css CDN for extra animations */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+
+body {
+  font-family: 'Fira Sans', 'Fredoka', Arial, sans-serif;
+}
+h1, h2, h3, .section-title {
+  font-family: 'Fredoka', 'Fira Sans', Arial, sans-serif;
+  letter-spacing: 0.5px;
+}
+code, .font-mono {
+  font-family: 'JetBrains Mono', 'Fira Mono', 'Consolas', monospace;
+}
+
 /* Navbar link underline animation */
 .nav-link {
   position: relative;
