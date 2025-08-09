@@ -1,77 +1,3 @@
-        <!-- New Section: Question Sender -->
-        <section id="question-sender" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">❓ Ask a Question</h3>
-            <div class="card mb-8 max-w-xl mx-auto">
-                <?php include 'send-question.php'; ?>
-                <form id="question-form" class="flex flex-col gap-4" action="send-question.php" method="POST" autocomplete="off">
-                    <label for="name" class="text-lg font-semibold">Your Name:</label>
-                    <input type="text" id="name" name="name" class="border rounded px-3 py-2 text-black" required placeholder="Enter your name">
-                    <label for="email" class="text-lg font-semibold">Your Email:</label>
-                    <input type="email" id="email" name="email" class="border rounded px-3 py-2 text-black" required placeholder="Enter your email">
-                    <label for="question" class="text-lg font-semibold">Your Question:</label>
-                    <textarea id="question" name="question" rows="4" class="border rounded px-3 py-2 text-black" required placeholder="Type your question here..."></textarea>
-                    <button type="submit" class="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition">Send Question</button>
-                </form>
-            </div>
-        </section>
-
-
-
-
-        <!-- BOTTOM SECTIONS: Science Q, Science Facts, Typing Test, Ideas -->
-
-        <section id="question-sender" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">❓ Ask a Question</h3>
-            <div class="card mb-8 max-w-xl mx-auto">
-                <?php include 'send-question.php'; ?>
-                <form id="question-form" class="flex flex-col gap-4" action="send-question.php" method="POST" autocomplete="off">
-                    <label for="name" class="text-lg font-semibold">Your Name:</label>
-                    <input type="text" id="name" name="name" class="border rounded px-3 py-2 text-black" required placeholder="Enter your name">
-                    <label for="email" class="text-lg font-semibold">Your Email:</label>
-                    <input type="email" id="email" name="email" class="border rounded px-3 py-2 text-black" required placeholder="Enter your email">
-                    <label for="question" class="text-lg font-semibold">Your Question:</label>
-                    <textarea id="question" name="question" rows="4" class="border rounded px-3 py-2 text-black" required placeholder="Type your question here..."></textarea>
-                    <button type="submit" class="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition">Send Question</button>
-                </form>
-            </div>
-        </section>
-
-        <section id="science-facts" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">🧪 Science Facts</h3>
-            <div class="card mb-8">
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-2">
-                    <li>The speed of light is about 299,792 kilometers per second!</li>
-                    <li>Honey never spoils. Archaeologists have found 3000-year-old honey in Egyptian tombs that is still edible.</li>
-                    <li>Octopuses have three hearts and blue blood.</li>
-                    <li>Bananas are berries, but strawberries are not.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="typing-test" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">⌨️ Typing Test</h3>
-            <div class="card mb-8 text-center">
-                <p class="mb-4">Test your typing speed! Type the random sentence below as fast as you can:</p>
-                <div class="mb-2 font-mono text-lg" id="typing-sentence"></div>
-                <input type="text" id="typing-input" class="border rounded px-3 py-2 w-80 text-black" placeholder="Start typing...">
-                <div class="mt-2" id="typing-result"></div>
-                <button id="typing-reset" class="mt-4 bg-gray-700 text-white rounded px-4 py-2 hover:bg-gray-800 transition">New Sentence</button>
-            </div>
-        </section>
-
-        <section id="ideas" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">💡 Ideas I'm Working On</h3>
-            <div class="card mb-8">
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-2">
-                    <li>Building a personal blog with interactive coding tutorials.</li>
-                    <li>Creating a multiplayer browser game for my friends.</li>
-                    <li>Developing a science facts API for students.</li>
-                    <li>Designing a productivity app for students and gamers.</li>
-                    <li>Making a meme generator for fun!</li>
-                </ul>
-            </div>
-        </section>
-        </section>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,360 +5,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mujtaba Naqvi – The Coder, The Gamer, The Thinker</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="bg-gray-50 text-gray-900">
 
-    <header class="header-bg py-4 shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
-            <div class="flex items-center mb-4 md:mb-0">
-                <i class="fas fa-book-open text-3xl text-white mr-3"></i>
-                <h1 class="text-white text-2xl font-bold">Mujtaba Naqvi – The Coder, The Gamer, The Thinker</h1>
-            </div>
-            <button id="theme-toggle" class="toggle-button mb-4 md:mb-0" aria-label="Toggle theme">
-                <span id="theme-icon" class="text-2xl align-middle">
-                    <i class="fas fa-moon"></i>
-                </span>
-            </button>
-            <nav class="w-full md:w-auto">
-                <ul class="flex flex-wrap justify-center md:justify-end space-x-4">
-                    <li><a href="#home" class="nav-link">Home</a></li>
-                    <li><a href="#about" class="nav-link">About Me</a></li>
-                    <li><a href="#skills" class="nav-link">Skills</a></li>
-                    <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#games" class="nav-link">Games</a></li>
-                    <li><a href="#help-others" class="nav-link">Help Others</a></li>
-                    <li><a href="#interests" class="nav-link">Interests</a></li>
-                    <li><a href="#goals" class="nav-link">Goals</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-            </nav>
+    <!-- Navbar -->
+    <nav class="bg-blue-600 text-white sticky top-0 left-0 shadow-lg z-50 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-bold">Mujtaba Naqvi</h1>
+            <ul class="flex space-x-6">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#fun" class="nav-link">Fun</a></li>
+            </ul>
         </div>
-    </header>
+    </nav>
 
-    <main class="flex-grow container mx-auto px-4 py-8">
-        <!-- New Section: Achievements & Milestones -->
-        <section id="achievements" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">🏆 Achievements & Milestones</h3>
-            <div class="card mb-8">
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-2">
-                    <li>Launched my first personal website before high school graduation.</li>
-                    <li>Contributed to open-source projects on GitHub.</li>
-                    <li>Helped classmates debug and deploy their first web projects.</li>
-                    <li>Completed 100+ coding challenges on various platforms.</li>
-                    <li>Presented a tech talk at a school event.</li>
+    <!-- Main Content -->
+    <main class="pt-20 max-w-6xl mx-auto px-4 space-y-12">
+        
+        <!-- About -->
+        <section id="about" class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-2xl font-bold mb-4">About Me</h2>
+            <p>I’m Mujtaba Naqvi – The Coder, The Gamer, The Thinker. I love coding, gaming, and solving problems creatively.</p>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills" class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-2xl font-bold mb-4">Skills</h2>
+            <ul class="list-disc pl-6 space-y-2">
+                <li>HTML, CSS, JavaScript</li>
+                <li>Go, C#, Python</li>
+                <li>GitHub, VS Code, Replit</li>
+            </ul>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-2xl font-bold mb-4">Projects</h2>
+            <ul class="list-disc pl-6 space-y-2">
+                <li>Portfolio Website</li>
+                <li>Browser Game</li>
+                <li>Science Facts API</li>
+            </ul>
+        </section>
+
+        <!-- Fun Section at Bottom -->
+        <section id="fun" class="bg-white p-6 rounded-lg shadow space-y-8">
+            
+            <!-- Ask a Question -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">❓ Ask a Question</h3>
+                <label>Your Name:</label>
+                <input type="text" placeholder="Enter your name" class="border p-2 w-full mb-3">
+                <label>Your Email:</label>
+                <input type="email" placeholder="Enter your email" class="border p-2 w-full mb-3">
+                <label>Your Question:</label>
+                <textarea placeholder="Type your question here..." class="border p-2 w-full mb-3"></textarea>
+                <button class="bg-blue-600 text-white px-4 py-2 rounded">Send Question</button>
+            </div>
+
+            <!-- Ask a Science Question -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">❓ Ask a Science Question</h3>
+                <label>Your Name:</label>
+                <input type="text" placeholder="Enter your name" class="border p-2 w-full mb-3">
+                <label>Your Email:</label>
+                <input type="email" placeholder="Enter your email" class="border p-2 w-full mb-3">
+                <label>Your Science Question:</label>
+                <textarea placeholder="Type your science question here..." class="border p-2 w-full mb-3"></textarea>
+                <button class="bg-green-600 text-white px-4 py-2 rounded">Send Question</button>
+            </div>
+
+            <!-- Science Facts -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">🧪 Science Facts</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                    <li>The speed of light is about 299,792 kilometers per second!</li>
+                    <li>Honey never spoils — even after 3000 years.</li>
+                    <li>Octopuses have three hearts and blue blood.</li>
+                    <li>Bananas are berries, but strawberries are not.</li>
                 </ul>
             </div>
-        </section>
 
-        <!-- New Section: Favorite Tech & Tools -->
-        <section id="favorite-tech" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">🛠️ Favorite Tech & Tools</h3>
-            <div class="card mb-8">
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-2">
-                    <li><span class="highlight-text">VS Code:</span> My go-to code editor for everything.</li>
-                    <li><span class="highlight-text">GitHub:</span> For version control and collaboration.</li>
-                    <li><span class="highlight-text">Figma:</span> For UI/UX design and prototyping.</li>
-                    <li><span class="highlight-text">Canva:</span> For quick graphics and social posts.</li>
-                    <li><span class="highlight-text">Replit:</span> For coding on the go and sharing code with friends.</li>
+            <!-- Typing Test -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">⌨️ Typing Test</h3>
+                <p class="mb-2">Test your typing speed! Type the sentence below:</p>
+                <p class="bg-gray-100 p-2 rounded">Never stop learning new things!</p>
+                <input type="text" placeholder="Start typing..." class="border p-2 w-full mt-2">
+                <button class="bg-purple-600 text-white px-4 py-2 mt-3 rounded">New Sentence</button>
+            </div>
+
+            <!-- Ideas -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">💡 Ideas I'm Working On</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                    <li>Personal blog with interactive coding tutorials</li>
+                    <li>Multiplayer browser game</li>
+                    <li>Science facts API</li>
+                    <li>Productivity app for students and gamers</li>
+                    <li>Meme generator for fun</li>
                 </ul>
             </div>
-        </section>
 
-        <!-- New Section: Fun Facts -->
-        <section id="fun-facts" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">🎉 Fun Facts About Me</h3>
-            <div class="card mb-8">
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-2">
-                    <li>I can solve a Rubik's Cube in under a minute.</li>
-                    <li>I once built a website entirely on my phone.</li>
-                    <li>I love collecting tech stickers for my laptop.</li>
-                    <li>I keep a digital journal of every bug I fix.</li>
-                    <li>I can type over 100 words per minute.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- New Section: My Inspirations -->
-        <section id="inspirations" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">🌟 My Inspirations</h3>
-            <div class="card mb-8">
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-2">
-                    <li><span class="highlight-text">Elon Musk:</span> For dreaming big and building the future.</li>
-                    <li><span class="highlight-text">Ada Lovelace:</span> The first computer programmer.</li>
-                    <li><span class="highlight-text">My teachers and mentors:</span> For always encouraging curiosity.</li>
-                    <li><span class="highlight-text">My family:</span> For supporting my learning journey.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- New Section: Connect With Me -->
-        <section id="connect" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">🔗 Connect With Me Elsewhere</h3>
-            <div class="card text-center">
-                <p class="text-lg leading-relaxed mb-4">Find me on these platforms for more updates, code, and fun:</p>
-                <div class="flex flex-wrap justify-center gap-6 text-3xl">
-                    <a href="https://github.com/SMujtaba" target="_blank" class="highlight-text hover:underline"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="https://replit.com/@SMujtaba" target="_blank" class="highlight-text hover:underline"><i class="fas fa-code"></i> Replit</a>
-                    <a href="mailto:s.mujtaba.naqvi@outlook.com" class="highlight-text hover:underline"><i class="fas fa-envelope"></i> Email</a>
-                </div>
-            </div>
-        </section>
-
-
-        <section id="home" class="text-center py-16">
-            <h2 class="text-5xl font-extrabold mb-4 text-white">Welcome to Mujtaba's World</h2>
-            <p class="text-2xl text-gray-400 mb-6">Learn deeply. Play wisely. Grow forever.</p>
-            <div class="flex flex-wrap justify-center items-center text-xl text-gray-300 space-x-4">
-                <span><i class="fas fa-user-circle mr-2"></i>Name: <span class="highlight-text">Mujtaba Naqvi</span></span>
-                <span><i class="fas fa-at mr-2"></i>Alias: <span class="highlight-text">@SMujtaba</span></span>
-                <span><i class="fas fa-map-marker-alt mr-2"></i>Location: <span class="highlight-text">Australia 🇦🇺</span></span>
-                <span><i class="fas fa-school mr-2"></i>School Year: <span class="highlight-text">Year 8</span></span>
-                <span><i class="fas fa-globe mr-2"></i>Website: <a href="https://mujtabanaqvi.com" target="_blank" class="highlight-text hover:underline">mujtabanaqvi.com</a></span>
-            </div>
-        </section>
-
-        <!-- New Section: Achievements & Milestones -->
-        <section id="achievements" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">🏆 Achievements & Milestones</h3>
-            <div class="card mb-8">
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-2">
-                    <li>Launched my first personal website before high school graduation.</li>
-                    <li>Contributed to open-source projects on GitHub.</li>
-                    <li>Helped classmates debug and deploy their first web projects.</li>
-                    <li>Completed 100+ coding challenges on various platforms.</li>
-                    <li>Presented a tech talk at a school event.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- New Section: Favorite Tech & Tools -->
-        <section id="favorite-tech" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">🛠️ Favorite Tech & Tools</h3>
-            <div class="card mb-8">
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-2">
-                    <li><span class="highlight-text">VS Code:</span> My go-to code editor for everything.</li>
-                    <li><span class="highlight-text">GitHub:</span> For version control and collaboration.</li>
-                    <li><span class="highlight-text">Figma:</span> For UI/UX design and prototyping.</li>
-                    <li><span class="highlight-text">Canva:</span> For quick graphics and social posts.</li>
-                    <li><span class="highlight-text">Replit:</span> For coding on the go and sharing code with friends.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- New Section: Fun Facts -->
-        <section id="fun-facts" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">🎉 Fun Facts About Me</h3>
-            <div class="card mb-8">
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-2">
-                    <li>I can solve a Rubik's Cube in under a minute.</li>
-                    <li>I once built a website entirely on my phone.</li>
-                    <li>I love collecting tech stickers for my laptop.</li>
-                    <li>I keep a digital journal of every bug I fix.</li>
-                    <li>I can type over 100 words per minute.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- New Section: My Inspirations -->
-        <section id="inspirations" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">🌟 My Inspirations</h3>
-            <div class="card mb-8">
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-2">
-                    <li><span class="highlight-text">Elon Musk:</span> For dreaming big and building the future.</li>
-                    <li><span class="highlight-text">Ada Lovelace:</span> The first computer programmer.</li>
-                    <li><span class="highlight-text">My teachers and mentors:</span> For always encouraging curiosity.</li>
-                    <li><span class="highlight-text">My family:</span> For supporting my learning journey.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- New Section: Connect With Me -->
-        <section id="connect" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">🔗 Connect With Me Elsewhere</h3>
-            <div class="card text-center">
-                <p class="text-lg leading-relaxed mb-4">Find me on these platforms for more updates, code, and fun:</p>
-                <div class="flex flex-wrap justify-center gap-6 text-3xl">
-                    <a href="https://github.com/SMujtaba" target="_blank" class="highlight-text hover:underline"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="https://replit.com/@SMujtaba" target="_blank" class="highlight-text hover:underline"><i class="fas fa-code"></i> Replit</a>
-                    <a href="mailto:s.mujtaba.naqvi@outlook.com" class="highlight-text hover:underline"><i class="fas fa-envelope"></i> Email</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">💬 Quotes That Reflect Me</h3>
-            <div id="quote-card" class="card quote-display">
-                <p id="current-quote-text" class="quote-text"></p>
-                <p id="current-quote-author" class="quote-author"></p>
-            </div>
-        </section>
-
-        <section id="about" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">🌱 A Little About Me</h3>
-            <div class="card mb-8">
-                <p class="text-lg leading-relaxed">I’m a Year 8 student with a deep interest in web development, technology, psychology, and gaming. I’m hands-on, curious, and always hungry to learn something new. Whether it's a bug in my code or a puzzle in a game, I love solving problems.</p>
-                <p class="text-lg leading-relaxed mt-4">I believe learning early gives me a head start not just in school, but in life.</p>
-            </div>
-            <h3 class="text-4xl text-center section-title mb-8">🧠 My Learning Style</h3>
-            <div class="card">
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-2">
-                    <li>I build as I learn — I don’t just watch or read, I try.</li>
-                    <li>I teach others what I understand (even if I’m still learning).</li>
-                    <li>I use VS Code, GitHub, Live Server, and browser tools to code like a pro.</li>
-                    <li>I’ve started tracking and deploying my own websites.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="projects" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">🌐 Web Projects</h3>
-            <div class="card">
-                <p class="text-lg leading-relaxed mb-4">Working with friends and collaborators, we’re building:</p>
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-2 mb-4">
-                    <li><a href="https://shayanhaider.com" target="_blank" class="highlight-text hover:underline">shayanhaider.com</a></li>
-                    <li><a href="https://mujtabanaqvi.com" target="_blank" class="highlight-text hover:underline">mujtabanaqvi.com</a></li>
-                    <li><a href="https://ayanhaider.com" target="_blank" class="highlight-text hover:underline">ayanhaider.com</a></li>
-                </ul>
-                <p class="text-lg leading-relaxed mb-4">All hosted on GitHub Pages, with custom HTTPS-secured domains using Namecheap, and search visibility via Google Search Console.</p>
-                <p class="text-lg leading-relaxed">I’m responsible for learning how the web works behind the scenes, from HTML basics to DNS records and SEO setup.</p>
-            </div>
-        </section>
-
-        <section id="skills" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">⚙️ Skills & Tools</h3>
-            <div class="card overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-700 rounded-lg overflow-hidden">
-                    <thead class="table-header">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Category</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Tools & Technologies</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-700">
-                        <tr class="table-row">
-                            <td class="px-6 py-4 whitespace-nowrap">Languages</td>
-                            <td class="px-6 py-4 whitespace-nowrap">HTML, CSS, JavaScript, C#, C, Golang (learning)</td>
-                        </tr>
-                        <tr class="table-row">
-                            <td class="px-6 py-4 whitespace-nowrap">Tools</td>
-                            <td class="px-6 py-4 whitespace-nowrap">VS Code, GitHub, Git, Live Server</td>
-                        </tr>
-                        <tr class="table-row">
-                            <td class="px-6 py-4 whitespace-nowrap">Web Dev</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Responsive layouts, forms, Markdown, browser dev tools</td>
-                        </tr>
-                        <tr class="table-row">
-                            <td class="px-6 py-4 whitespace-nowrap">Deployment</td>
-                            <td class="px-6 py-4 whitespace-nowrap">GitHub Pages, HTTPS via DNS, SEO via Google Search Console</td>
-                        </tr>
-                        <tr class="table-row">
-                            <td class="px-6 py-4 whitespace-nowrap">Frameworks</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Bootstrap (starting), Tailwind CSS (exploring)</td>
-                        </tr>
-                        <tr class="table-row">
-                            <td class="px-6 py-4 whitespace-nowrap">Other Skills</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Markdown docs, folder structuring, relative paths</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section id="games" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">🎮 Gamer Side</h3>
-            <div class="card">
-                <p class="text-lg leading-relaxed mb-4">I’m a passionate gamer who sees games as more than fun — they’re challenges that sharpen the mind. My favorites:</p>
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-2 mb-4">
-                    <li><span class="highlight-text">Minecraft:</span> Redstone, mods, creativity, survival</li>
-                    <li><span class="highlight-text">Strategy & Simulation:</span> Chess, city-builders, and puzzle-based logic games</li>
-                </ul>
-                <p class="text-lg leading-relaxed">Sometimes I even think about how I could code my own games in the future.</p>
-            </div>
-        </section>
-
-        <section id="help-others" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">🤝 Helping Others Learn & Grow</h3>
-            <div class="card mb-8">
-                <p class="text-lg leading-relaxed mb-4">I believe in sharing knowledge and helping others on their learning journey. Here are some resources and ideas that might be useful:</p>
-
-                <h4 class="text-2xl font-bold highlight-text mb-2">📚 Useful Books & Resources</h4>
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-2 mb-4">
-                    <li>*For Web Development Beginners:* "HTML & CSS: Design and Build Websites" by Jon Duckett (Great visual guide).</li>
-                    <li>*Introduction to Programming Logic:* "Automate the Boring Stuff with Python" by Al Sweigart (Practical and fun).</li>
-                    <li>*Thinking Critically:* Books on logical fallacies or critical thinking exercises.</li>
-                    <li>*Psychology Basics:* Look for introductory psychology textbooks or online courses from reputable universities.</li>
-                </ul>
-
-                <h4 class="text-2xl font-bold highlight-text mb-2">💡 Lessons & Tutorials</h4>
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-2 mb-4">
-                    <li>*FreeCodeCamp.org:* Excellent for learning web development interactively.</li>
-                    <li>*Khan Academy:* Offers a wide range of subjects, including computer programming and math.</li>
-                    <li>*YouTube Channels:* Search for channels like "Traversy Media" (web dev) or "CrashCourse Psychology" (psychology).</li>
-                </ul>
-
-                <h4 class="text-2xl font-bold highlight-text mb-2">🧠 Logical Games to Sharpen Your Mind</h4>
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-2">
-                    <li>*Chess:* Classic strategy game, great for planning and foresight.</li>
-                    <li>*Sudoku & Crossword Puzzles:* Excellent for logic and problem-solving.</li>
-                    <li>*Programming Challenges (e.g., LeetCode, HackerRank):* Apply your coding skills to solve real problems.</li>
-                    <li>*Factorio / Satisfactory (Video Games):* Complex factory-building games that require intricate planning and optimization.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="interests" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">💡 Interests Beyond Tech</h3>
-            <div class="card">
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-2">
-                    <li><span class="highlight-text">Psychology:</span> Studying the brain and how people think</li>
-                    <li><span class="highlight-text">Design:</span> UI/UX, how users feel on websites</li>
-                    <li><span class="highlight-text">Storytelling:</span> Writing game concepts, website intros, and documentation</li>
-                    <li><span class="highlight-text">Teaching:</span> I love explaining what I learn to friends or teammates</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="goals" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">📈 Future Goals</h3>
-            <div class="card">
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-2">
-                    <li>🎓 Master front-end and dive into backend (Node.js, APIs, maybe Go)</li>
-                    <li>🌐 Build 5+ websites under my name and family’s</li>
-                    <li>🧠 Finish a structured course in human psychology</li>
-                    <li>🕹️ Create a basic game (2D or web-based)</li>
-                    <li>💸 Use my skills to freelance and earn as a teen</li>
-                    <li>🧾 Maybe one day… grab the dream domain: <span class="highlight-text">hasannaqvi.com</span></li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="contact" class="py-12">
-            <h3 class="text-4xl text-center section-title mb-8">✉️ Get in Touch!</h3>
-            <div class="card text-center">
-                <p class="text-lg leading-relaxed mb-4">I'm always open to connecting and discussing new ideas, projects, or just chatting about tech and games!</p>
-                <p class="text-2xl font-bold">
-                    <a href="mailto:s.mujtaba.naqvi@outlook.com" class="highlight-text hover:underline">
-                        <i class="fas fa-envelope mr-2"></i>s.mujtaba.naqvi@outlook.com
-                    </a>
-                </p>
-                <p class="text-lg text-gray-400 mt-4">Feel free to send me an email!</p>
-            </div>
-        </section>
-
-        <section class="py-12 text-center">
-            <h3 class="text-4xl section-title mb-4">⚡ Closing Words</h3>
-            <p class="text-3xl font-semibold italic text-white">“I’m not waiting for the future to happen — I’m already building it, line by line.”</p>
         </section>
 
     </main>
-
-    <footer class="header-bg py-4 text-center text-white text-sm">
-        <p>&copy; 2025 Mujtaba Naqvi. All rights reserved.</p>
-    </footer>
-
-    <script src="script.js"></script>
 
 </body>
 </html>
