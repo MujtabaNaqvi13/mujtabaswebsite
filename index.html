@@ -61,6 +61,66 @@
         border: 1px solid #ececec;
       }
       .navbar-bg {
+      /* Hamburger styles */
+      .navbar-hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        margin-left: 1.5rem;
+        z-index: 1100;
+      }
+      .navbar-hamburger span {
+        display: block;
+        width: 26px;
+        height: 3px;
+        margin: 4px 0;
+        background: var(--navbar-fg, #fff);
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+      @media (max-width: 900px) {
+        .navbar-options-box {
+          margin-left: 0;
+          margin-right: 0;
+        }
+      }
+      @media (max-width: 768px) {
+        .navbar-options-box {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: var(--navbar-bg, #252945);
+          border-radius: 0 0 16px 16px;
+          box-shadow: 0 8px 32px 0 rgba(30,32,60,0.13);
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0;
+          padding: 0.5rem 1.5rem 1rem 1.5rem;
+          z-index: 1050;
+          display: none;
+        }
+        .navbar-options-box.open {
+          display: flex;
+        }
+        .navbar-hamburger {
+          display: flex;
+        }
+        .navbar-bg .nav-link {
+          padding: 0.75rem 0;
+          width: 100%;
+          display: block;
+        }
+        .navbar-bg ul {
+          flex-direction: column;
+          width: 100%;
+          gap: 0;
+        }
+      }
       .navbar-options-box {
         background: rgba(34, 44, 68, 0.13);
         border-radius: 16px;
@@ -189,20 +249,46 @@
     </script>
   <body class="site-bg">
   <nav class="navbar-bg fixed top-0 left-0 w-full shadow-lg z-50 transition-all duration-300 animate__animated animate__fadeInDown navbar-gradient-border">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <h1 id="site-title" class="text-2xl font-extrabold tracking-wide animate__animated animate__pulse animate__infinite cursor-pointer" title="Click for a quote!">Mujtaba Naqvi</h1>
-      <div class="navbar-options-box">
-        <ul class="flex space-x-6 m-0 p-0">
-          <li><a href="#about" class="nav-link typewriter-underline">About</a></li>
-          <li><a href="#skills" class="nav-link typewriter-underline">Skills</a></li>
-          <li><a href="#projects" class="nav-link typewriter-underline">Projects</a></li>
-          <li><a href="#fun" class="nav-link typewriter-underline">Fun</a></li>
-        </ul>
-      </div>
-      <button id="theme-toggle" class="ml-6 text-2xl focus:outline-none transition-transform duration-300 transform hover:scale-125 theme-toggle-anim" aria-label="Toggle theme">
-        <span id="theme-icon"><i class="fas fa-moon"></i></span>
-      </button>
-    </div>
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center relative">
+            <h1 id="site-title" class="text-2xl font-extrabold tracking-wide animate__animated animate__pulse animate__infinite cursor-pointer" title="Click for a quote!">Mujtaba Naqvi</h1>
+            <div class="navbar-hamburger" id="navbar-hamburger" aria-label="Open navigation" tabindex="0">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="navbar-options-box" id="navbar-options-box">
+              <ul class="flex space-x-6 m-0 p-0">
+                  <li><a href="#about" class="nav-link typewriter-underline">About</a></li>
+                  <li><a href="#skills" class="nav-link typewriter-underline">Skills</a></li>
+                  <li><a href="#projects" class="nav-link typewriter-underline">Projects</a></li>
+                  <li><a href="#fun" class="nav-link typewriter-underline">Fun</a></li>
+              </ul>
+            </div>
+            <button id="theme-toggle" class="ml-6 text-2xl focus:outline-none transition-transform duration-300 transform hover:scale-125 theme-toggle-anim" aria-label="Toggle theme">
+                <span id="theme-icon"><i class="fas fa-moon"></i></span>
+            </button>
+        </div>
+      // Responsive navbar hamburger toggle
+      document.addEventListener('DOMContentLoaded', function() {
+        const hamburger = document.getElementById('navbar-hamburger');
+        const navBox = document.getElementById('navbar-options-box');
+        if (hamburger && navBox) {
+          hamburger.addEventListener('click', function() {
+            navBox.classList.toggle('open');
+          });
+          hamburger.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              navBox.classList.toggle('open');
+            }
+          });
+          // Close menu on link click (mobile)
+          navBox.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+              if (window.innerWidth <= 768) navBox.classList.remove('open');
+            });
+          });
+        }
+      });
     </nav>
 
     <!-- Main Content -->
