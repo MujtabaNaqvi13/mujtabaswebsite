@@ -261,7 +261,10 @@
                   <li><a href="#about" class="nav-link typewriter-underline">About</a></li>
                   <li><a href="#skills" class="nav-link typewriter-underline">Skills</a></li>
                   <li><a href="#projects" class="nav-link typewriter-underline">Projects</a></li>
+                    <li><a href="#quran" class="nav-link typewriter-underline">Quran</a></li>
                   <li><a href="#fun" class="nav-link typewriter-underline">Fun</a></li>
+                    <li><a href="login.html" class="nav-link typewriter-underline">Login</a></li>
+                    <li><a href="signup.html" class="nav-link typewriter-underline">Sign Up</a></li>
               </ul>
             </div>
             <button id="theme-toggle" class="ml-6 text-2xl focus:outline-none transition-transform duration-300 transform hover:scale-125 theme-toggle-anim" aria-label="Toggle theme">
@@ -368,16 +371,13 @@
                 <button id="login-btn" class="bg-green-600 text-white px-4 py-2 rounded mr-2">Login</button>
                 <button id="guest-btn" class="bg-gray-600 text-white px-4 py-2 rounded">Sign in as Guest</button>
             </div>
-            <form id="contact-form" class="space-y-3 hidden" autocomplete="off">
-                <input type="text" id="contact-name" class="border p-2 w-full" placeholder="Your Name" required>
-                <input type="email" id="contact-email" class="border p-2 w-full" placeholder="Your Email" required>
-                <input type="text" id="contact-subject" class="border p-2 w-full" placeholder="Subject" required>
-                <textarea id="contact-message" class="border p-2 w-full" placeholder="Your Message" required></textarea>
-                <input type="file" id="contact-file" class="border p-2 w-full" accept="image/*,.pdf,.doc,.docx,.txt">
-                <input type="text" id="contact-hp" class="hidden" tabindex="-1" autocomplete="off">
-                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Send</button>
-            </form>
-            <div id="contact-success" class="text-green-600 mt-2 hidden">Message sent! I'll get back to you soon.</div>
+        <form id="contact-form" class="space-y-3 hidden" autocomplete="off" style="display: none;">
+          <input type="text" id="contact-name" class="border p-2 w-full" placeholder="Your Name" required>
+          <input type="email" id="contact-email" class="border p-2 w-full" placeholder="Your Email" required>
+          <textarea id="contact-message" class="border p-2 w-full" placeholder="Your Message" required></textarea>
+          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Send</button>
+        </form>
+        <div id="contact-success" class="text-green-600 mt-2 hidden">Message sent! I'll get back to you soon.</div>
         </section>
 
         <!-- Skills -->
@@ -400,64 +400,43 @@
             </ul>
         </section>
 
-        <!-- Fun Section at Bottom -->
-  <section id="fun" class="section-bg p-6 rounded-lg shadow space-y-8 fade-in-section">
-    <!-- Quranic Section -->
-    <section id="quranic" class="section-bg p-6 rounded-lg shadow fade-in-section mt-12">
-      <h2 class="text-2xl font-bold mb-4">Quranic Verses</h2>
-      <p class="mb-6 text-base" style="max-width: 700px;">
-        The Quran is the central religious text of Islam, regarded as a guide for life and a source of wisdom and inspiration. Below are selected verses with their English translations, offering insight and reflection for all visitors.
-      </p>
-      <div class="mb-6 flex flex-wrap gap-4">
-        <a href="https://quran.com/" target="_blank" rel="noopener" class="inline-block px-4 py-2 rounded bg-blue-600 text-white font-semibold shadow hover:bg-blue-700 transition">Read more on Quran.com</a>
-        <a href="https://tanzil.net/" target="_blank" rel="noopener" class="inline-block px-4 py-2 rounded bg-green-600 text-white font-semibold shadow hover:bg-green-700 transition">Read more on Tanzil.net</a>
-      </div>
-      <div id="quranic-verse-list" class="space-y-8">
-        <!-- Example verse block, replace with your content -->
-        <div class="quranic-verse-block p-4 rounded-lg" style="background: var(--section-bg, #fff); box-shadow: 0 2px 8px 0 rgba(30,32,60,0.07);">
-          <div class="text-right" dir="rtl" lang="ar" style="font-family: 'Amiri', 'Noto Naskh Arabic', serif; font-size: 1.5rem; line-height: 2.2rem; color: #2d3748;">
-            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-          </div>
-          <div class="text-left mt-2 text-base" style="color: var(--section-fg, #222);">
-            In the name of Allah, the Most Gracious, the Most Merciful.
-          </div>
-          <div class="mt-2 text-sm text-gray-500 flex items-center gap-2">
-            <span>Al-Fatiha</span>
-            <span>•</span>
-            <span>1:1</span>
-            <button class="ml-2 px-2 py-1 text-xs rounded bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-800" onclick="navigator.clipboard.writeText('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ')">Copy</button>
-          </div>
+        <!-- Quranic Section (now its own main section) -->
+  <section id="quran" class="section-bg p-6 rounded-lg shadow fade-in-section mt-12">
+    <h2 class="text-2xl font-bold mb-4">Quranic Verses</h2>
+    <p class="mb-6 text-base" style="max-width: 700px;">
+      The Quran is the central religious text of Islam, regarded as a guide for life and a source of wisdom and inspiration. Below are selected verses with their English translations, offering insight and reflection for all visitors.
+    </p>
+    <div class="mb-6 flex flex-wrap gap-4">
+      <a href="https://quran.com/" target="_blank" rel="noopener" class="inline-block px-4 py-2 rounded bg-blue-600 text-white font-semibold shadow hover:bg-blue-700 transition">Read more on Quran.com</a>
+      <a href="https://tanzil.net/" target="_blank" rel="noopener" class="inline-block px-4 py-2 rounded bg-green-600 text-white font-semibold shadow hover:bg-green-700 transition">Read more on Tanzil.net</a>
+    </div>
+    <div id="quranic-verse-list" class="space-y-8">
+      <!-- Example verse block, replace with your content -->
+      <div class="quranic-verse-block p-4 rounded-lg" style="background: var(--section-bg, #fff); box-shadow: 0 2px 8px 0 rgba(30,32,60,0.07);">
+        <div class="text-right" dir="rtl" lang="ar" style="font-family: 'Amiri', 'Noto Naskh Arabic', serif; font-size: 1.5rem; line-height: 2.2rem; color: #2d3748;">
+          بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
         </div>
-        <!-- Add more verse blocks here -->
+        <div class="text-left mt-2 text-base" style="color: var(--section-fg, #222);">
+          In the name of Allah, the Most Gracious, the Most Merciful.
+        </div>
+        <div class="mt-2 text-sm text-gray-500 flex items-center gap-2">
+          <span>Al-Fatiha</span>
+          <span>•</span>
+          <span>1:1</span>
+          <button class="ml-2 px-2 py-1 text-xs rounded bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-800" onclick="navigator.clipboard.writeText('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ')">Copy</button>
+        </div>
       </div>
-      <!-- Optional: Navigation for Surahs or topics -->
-      <!-- <div class="mt-6 flex flex-wrap gap-2">
-        <button class="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200">Al-Fatiha</button>
-        <button class="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200">Al-Baqarah</button>
-      </div> -->
-      <style>
-        #quranic-verse-list .quranic-verse-block {
-          background: var(--section-bg, #fff);
-          color: var(--section-fg, #222);
-          border-radius: 14px;
-          box-shadow: 0 2px 8px 0 rgba(30,32,60,0.07);
-          border: 1px solid #ececec;
-          transition: background 0.3s, color 0.3s;
-        }
-        [data-theme="light"] #quranic-verse-list .quranic-verse-block {
-          background: #1E1E2F;
-          color: #E0E0E0;
-        }
-        [data-theme="dark"] #quranic-verse-list .quranic-verse-block {
-          background: #fff;
-          color: #222;
-        }
-        #quranic-verse-list .quranic-verse-block:hover {
-          box-shadow: 0 6px 24px 0 rgba(30,32,60,0.13);
-        }
-      </style>
-      <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
-    </section>
+      <!-- Add more verse blocks here -->
+    </div>
+    <!-- Optional: Navigation for Surahs or topics -->
+    <!-- <div class="mt-6 flex flex-wrap gap-2">
+      <button class="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200">Al-Fatiha</button>
+      <button class="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200">Al-Baqarah</button>
+    </div> -->
+  </section>
+
+  <!-- Fun Section at Bottom -->
+  <section id="fun" class="section-bg p-6 rounded-lg shadow space-y-8 fade-in-section">
             
             <!-- Ask a Question (demo, localStorage only) -->
             <div>
