@@ -61,6 +61,18 @@
         border: 1px solid #ececec;
       }
       .navbar-bg {
+      .navbar-options-box {
+        background: rgba(34, 44, 68, 0.13);
+        border-radius: 16px;
+        padding: 0.25rem 1.25rem;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+        box-shadow: 0 2px 10px 0 rgba(30,32,60,0.10);
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        transition: background 0.3s, box-shadow 0.3s;
+      }
         background: var(--navbar-bg, #252945) !important;
         color: var(--navbar-fg, #fff) !important;
   box-shadow: 0 6px 24px 0 rgba(30,32,60,0.18), 0 1.5px 0 0 #222c44;
@@ -177,18 +189,20 @@
     </script>
   <body class="site-bg">
   <nav class="navbar-bg fixed top-0 left-0 w-full shadow-lg z-50 transition-all duration-300 animate__animated animate__fadeInDown navbar-gradient-border">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-            <h1 id="site-title" class="text-2xl font-extrabold tracking-wide animate__animated animate__pulse animate__infinite cursor-pointer" title="Click for a quote!">Mujtaba Naqvi</h1>
-            <ul class="flex space-x-6">
-                <li><a href="#about" class="nav-link typewriter-underline">About</a></li>
-                <li><a href="#skills" class="nav-link typewriter-underline">Skills</a></li>
-                <li><a href="#projects" class="nav-link typewriter-underline">Projects</a></li>
-                <li><a href="#fun" class="nav-link typewriter-underline">Fun</a></li>
-            </ul>
-            <button id="theme-toggle" class="ml-6 text-2xl focus:outline-none transition-transform duration-300 transform hover:scale-125 theme-toggle-anim" aria-label="Toggle theme">
-                <span id="theme-icon"><i class="fas fa-moon"></i></span>
-            </button>
-        </div>
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <h1 id="site-title" class="text-2xl font-extrabold tracking-wide animate__animated animate__pulse animate__infinite cursor-pointer" title="Click for a quote!">Mujtaba Naqvi</h1>
+      <div class="navbar-options-box">
+        <ul class="flex space-x-6 m-0 p-0">
+          <li><a href="#about" class="nav-link typewriter-underline">About</a></li>
+          <li><a href="#skills" class="nav-link typewriter-underline">Skills</a></li>
+          <li><a href="#projects" class="nav-link typewriter-underline">Projects</a></li>
+          <li><a href="#fun" class="nav-link typewriter-underline">Fun</a></li>
+        </ul>
+      </div>
+      <button id="theme-toggle" class="ml-6 text-2xl focus:outline-none transition-transform duration-300 transform hover:scale-125 theme-toggle-anim" aria-label="Toggle theme">
+        <span id="theme-icon"><i class="fas fa-moon"></i></span>
+      </button>
+    </div>
     </nav>
 
     <!-- Main Content -->
@@ -300,6 +314,58 @@
 
         <!-- Fun Section at Bottom -->
   <section id="fun" class="section-bg p-6 rounded-lg shadow space-y-8 fade-in-section">
+    <!-- Quranic Section -->
+    <section id="quranic" class="section-bg p-6 rounded-lg shadow fade-in-section mt-12">
+      <h2 class="text-2xl font-bold mb-4">Quranic Verses</h2>
+      <p class="mb-6 text-base" style="max-width: 700px;">
+        The Quran is the central religious text of Islam, regarded as a guide for life and a source of wisdom and inspiration. Below are selected verses with their English translations, offering insight and reflection for all visitors.
+      </p>
+      <div id="quranic-verse-list" class="space-y-8">
+        <!-- Example verse block, replace with your content -->
+        <div class="quranic-verse-block p-4 rounded-lg" style="background: var(--section-bg, #fff); box-shadow: 0 2px 8px 0 rgba(30,32,60,0.07);">
+          <div class="text-right" dir="rtl" lang="ar" style="font-family: 'Amiri', 'Noto Naskh Arabic', serif; font-size: 1.5rem; line-height: 2.2rem; color: #2d3748;">
+            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+          </div>
+          <div class="text-left mt-2 text-base" style="color: var(--section-fg, #222);">
+            In the name of Allah, the Most Gracious, the Most Merciful.
+          </div>
+          <div class="mt-2 text-sm text-gray-500 flex items-center gap-2">
+            <span>Al-Fatiha</span>
+            <span>•</span>
+            <span>1:1</span>
+            <button class="ml-2 px-2 py-1 text-xs rounded bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-800" onclick="navigator.clipboard.writeText('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ')">Copy</button>
+          </div>
+        </div>
+        <!-- Add more verse blocks here -->
+      </div>
+      <!-- Optional: Navigation for Surahs or topics -->
+      <!-- <div class="mt-6 flex flex-wrap gap-2">
+        <button class="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200">Al-Fatiha</button>
+        <button class="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200">Al-Baqarah</button>
+      </div> -->
+      <style>
+        #quranic-verse-list .quranic-verse-block {
+          background: var(--section-bg, #fff);
+          color: var(--section-fg, #222);
+          border-radius: 14px;
+          box-shadow: 0 2px 8px 0 rgba(30,32,60,0.07);
+          border: 1px solid #ececec;
+          transition: background 0.3s, color 0.3s;
+        }
+        [data-theme="light"] #quranic-verse-list .quranic-verse-block {
+          background: #1E1E2F;
+          color: #E0E0E0;
+        }
+        [data-theme="dark"] #quranic-verse-list .quranic-verse-block {
+          background: #fff;
+          color: #222;
+        }
+        #quranic-verse-list .quranic-verse-block:hover {
+          box-shadow: 0 6px 24px 0 rgba(30,32,60,0.13);
+        }
+      </style>
+      <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    </section>
             
             <!-- Ask a Question (demo, localStorage only) -->
             <div>
