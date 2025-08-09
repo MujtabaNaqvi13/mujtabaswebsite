@@ -2,7 +2,8 @@
         <section id="question-sender" class="py-12">
             <h3 class="text-4xl text-center section-title mb-8">❓ Ask a Question</h3>
             <div class="card mb-8 max-w-xl mx-auto">
-                <form id="question-form" class="flex flex-col gap-4" autocomplete="off">
+                <?php include 'send-question.php'; ?>
+                <form id="question-form" class="flex flex-col gap-4" action="send-question.php" method="POST" autocomplete="off">
                     <label for="name" class="text-lg font-semibold">Your Name:</label>
                     <input type="text" id="name" name="name" class="border rounded px-3 py-2 text-black" required placeholder="Enter your name">
                     <label for="email" class="text-lg font-semibold">Your Email:</label>
@@ -11,7 +12,6 @@
                     <textarea id="question" name="question" rows="4" class="border rounded px-3 py-2 text-black" required placeholder="Type your question here..."></textarea>
                     <button type="submit" class="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition">Send Question</button>
                 </form>
-                <div id="question-success" class="text-green-600 font-semibold mt-4 hidden">Thank you! Your question has been sent.</div>
             </div>
         </section>
 

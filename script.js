@@ -1,22 +1,4 @@
-// Question Sender: Custom mailto with name/email/question, no visible destination
-document.addEventListener('DOMContentLoaded', () => {
-    const questionForm = document.getElementById('question-form');
-    const questionSuccess = document.getElementById('question-success');
-    if (questionForm && questionSuccess) {
-        questionForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const question = document.getElementById('question').value.trim();
-            const mailto = `mailto:s.mujtaba.naqvi@outlook.com?subject=New%20Question%20from%20${encodeURIComponent(name)}&body=Name:%20${encodeURIComponent(name)}%0AEmail:%20${encodeURIComponent(email)}%0AQuestion:%20${encodeURIComponent(question)}`;
-            window.location.href = mailto;
-            setTimeout(() => {
-                questionSuccess.classList.remove('hidden');
-                questionForm.reset();
-            }, 500);
-        });
-    }
-});
+// No JS needed for PHP form submission
 // Typing Test Logic
 document.addEventListener('DOMContentLoaded', () => {
     const typingSentence = document.getElementById('typing-sentence');
