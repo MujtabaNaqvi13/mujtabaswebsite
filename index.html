@@ -2,6 +2,35 @@
 <html lang="en">
 <head>
     <style>
+      /* Fade-in on scroll */
+      .fade-in-section {
+        opacity: 0;
+        transform: translateY(32px);
+        transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+        will-change: opacity, transform;
+      }
+      .fade-in-section.visible {
+        opacity: 1;
+        transform: none;
+      }
+      /* Button, link, card hover effects */
+      button, .btn, .card, .section-bg, .section-bg-light, a {
+        transition: box-shadow 0.2s, background 0.2s, color 0.2s, transform 0.18s;
+      }
+      button:hover, .btn:hover {
+        box-shadow: 0 4px 18px 0 rgba(30,32,60,0.10);
+        transform: translateY(-2px) scale(1.045);
+        filter: brightness(1.08);
+      }
+      a:hover {
+        color: #3b82f6;
+        text-decoration: underline;
+        transform: scale(1.045);
+      }
+      .card:hover, .section-bg:hover, .section-bg-light:hover {
+        box-shadow: 0 8px 32px 0 rgba(30,32,60,0.13);
+        transform: translateY(-2px) scale(1.025);
+      }
       html { scroll-behavior: smooth; }
       body, .site-bg {
         background: var(--site-bg, #FAFAFA);
@@ -30,44 +59,69 @@
         border: 1px solid #ececec;
       }
       .navbar-bg {
-        background: var(--navbar-bg, #FFFFFF) !important;
-        color: var(--navbar-fg, #222222) !important;
-        box-shadow: 0 4px 18px 0 rgba(30,32,60,0.08);
-        border-bottom: 1.5px solid #ececec;
-        backdrop-filter: blur(6px);
+        background: var(--navbar-bg, #252945) !important;
+        color: var(--navbar-fg, #fff) !important;
+        box-shadow: 0 4px 18px 0 rgba(30,32,60,0.13);
+        border-bottom: 1.5px solid #222c44;
         transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+        opacity: 1 !important;
+        z-index: 1000;
+      }
+      .navbar-bg .nav-link {
+        color: var(--navbar-link, #fff) !important;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        opacity: 1 !important;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.08);
+        transition: color 0.2s;
+      }
+      [data-theme="light"] .navbar-bg .nav-link {
+        --navbar-link: #fff;
+      }
+      [data-theme="dark"] .navbar-bg .nav-link {
+        --navbar-link: #252945;
+      }
+      .navbar-bg .nav-link:hover {
+        color: #3b82f6 !important;
+        text-decoration: underline;
       }
       [data-theme="light"] body, [data-theme="light"] .site-bg {
-        --site-bg: #FAFAFA;
-        --site-fg: #222222;
-      }
-      [data-theme="light"] .section-bg {
-        --section-bg: #FFFFFF;
-        --section-fg: #222222;
-      }
-      [data-theme="light"] .section-bg-light {
-        --section-bg-light: #F5F5F7;
-        --section-fg-light: #222222;
-      }
-      [data-theme="light"] .navbar-bg {
-        --navbar-bg: #FFFFFF;
-        --navbar-fg: #222222;
-      }
-      [data-theme="dark"] body, [data-theme="dark"] .site-bg {
         --site-bg: #121212;
         --site-fg: #E0E0E0;
       }
-      [data-theme="dark"] .section-bg {
-        --section-bg: #1C1C28;
+      [data-theme="light"] .section-bg {
+        --section-bg: #1E1E2F;
         --section-fg: #E0E0E0;
+        box-shadow: 0 4px 18px 0 rgba(30,32,60,0.18);
+        border: 1.5px solid #333344;
       }
-      [data-theme="dark"] .section-bg-light {
+      [data-theme="light"] .section-bg-light {
         --section-bg-light: #232336;
         --section-fg-light: #E0E0E0;
       }
+      [data-theme="light"] .navbar-bg {
+  --navbar-bg: #252945;
+  --navbar-fg: #fff;
+      }
+      [data-theme="dark"] body, [data-theme="dark"] .site-bg {
+        --site-bg: #FAFAFA;
+        --site-fg: #222222;
+      }
+      [data-theme="dark"] .section-bg {
+        --section-bg: #FFFFFF;
+        --section-fg: #222222;
+        box-shadow: 0 2px 12px 0 rgba(60,60,60,0.04);
+        border-radius: 14px;
+        border: 1px solid #ececec;
+        transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+      }
+      [data-theme="dark"] .section-bg-light {
+        --section-bg-light: #F5F5F7;
+        --section-fg-light: #222222;
+      }
       [data-theme="dark"] .navbar-bg {
-        --navbar-bg: #252945;
-        --navbar-fg: #E0E0E0;
+  --navbar-bg: #fff;
+  --navbar-fg: #252945;
       }
       .typewriter {
         display: inline-block;
@@ -97,6 +151,20 @@
 <body class="bg-gray-50 text-gray-900" style="font-family: 'Fira Sans', Arial, sans-serif;">
     <!-- Navbar at absolute top -->
     <script>
+      // Fade-in on scroll for sections
+      document.addEventListener('DOMContentLoaded', function() {
+        const faders = document.querySelectorAll('.fade-in-section');
+        const appearOptions = { threshold: 0.12, rootMargin: '0px 0px -40px 0px' };
+        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, appearOptions);
+        faders.forEach(fader => { appearOnScroll.observe(fader); });
+      });
       // CSS variable dark mode setup
       (function() {
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -125,7 +193,7 @@
     <main class="pt-24 max-w-6xl mx-auto px-4 space-y-12">
 
         <!-- Quote Section -->
-  <section id="quotes" class="section-bg p-6 rounded-lg shadow animate__animated animate__fadeInUp">
+  <section id="quotes" class="section-bg p-6 rounded-lg shadow fade-in-section">
             <h2 class="text-2xl font-bold mb-4">💬 Quotes</h2>
             <div id="quote-widget" class="relative">
                 <div id="quote-box" class="text-lg italic text-blue-700 dark:text-blue-300 cursor-pointer transition-colors duration-300 animate__animated" tabindex="0" aria-live="polite" aria-label="Quote">"Creativity is intelligence having fun."</div>
@@ -135,7 +203,7 @@
         </section>
 
         <!-- About -->
-  <section id="about" class="section-bg p-6 rounded-lg shadow animate__animated animate__fadeInUp">
+  <section id="about" class="section-bg p-6 rounded-lg shadow fade-in-section">
             <h2 class="text-2xl font-bold mb-4">About Me</h2>
             <p class="mb-3 typewriter" data-typewriter="Hi, I’m Mujtaba Naqvi — a coder, gamer, and creative thinker who loves turning ideas into reality. Whether I’m building a new project, exploring a game world, or solving a tricky problem, I always bring curiosity and energy to everything I do."></p>
             <p class="text-lg leading-relaxed typewriter" data-typewriter="I’m passionate about technology and learning. I work with languages like C, C#, Go, JavaScript, HTML, and CSS, and I enjoy experimenting with new tools and concepts. My approach is all about thinking outside the box, staying persistent, and having fun along the way. I believe in the power of stories, values, and critical thinking — and I’m always ready for the next challenge, armed with a sense of humor and a drive to innovate."></p>
@@ -154,9 +222,8 @@
                 const navHeight = navbar.offsetHeight;
                 const rect = target.getBoundingClientRect();
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const top = rect.top + scrollTop - navHeight;
+                const top = rect.top + scrollTop - navHeight + 1;
                 window.scrollTo({ top, behavior: 'smooth' });
-                // Optionally update URL hash
                 history.replaceState(null, '', href);
               }
             }
@@ -190,7 +257,7 @@
     </script>
         </section>
         <!-- Contact Area -->
-  <section id="contact" class="section-bg p-6 rounded-lg shadow animate__animated animate__fadeInUp">
+  <section id="contact" class="section-bg p-6 rounded-lg shadow fade-in-section">
             <h2 class="text-2xl font-bold mb-4">Contact Me</h2>
             <div class="mb-4">
                 <button id="signup-btn" class="bg-blue-600 text-white px-4 py-2 rounded mr-2">Sign Up</button>
@@ -210,7 +277,7 @@
         </section>
 
         <!-- Skills -->
-  <section id="skills" class="section-bg-light p-6 rounded-lg shadow">
+  <section id="skills" class="section-bg-light p-6 rounded-lg shadow fade-in-section">
             <h2 class="text-2xl font-bold mb-4">Skills</h2>
             <ul class="list-disc pl-6 space-y-2">
                 <li>HTML, CSS, JavaScript</li>
@@ -220,7 +287,7 @@
         </section>
 
         <!-- Projects -->
-  <section id="projects" class="section-bg-light p-6 rounded-lg shadow">
+  <section id="projects" class="section-bg-light p-6 rounded-lg shadow fade-in-section">
             <h2 class="text-2xl font-bold mb-4">Projects</h2>
             <ul class="list-disc pl-6 space-y-2">
                 <li>Portfolio Website</li>
@@ -230,7 +297,7 @@
         </section>
 
         <!-- Fun Section at Bottom -->
-  <section id="fun" class="section-bg p-6 rounded-lg shadow space-y-8">
+  <section id="fun" class="section-bg p-6 rounded-lg shadow space-y-8 fade-in-section">
             
             <!-- Ask a Question (demo, localStorage only) -->
             <div>
@@ -512,6 +579,21 @@
                     <li>Meme generator for fun</li>
                 </ul>
             </div>
+
+    <!-- Contact Section -->
+  <section id="contact" class="section-bg p-6 rounded-lg shadow mt-12 fade-in-section">
+      <h2 class="text-2xl font-bold mb-4">Contact</h2>
+      <div class="mb-4">
+        <span class="font-semibold">Email:</span>
+        <a href="mailto:s.mujtaba.naqvi@outlook.com" class="underline text-blue-600 dark:text-blue-400 break-all">s.mujtaba.naqvi@outlook.com</a>
+      </div>
+      <form class="space-y-3" autocomplete="off" style="max-width:400px;">
+        <input type="text" class="border p-2 w-full rounded bg-white dark:bg-[#232336] text-[#222] dark:text-[#E0E0E0]" placeholder="Your Name" required>
+        <input type="email" class="border p-2 w-full rounded bg-white dark:bg-[#232336] text-[#222] dark:text-[#E0E0E0]" placeholder="Your Email" required>
+        <textarea class="border p-2 w-full rounded bg-white dark:bg-[#232336] text-[#222] dark:text-[#E0E0E0]" placeholder="Your Message" required></textarea>
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Send</button>
+      </form>
+    </section>
 
         </section>
 
