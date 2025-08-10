@@ -1,0 +1,6 @@
+auth/signup.html
+auth/login.html
+auth/guest.html
+auth/reset.html
+auth/auth.css
+auth/auth-utils.js

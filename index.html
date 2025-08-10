@@ -1,3 +1,13 @@
+  <script src="auth/auth.js"></script>
+  <script>
+    const user = getCurrentUser && getCurrentUser();
+    if(!user){
+      window.location.href = '/auth/login.html';
+    } else {
+      // Optionally show username in navbar or elsewhere
+      // document.getElementById('username-spot').textContent = user;
+    }
+  </script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -261,10 +271,15 @@
                   <li><a href="#about" class="nav-link typewriter-underline">About</a></li>
                   <li><a href="#skills" class="nav-link typewriter-underline">Skills</a></li>
                   <li><a href="#projects" class="nav-link typewriter-underline">Projects</a></li>
-                    <li><a href="#quran" class="nav-link typewriter-underline">Quran</a></li>
-                  <li><a href="#fun" class="nav-link typewriter-underline">Fun</a></li>
-                    <li><a href="login.html" class="nav-link typewriter-underline">Login</a></li>
-                    <li><a href="signup.html" class="nav-link typewriter-underline">Sign Up</a></li>
+                  <li><a href="#quran" class="nav-link typewriter-underline">Quran</a></li>
+                  <!-- Fun dropdown menu -->
+                  <li class="relative group">
+                    <a href="#fun" class="nav-link typewriter-underline">Fun <i class="fas fa-caret-down"></i></a>
+                    <div class="absolute left-0 mt-2 w-40 bg-white dark:bg-[#232336] rounded shadow-lg opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 z-50" style="display:none;" id="fun-dropdown">
+                      <button class="block w-full text-left px-4 py-2 hover:bg-blue-100 dark:hover:bg-blue-900 fun-dropdown-btn" id="fun-fact-btn">Fun Facts</button>
+                      <button class="block w-full text-left px-4 py-2 hover:bg-blue-100 dark:hover:bg-blue-900 fun-dropdown-btn" id="joke-btn">Jokes</button>
+                    </div>
+                  </li>
               </ul>
             </div>
             <button id="theme-toggle" class="ml-6 text-2xl focus:outline-none transition-transform duration-300 transform hover:scale-125 theme-toggle-anim" aria-label="Toggle theme">
@@ -314,6 +329,83 @@
             <h2 class="text-2xl font-bold mb-4">About Me</h2>
             <p class="mb-3 typewriter" data-typewriter="Hi, I’m Mujtaba Naqvi — a coder, gamer, and creative thinker who loves turning ideas into reality. Whether I’m building a new project, exploring a game world, or solving a tricky problem, I always bring curiosity and energy to everything I do."></p>
             <p class="text-lg leading-relaxed typewriter" data-typewriter="I’m passionate about technology and learning. I work with languages like C, C#, Go, JavaScript, HTML, and CSS, and I enjoy experimenting with new tools and concepts. My approach is all about thinking outside the box, staying persistent, and having fun along the way. I believe in the power of stories, values, and critical thinking — and I’m always ready for the next challenge, armed with a sense of humor and a drive to innovate."></p>
+            <!-- Skills Progress Bars -->
+            <div id="skills-progress-bars" class="mt-8">
+              <h3 class="text-xl font-semibold mb-4">My Skills</h3>
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between mb-1"><span>Maths</span><span>70%</span></div>
+                  <div class="w-full bg-gray-200 rounded h-4 overflow-hidden">
+                    <div class="bg-blue-600 h-4 rounded-l progress-bar" data-skill="maths" style="width:0%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1"><span>Gaming</span><span>80%</span></div>
+                  <div class="w-full bg-gray-200 rounded h-4 overflow-hidden">
+                    <div class="bg-green-500 h-4 rounded-l progress-bar" data-skill="gaming" style="width:0%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1"><span>Computer Handling</span><span>65%</span></div>
+                  <div class="w-full bg-gray-200 rounded h-4 overflow-hidden">
+                    <div class="bg-yellow-500 h-4 rounded-l progress-bar" data-skill="computer" style="width:0%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1"><span>Learning a New Coding Language</span><span>90%</span></div>
+                  <div class="w-full bg-gray-200 rounded h-4 overflow-hidden">
+                    <div class="bg-purple-500 h-4 rounded-l progress-bar" data-skill="coding" style="width:0%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section-bg-light p-6 rounded-lg shadow fade-in-section">
+          <h2 class="text-2xl font-bold mb-4">Photo Gallery</h2>
+          <div id="gallery-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            <!-- Images will be injected by JS for easy swapping and lightbox -->
+          </div>
+          <!-- Lightbox Modal -->
+          <div id="lightbox-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+            <button id="lightbox-close" class="absolute top-4 right-4 text-white text-3xl">&times;</button>
+            <button id="lightbox-prev" class="absolute left-4 top-1/2 text-white text-3xl">&#8592;</button>
+            <img id="lightbox-img" src="" alt="Gallery Image" class="max-h-[80vh] max-w-[90vw] rounded shadow-lg">
+            <button id="lightbox-next" class="absolute right-4 top-1/2 text-white text-3xl">&#8594;</button>
+          </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section id="stats" class="section-bg p-6 rounded-lg shadow fade-in-section">
+          <h2 class="text-2xl font-bold mb-4">Stats</h2>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+            <div class="stat-counter" data-target="100">
+              <div class="text-4xl mb-2"><i class="fas fa-check-circle text-green-500"></i></div>
+              <div class="text-2xl font-bold" id="projects-completed">0</div>
+              <div class="text-sm mt-1">Projects Completed</div>
+            </div>
+            <div class="stat-counter" data-target="300">
+              <div class="text-4xl mb-2"><i class="fas fa-clock text-blue-500"></i></div>
+              <div class="text-2xl font-bold" id="hours-coding">0</div>
+              <div class="text-sm mt-1">Hours Spent Coding</div>
+            </div>
+            <div class="stat-counter" data-target="30000">
+              <div class="text-4xl mb-2"><i class="fas fa-code text-purple-500"></i></div>
+              <div class="text-2xl font-bold" id="lines-coded">0</div>
+              <div class="text-sm mt-1">Lines of Code Written</div>
+            </div>
+            <div class="stat-counter" data-target="30">
+              <div class="text-4xl mb-2"><i class="fas fa-coffee text-yellow-600"></i></div>
+              <div class="text-2xl font-bold" id="cups-coffee">0</div>
+              <div class="text-sm mt-1">Cups of Coffee</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Hidden Reaction Time Game Trigger (small icon, bottom right corner) -->
+        <div id="reaction-game-trigger" title="Play Reaction Time Game (or press Shift+R)" class="fixed bottom-6 right-6 z-50 cursor-pointer opacity-30 hover:opacity-80 transition-opacity duration-300" style="font-size: 2.2rem; display: none;">
+          <i class="fas fa-bolt"></i>
+        </div>
     <script>
       // Navbar smooth scroll with offset for fixed navbar
       document.addEventListener('DOMContentLoaded', function() {
@@ -367,8 +459,6 @@
   <section id="contact" class="section-bg p-6 rounded-lg shadow fade-in-section">
             <h2 class="text-2xl font-bold mb-4">Contact Me</h2>
             <div class="mb-4">
-                <button id="signup-btn" class="bg-blue-600 text-white px-4 py-2 rounded mr-2">Sign Up</button>
-                <button id="login-btn" class="bg-green-600 text-white px-4 py-2 rounded mr-2">Login</button>
                 <button id="guest-btn" class="bg-gray-600 text-white px-4 py-2 rounded">Sign in as Guest</button>
             </div>
         <form id="contact-form" class="space-y-3 hidden" autocomplete="off" style="display: none;">
