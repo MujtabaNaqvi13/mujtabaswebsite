@@ -1,3 +1,197 @@
+// === Dynamic Greeting ===
+document.addEventListener('DOMContentLoaded', function() {
+  const greetingEl = document.getElementById('greeting-widget');
+  if (!greetingEl) return;
+  const hour = new Date().getHours();
+  let greeting = '', icon = '';
+  if (hour >= 5 && hour < 12) {
+    greeting = 'Good Morning! Ready to conquer the day?'; icon = '☀️';
+  } else if (hour >= 12 && hour < 17) {
+    greeting = 'Good Afternoon! Keep up the great work!'; icon = '🌤️';
+  } else if (hour >= 17 && hour < 21) {
+    greeting = 'Good Evening! Keep pushing forward!'; icon = '🌇';
+  } else {
+    greeting = 'Good Night! Rest and recharge for tomorrow.'; icon = '🌙';
+  }
+  greetingEl.innerHTML = `<div style="font-size:2.2rem;">${icon}</div><div class="mt-2 text-lg font-semibold">${greeting}</div>`;
+});
+
+// === Weather Widget ===
+// Uses OpenWeatherMap API. You must get a free API key at https://openweathermap.org/api
+// Replace YOUR_OPENWEATHERMAP_API_KEY below.
+document.addEventListener('DOMContentLoaded', function() {
+  const weatherEl = document.getElementById('weather-widget');
+  if (!weatherEl) return;
+  const API_KEY = 'YOUR_OPENWEATHERMAP_API_KEY'; // <-- Replace with your OpenWeatherMap API key
+  function renderWeather(data) {
+    if (!data) {
+      weatherEl.innerHTML = '<div class="text-red-600">Unable to fetch weather.</div>';
+      return;
+    }
+    const temp = Math.round(data.main.temp);
+    const cond = data.weather[0].main;
+    const icon = data.weather[0].icon;
+    const city = data.name;
+    weatherEl.innerHTML = `<div style="font-size:2.2rem;"><img src='https://openweathermap.org/img/wn/${icon}@2x.png' alt='${cond}' style='display:inline;width:48px;height:48px;vertical-align:middle;'></div><div class="text-lg font-semibold">${temp}&deg;C, ${cond}</div><div class="text-sm text-gray-500">${city}</div>`;
+  }
+  function fetchWeather(lat, lon) {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`)
+      .then(r => r.json()).then(renderWeather)
+      .catch(() => renderWeather(null));
+  }
+  function fetchDefault() {
+    // Default: London
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=London&appid=${API_KEY}&units=metric`)
+      .then(r => r.json()).then(renderWeather)
+      .catch(() => renderWeather(null));
+  }
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      pos => fetchWeather(pos.coords.latitude, pos.coords.longitude),
+      err => {
+        weatherEl.innerHTML = '<div class="text-gray-600">Location denied. Showing London weather.</div>';
+        fetchDefault();
+      },
+      { timeout: 6000 }
+    );
+  } else {
+    weatherEl.innerHTML = '<div class="text-gray-600">Geolocation not supported. Showing London weather.</div>';
+    fetchDefault();
+  }
+});
+
+// === Inspirational Quote of the Day ===
+// Uses zenquotes.io API, falls back to local array if offline
+document.addEventListener('DOMContentLoaded', function() {
+  const quoteEl = document.getElementById('quote-day-widget');
+  if (!quoteEl) return;
+  function showQuote(text, author) {
+    quoteEl.style.opacity = 0;
+    setTimeout(() => {
+      quoteEl.innerHTML = `<div class='italic text-lg mb-2'>"${text}"</div><div class='text-sm text-gray-500'>— ${author}</div>`;
+      quoteEl.style.opacity = 1;
+    }, 350);
+  }
+  fetch('https://zenquotes.io/api/today')
+    .then(r => r.json())
+    .then(data => {
+      if (Array.isArray(data) && data[0]) showQuote(data[0].q, data[0].a);
+      else throw new Error('No quote');
+    })
+    .catch(() => {
+      // Fallback quotes
+      const localQuotes = [
+        { q: 'Success is not final, failure is not fatal: It is the courage to continue that counts.', a: 'Winston Churchill' },
+        { q: 'The only way to do great work is to love what you do.', a: 'Steve Jobs' },
+        { q: 'Believe you can and you’re halfway there.', a: 'Theodore Roosevelt' },
+        { q: 'You are never too old to set another goal or to dream a new dream.', a: 'C.S. Lewis' },
+        { q: 'Act as if what you do makes a difference. It does.', a: 'William James' }
+      ];
+      const idx = Math.floor(Math.random() * localQuotes.length);
+      showQuote(localQuotes[idx].q, localQuotes[idx].a);
+    });
+});
+
+// === To-Do List App ===
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('todo-form');
+  const input = document.getElementById('todo-input');
+  const list = document.getElementById('todo-list');
+  if (!form || !input || !list) return;
+  let todos = JSON.parse(localStorage.getItem('todos') || '[]');
+  function render() {
+    list.innerHTML = '';
+    if (todos.length === 0) {
+      list.innerHTML = '<li class="text-gray-400">No tasks yet. Add one!</li>';
+      return;
+    }
+    todos.forEach((todo, idx) => {
+      const li = document.createElement('li');
+      li.className = 'flex items-center justify-between bg-white dark:bg-[#232336] rounded px-3 py-2 shadow';
+      li.innerHTML = `<span class="flex-1 ${todo.done ? 'line-through text-gray-400' : ''}" style="word-break:break-word;">${todo.text}</span>
+        <div class="flex gap-2 ml-2">
+          <button class="text-green-600 hover:text-green-800" title="Mark as done" aria-label="Done"><i class="fas fa-check"></i></button>
+          <button class="text-red-600 hover:text-red-800" title="Delete" aria-label="Delete"><i class="fas fa-trash"></i></button>
+        </div>`;
+      // Mark as done
+      li.querySelector('.text-green-600').onclick = () => {
+        todos[idx].done = !todos[idx].done;
+        save();
+      };
+      // Delete
+      li.querySelector('.text-red-600').onclick = () => {
+        todos.splice(idx, 1);
+        save();
+      };
+      list.appendChild(li);
+    });
+  }
+  function save() {
+    localStorage.setItem('todos', JSON.stringify(todos));
+    render();
+  }
+  form.onsubmit = function(e) {
+    e.preventDefault();
+    const val = input.value.trim();
+    if (!val) return;
+    todos.push({ text: val, done: false });
+    input.value = '';
+    save();
+  };
+  render();
+});
+// === Contact Form EmailJS Integration ===
+// You must create a free account at https://www.emailjs.com/ and set up a service, template, and public key.
+// Replace YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, and YOUR_PUBLIC_KEY below with your actual EmailJS credentials.
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.emailjs) emailjs.init('YOUR_PUBLIC_KEY'); // <-- Replace with your EmailJS public key
+  const form = document.querySelector('form[action=""]') || document.querySelector('form.space-y-3');
+  if (!form) return;
+  const nameInput = document.getElementById('contact2-name');
+  const emailInput = document.getElementById('contact2-email');
+  const messageInput = document.getElementById('contact2-message');
+  const statusDiv = document.getElementById('contact2-status');
+  const submitBtn = document.getElementById('contact2-submit');
+  function validateEmail(email) {
+    return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+  }
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    statusDiv.textContent = '';
+    statusDiv.className = 'mt-2 text-sm';
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const message = messageInput.value.trim();
+    if (!name || !email || !message) {
+      statusDiv.textContent = 'Please fill in all fields.';
+      statusDiv.classList.add('text-red-600');
+      return;
+    }
+    if (!validateEmail(email)) {
+      statusDiv.textContent = 'Please enter a valid email address.';
+      statusDiv.classList.add('text-red-600');
+      return;
+    }
+    submitBtn.disabled = true;
+    statusDiv.textContent = 'Sending...';
+    statusDiv.classList.remove('text-red-600');
+    // Send email via EmailJS
+    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+      from_name: name,
+      from_email: email,
+      message: message
+    }).then(function() {
+      statusDiv.textContent = 'Message sent! I\'ll get back to you soon.';
+      statusDiv.classList.add('text-green-600');
+      form.reset();
+    }, function(error) {
+      statusDiv.textContent = 'Error sending message. Please try again later.';
+      statusDiv.classList.add('text-red-600');
+    }).finally(() => {
+      submitBtn.disabled = false;
+    });
+  });
+});
 // === 1. Animated Skills Progress Bars ===
 // Animates progress bars in About Me section when scrolled into view
 document.addEventListener('DOMContentLoaded', function() {

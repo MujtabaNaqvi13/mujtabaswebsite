@@ -225,7 +225,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mujtaba Naqvi – The Coder, The Gamer, The Thinker</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- EmailJS SDK for contact form email sending -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -313,6 +315,32 @@
 
     <!-- Main Content -->
     <main class="pt-24 max-w-6xl mx-auto px-4 space-y-12">
+
+    <!-- Dynamic Greeting, Weather, and Quote Row -->
+    <section class="flex flex-col md:flex-row gap-6 fade-in-section" id="dynamic-row">
+      <!-- Dynamic Greeting -->
+      <div id="greeting-widget" class="flex-1 section-bg p-4 rounded-lg shadow flex flex-col items-center justify-center text-center min-w-[220px]">
+        <!-- Greeting will be injected by JS -->
+      </div>
+      <!-- Weather Widget -->
+      <div id="weather-widget" class="flex-1 section-bg p-4 rounded-lg shadow flex flex-col items-center justify-center text-center min-w-[220px]">
+        <!-- Weather info will be injected by JS -->
+      </div>
+      <!-- Quote of the Day -->
+      <div id="quote-day-widget" class="flex-1 section-bg p-4 rounded-lg shadow flex flex-col items-center justify-center text-center min-w-[220px]">
+        <!-- Quote will be injected by JS -->
+      </div>
+    </section>
+
+    <!-- To-Do List App -->
+    <section id="todo-section" class="section-bg-light p-6 rounded-lg shadow fade-in-section max-w-lg mx-auto">
+      <h2 class="text-2xl font-bold mb-4">📝 To-Do List</h2>
+      <form id="todo-form" class="flex gap-2 mb-4">
+        <input id="todo-input" type="text" class="flex-1 border p-2 rounded" placeholder="Add a new task..." autocomplete="off" required>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Add</button>
+      </form>
+      <ul id="todo-list" class="space-y-2"></ul>
+    </section>
 
         <!-- Quote Section -->
   <section id="quotes" class="section-bg p-6 rounded-lg shadow fade-in-section">
@@ -817,10 +845,11 @@
         <a href="mailto:s.mujtaba.naqvi@outlook.com" class="underline text-blue-600 dark:text-blue-400 break-all">s.mujtaba.naqvi@outlook.com</a>
       </div>
       <form class="space-y-3" autocomplete="off" style="max-width:400px;">
-        <input type="text" class="border p-2 w-full rounded bg-white dark:bg-[#232336] text-[#222] dark:text-[#E0E0E0]" placeholder="Your Name" required>
-        <input type="email" class="border p-2 w-full rounded bg-white dark:bg-[#232336] text-[#222] dark:text-[#E0E0E0]" placeholder="Your Email" required>
-        <textarea class="border p-2 w-full rounded bg-white dark:bg-[#232336] text-[#222] dark:text-[#E0E0E0]" placeholder="Your Message" required></textarea>
-        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Send</button>
+  <input type="text" id="contact2-name" class="border p-2 w-full rounded bg-white dark:bg-[#232336] text-[#222] dark:text-[#E0E0E0]" placeholder="Your Name" required>
+  <input type="email" id="contact2-email" class="border p-2 w-full rounded bg-white dark:bg-[#232336] text-[#222] dark:text-[#E0E0E0]" placeholder="Your Email" required>
+  <textarea id="contact2-message" class="border p-2 w-full rounded bg-white dark:bg-[#232336] text-[#222] dark:text-[#E0E0E0]" placeholder="Your Message" required></textarea>
+  <button type="submit" id="contact2-submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Send</button>
+  <div id="contact2-status" class="mt-2 text-sm"></div>
       </form>
     </section>
 
