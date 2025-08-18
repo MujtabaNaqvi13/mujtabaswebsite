@@ -1,3 +1,222 @@
+/* SKILLS PROGRESS BARS */
+.skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+.skill {
+    margin-bottom: 0.5rem;
+}
+.skill-label {
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+.skill-bar-bg {
+    background: #4a5568;
+    border-radius: 0.5rem;
+    height: 1.1rem;
+    width: 100%;
+    overflow: hidden;
+}
+.skill-bar {
+    display: block;
+    height: 100%;
+    background: var(--accent, #63b3ed);
+    border-radius: 0.5rem;
+    width: 0%;
+    transition: width 1.2s cubic-bezier(.4,2,.6,1);
+}
+.skill-bar.animated {
+    box-shadow: 0 0 8px var(--accent, #63b3ed);
+}
+.light-mode .skill-bar-bg {
+    background: #e2e8f0;
+}
+
+/* FUN FACTS/JOKES MODAL */
+#fun-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(30,32,44,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+#fun-modal.hidden {
+    display: none;
+}
+#fun-modal-content {
+    background: #232336;
+    color: #fff;
+    padding: 2rem 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    max-width: 400px;
+    text-align: center;
+}
+.light-mode #fun-modal-content {
+    background: #fff;
+    color: #232336;
+}
+
+/* GALLERY LIGHTBOX */
+#gallery-lightbox {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(30,32,44,0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+#gallery-lightbox.hidden {
+    display: none;
+}
+#gallery-lightbox-img {
+    max-width: 90vw;
+    max-height: 80vh;
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+
+/* STATS COUNTERS */
+.stats-counter {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: var(--accent, #63b3ed);
+    margin-bottom: 0.2rem;
+}
+
+/* TIMELINE */
+.timeline-item {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s, transform 0.7s;
+}
+.timeline-item.timeline-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* TESTIMONIALS CAROUSEL */
+#testimonials-carousel {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    min-height: 180px;
+}
+.testimonial {
+    min-width: 100%;
+    transition: opacity 0.5s;
+}
+.testimonial.hidden {
+    display: none;
+}
+#testimonials-prev, #testimonials-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--accent, #63b3ed);
+    color: #fff;
+    border-radius: 50%;
+    width: 2.2rem;
+    height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+}
+#testimonials-prev { left: -2.5rem; }
+#testimonials-next { right: -2.5rem; }
+
+/* THEME CUSTOMIZER */
+.theme-color-btn {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin: 0 0.3rem;
+    cursor: pointer;
+    outline: none;
+    transition: border 0.2s;
+}
+.theme-color-btn:focus {
+    border: 2px solid var(--accent, #63b3ed);
+}
+
+/* SEARCH */
+#search-input {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #4a5568;
+    margin-bottom: 1rem;
+}
+.search-card {
+    transition: box-shadow 0.2s;
+}
+.search-card[style*="display: none"] {
+    display: none !important;
+}
+
+/* BLOG CARDS */
+.blog-card {
+    border: 1px solid #4a5568;
+    border-radius: 0.7rem;
+    margin-bottom: 1.2rem;
+    background: #232336;
+    color: #fff;
+    transition: box-shadow 0.2s;
+}
+.blog-card-content.hidden {
+    display: none;
+}
+.light-mode .blog-card {
+    background: #fff;
+    color: #232336;
+    border-color: #cbd5e0;
+}
+
+/* BADGES */
+.badge {
+    display: inline-block;
+    background: var(--accent, #63b3ed);
+    color: #fff;
+    border-radius: 0.5rem;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.95rem;
+    margin-right: 0.5rem;
+    position: relative;
+    cursor: pointer;
+}
+.badge-tooltip {
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #232336;
+    color: #fff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.4rem;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 10;
+    opacity: 0.95;
+}
+.light-mode .badge-tooltip {
+    background: #fff;
+    color: #232336;
+}
+
+/* ACCESSIBILITY FOCUS */
+a:focus, button:focus, input:focus, .theme-color-btn:focus {
+    outline: 2px solid var(--accent, #63b3ed);
+    outline-offset: 2px;
+}
 /* Custom styles for Inter font and dark mode */
 body {
     font-family: 'Inter', sans-serif;

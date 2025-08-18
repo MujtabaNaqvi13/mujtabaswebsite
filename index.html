@@ -228,8 +228,10 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- EmailJS SDK for contact form email sending -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/css/components-extra.css">
+  <script defer src="script.js"></script>
+  <script defer src="assets/js/site-extra.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&family=Fredoka:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -260,35 +262,28 @@
       })();
     </script>
   <body class="site-bg">
-  <nav class="navbar-bg fixed top-0 left-0 w-full shadow-lg z-50 transition-all duration-300 animate__animated animate__fadeInDown navbar-gradient-border">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center relative">
-            <h1 id="site-title" class="text-2xl font-extrabold tracking-wide animate__animated animate__pulse animate__infinite cursor-pointer" title="Click for a quote!">Mujtaba Naqvi</h1>
-            <div class="navbar-hamburger" id="navbar-hamburger" aria-label="Open navigation" tabindex="0">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <div class="navbar-options-box" id="navbar-options-box">
-              <ul class="flex space-x-6 m-0 p-0">
-                  <li><a href="#about" class="nav-link typewriter-underline">About</a></li>
-                  <li><a href="#skills" class="nav-link typewriter-underline">Skills</a></li>
-                  <li><a href="#projects" class="nav-link typewriter-underline">Projects</a></li>
-                  <li><a href="#quran" class="nav-link typewriter-underline">Quran</a></li>
-                  <!-- Fun dropdown menu -->
-                  <li class="relative group">
-                    <a href="#fun" class="nav-link typewriter-underline">Fun <i class="fas fa-caret-down"></i></a>
-                    <div class="absolute left-0 mt-2 w-40 bg-white dark:bg-[#232336] rounded shadow-lg opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 z-50" style="display:none;" id="fun-dropdown">
-                      <button class="block w-full text-left px-4 py-2 hover:bg-blue-100 dark:hover:bg-blue-900 fun-dropdown-btn" id="fun-fact-btn">Fun Facts</button>
-                      <button class="block w-full text-left px-4 py-2 hover:bg-blue-100 dark:hover:bg-blue-900 fun-dropdown-btn" id="joke-btn">Jokes</button>
-                      <button class="block w-full text-left px-4 py-2 hover:bg-blue-100 dark:hover:bg-blue-900 fun-dropdown-btn" id="set-city-btn">Set City</button>
-                    </div>
-                  </li>
-              </ul>
-            </div>
-            <button id="theme-toggle" class="ml-6 text-2xl focus:outline-none transition-transform duration-300 transform hover:scale-125 theme-toggle-anim" aria-label="Toggle theme">
-                <span id="theme-icon"><i class="fas fa-moon"></i></span>
-            </button>
-        </div>
+    <nav class="header-bg">
+      <ul class="navbar">
+        <li class="nav-item"><a href="#home" class="nav-link" data-scroll>home</a></li>
+        <li class="nav-item"><a href="#about" class="nav-link" data-scroll>about</a></li>
+        <li class="nav-item fun-menu">
+          <button class="nav-link" aria-haspopup="true" aria-expanded="false">fun</button>
+          <ul class="dropdown-menu" role="menu">
+            <li role="none"><button class="dropdown-action" data-action="fun-facts" role="menuitem">fun facts</button></li>
+            <li role="none"><button class="dropdown-action" data-action="jokes" role="menuitem">jokes</button></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="#skills" class="nav-link" data-scroll>skills</a></li>
+        <li class="nav-item"><a href="#gallery" class="nav-link" data-scroll>gallery</a></li>
+        <li class="nav-item"><a href="#stats" class="nav-link" data-scroll>stats</a></li>
+        <li class="nav-item">
+          <button id="theme-toggle-btn" class="toggle-button" aria-label="Toggle light and dark mode"></button>
+        </li>
+        <li class="nav-item">
+          <input id="site-search" class="nav-search" type="search" placeholder="search..." aria-label="site search">
+        </li>
+      </ul>
+    </nav>
       <script>
       // Responsive navbar hamburger toggle
       document.addEventListener('DOMContentLoaded', function() {
@@ -314,76 +309,122 @@
       </script>
     </nav>
 
-    <!-- Main Content -->
-    <main class="pt-24 max-w-6xl mx-auto px-4 space-y-12">
-
-    <!-- Dynamic Greeting, Weather, and Quote Row -->
-    <section class="flex flex-col md:flex-row gap-6 fade-in-section" id="dynamic-row">
-      <!-- Dynamic Greeting -->
-      <div id="greeting-widget" class="flex-1 section-bg p-4 rounded-lg shadow flex flex-col items-center justify-center text-center min-w-[220px]">
-        <!-- Greeting will be injected by JS -->
-      </div>
-      <!-- Quote of the Day -->
-      <div id="quote-day-widget" class="flex-1 section-bg p-4 rounded-lg shadow flex flex-col items-center justify-center text-center min-w-[220px]">
-        <!-- Quote will be injected by JS -->
-      </div>
-    </section>
-
-    <!-- To-Do List App -->
-    <section id="todo-section" class="section-bg-light p-6 rounded-lg shadow fade-in-section max-w-lg mx-auto">
-      <h2 class="text-2xl font-bold mb-4">📝 To-Do List</h2>
-      <form id="todo-form" class="flex gap-2 mb-4">
-        <input id="todo-input" type="text" class="flex-1 border p-2 rounded" placeholder="Add a new task..." autocomplete="off" required>
-        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Add</button>
-      </form>
-      <ul id="todo-list" class="space-y-2"></ul>
-    </section>
-
-        <!-- Quote Section -->
-  <section id="quotes" class="section-bg p-6 rounded-lg shadow fade-in-section">
-            <h2 class="text-2xl font-bold mb-4">💬 Quotes</h2>
-            <div id="quote-widget" class="relative">
-                <div id="quote-box" class="text-lg italic text-blue-700 dark:text-blue-300 cursor-pointer transition-colors duration-300 animate__animated" tabindex="0" aria-live="polite" aria-label="Quote">"Creativity is intelligence having fun."</div>
-                <button id="quote-fav" class="absolute right-0 top-0 text-pink-500 text-xl bg-transparent border-0" title="Favorite this quote" aria-label="Favorite"><i class="fas fa-heart"></i></button>
+    <main>
+      <section id="about">
+        <h2 class="section-title">about me</h2>
+        <p class="typewriter" data-typewriter="i'm mujtaba, a passionate coder and lifelong learner. i love building things and solving problems."></p>
+        <section id="skills" class="card">
+          <h3 class="section-title">skills</h3>
+          <div class="skill">
+            <div class="skill-label">Maths <span class="skill-percent">70%</span></div>
+            <div class="bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              <div class="bar-fill" data-target="70"></div>
             </div>
-            <div class="text-sm text-gray-500 mt-2">Click, hover, or press Enter/Space to see a new quote!</div>
+          </div>
+          <div class="skill">
+            <div class="skill-label">Gaming <span class="skill-percent">80%</span></div>
+            <div class="bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              <div class="bar-fill" data-target="80"></div>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill-label">Computer Handling <span class="skill-percent">65%</span></div>
+            <div class="bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              <div class="bar-fill" data-target="65"></div>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill-label">Learning a New Coding Language <span class="skill-percent">90%</span></div>
+            <div class="bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              <div class="bar-fill" data-target="90"></div>
+            </div>
+          </div>
         </section>
+      </section>
 
-        <!-- About -->
-  <section id="about" class="section-bg p-6 rounded-lg shadow fade-in-section">
-            <h2 class="text-2xl font-bold mb-4">About Me</h2>
-            <p class="mb-3 typewriter" data-typewriter="Hi, I’m Mujtaba Naqvi — a coder, gamer, and creative thinker who loves turning ideas into reality. Whether I’m building a new project, exploring a game world, or solving a tricky problem, I always bring curiosity and energy to everything I do."></p>
-            <p class="text-lg leading-relaxed typewriter" data-typewriter="I’m passionate about technology and learning. I work with languages like C, C#, Go, JavaScript, HTML, and CSS, and I enjoy experimenting with new tools and concepts. My approach is all about thinking outside the box, staying persistent, and having fun along the way. I believe in the power of stories, values, and critical thinking — and I’m always ready for the next challenge, armed with a sense of humor and a drive to innovate."></p>
-            <!-- Skills Progress Bars -->
-            <div id="skills-progress-bars" class="mt-8">
-              <h3 class="text-xl font-semibold mb-4">My Skills</h3>
-              <div class="space-y-4">
-                <div>
-                  <div class="flex justify-between mb-1"><span>Maths</span><span>70%</span></div>
-                  <div class="w-full bg-gray-200 rounded h-4 overflow-hidden">
-                    <div class="bg-blue-600 h-4 rounded-l progress-bar" data-skill="maths" style="width:0%"></div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex justify-between mb-1"><span>Gaming</span><span>80%</span></div>
-                  <div class="w-full bg-gray-200 rounded h-4 overflow-hidden">
-                    <div class="bg-green-500 h-4 rounded-l progress-bar" data-skill="gaming" style="width:0%"></div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex justify-between mb-1"><span>Computer Handling</span><span>65%</span></div>
-                  <div class="w-full bg-gray-200 rounded h-4 overflow-hidden">
-                    <div class="bg-yellow-500 h-4 rounded-l progress-bar" data-skill="computer" style="width:0%"></div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex justify-between mb-1"><span>Learning a New Coding Language</span><span>90%</span></div>
-                  <div class="w-full bg-gray-200 rounded h-4 overflow-hidden">
-                    <div class="bg-purple-500 h-4 rounded-l progress-bar" data-skill="coding" style="width:0%"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <section id="gallery" class="card">
+        <h3 class="section-title">gallery</h3>
+        <div class="gallery-grid">
+          <button class="gallery-thumb" data-index="0"><img src="/assets/images/gallery/img1.jpg" alt="project 1"></button>
+          <button class="gallery-thumb" data-index="1"><img src="/assets/images/gallery/img2.jpg" alt="project 2"></button>
+          <button class="gallery-thumb" data-index="2"><img src="/assets/images/gallery/img3.jpg" alt="project 3"></button>
+          <button class="gallery-thumb" data-index="3"><img src="/assets/images/gallery/img4.jpg" alt="desk setup"></button>
+          <button class="gallery-thumb" data-index="4"><img src="/assets/images/gallery/img5.jpg" alt="coding screenshot"></button>
+          <button class="gallery-thumb" data-index="5"><img src="/assets/images/gallery/img6.jpg" alt="learning screenshot"></button>
+        </div>
+      </section>
+
+      <section id="stats" class="card">
+        <h3 class="section-title">stats</h3>
+        <div class="stats-grid">
+          <div class="stat">
+            <div class="stat-icon">📁</div>
+            <div class="stat-num" data-target="100">0</div>
+            <div class="stat-label">projects completed</div>
+          </div>
+          <div class="stat">
+            <div class="stat-icon">⏱️</div>
+            <div class="stat-num" data-target="300">0</div>
+            <div class="stat-label">hours spent coding</div>
+          </div>
+          <div class="stat">
+            <div class="stat-icon">💻</div>
+            <div class="stat-num" data-target="30000">0</div>
+            <div class="stat-label">lines of code</div>
+          </div>
+          <div class="stat">
+            <div class="stat-icon">☕</div>
+            <div class="stat-num" data-target="30">0</div>
+            <div class="stat-label">cups of coffee</div>
+          </div>
+        </div>
+      </section>
+
+      <button id="reaction-game-trigger" aria-label="Open reaction time game" class="reaction-trigger" title="reaction test">⚡</button>
+
+      <section id="contact" class="card">
+        <h3 class="section-title">contact</h3>
+        <form id="contact-form" novalidate>
+          <label for="c-name">name</label>
+          <input id="c-name" name="name" required>
+          <label for="c-email">email</label>
+          <input id="c-email" name="email" type="email" required>
+          <label for="c-message">message</label>
+          <textarea id="c-message" name="message" rows="4" required></textarea>
+          <button type="submit">send</button>
+        </form>
+        <div id="contact-success" class="hidden">thanks — message received (demo)</div>
+      </section>
+
+      <section id="timeline" class="card">
+        <h3 class="section-title">timeline</h3>
+        <ol class="timeline-list">
+          <li><strong>2020</strong> started coding</li>
+          <li><strong>2021</strong> first project</li>
+          <li><strong>2022</strong> learned new languages</li>
+          <li><strong>2023</strong> launched this website</li>
+        </ol>
+      </section>
+
+      <section id="testimonials" class="card">
+        <h3 class="section-title">testimonials</h3>
+        <div class="testimonials-slider">
+          <blockquote>"Mujtaba is always eager to learn." — classmate</blockquote>
+          <blockquote>"Great problem solver." — teacher</blockquote>
+          <blockquote>"Very creative and persistent." — friend</blockquote>
+        </div>
+      </section>
+
+      <section id="badges" class="card">
+        <h3 class="section-title">achievements</h3>
+        <div class="badges">
+          <div class="badge" title="html">HTML</div>
+          <div class="badge" title="css">CSS</div>
+          <div class="badge" title="js">JS</div>
+          <div class="badge" title="problem-solving">Problem Solving</div>
+        </div>
+      </section>
+    </main>
 
         <!-- Gallery Section -->
         <section id="gallery" class="section-bg-light p-6 rounded-lg shadow fade-in-section">
