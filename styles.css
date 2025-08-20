@@ -224,6 +224,44 @@ body {
     color: #e2e8f0; /* Light text color */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: #00B7EB;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    background-color: #1A1A1A;
+    color: #FFFFFF;
+}
+.hero {
+    background: linear-gradient(45deg, #00B7EB, #8B00FF);
+    padding: 50px 20px;
+    text-align: center;
+    font-size: 24px;
+    border-radius: 18px;
+    margin-bottom: 32px;
+}
+a, button {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+a:hover, button:hover {
+    transform: scale(1.1);
+    background-color: #8B00FF;
+}
+.sticky-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #181828;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
 
 .header-bg {
     background-color: #2d3748; /* Darker header background */

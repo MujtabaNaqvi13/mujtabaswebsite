@@ -29,10 +29,25 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       btn.addEventListener('click', () => {
         const isLight = body.classList.contains('light-mode');
+        // Always set sun for light, moon for dark
         applyTheme(!isLight);
         btn.setAttribute('aria-pressed', String(!isLight));
         const thumb = btn.querySelector('.thumb');
         if (thumb) thumb.textContent = !isLight ? '☀️' : '🌙';
+      });
+      // Also allow explicit sun/moon click
+      btn.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight' || e.key === 's' || e.key === 'S') {
+          applyTheme(true);
+          btn.setAttribute('aria-pressed', 'true');
+          const thumb = btn.querySelector('.thumb');
+          if (thumb) thumb.textContent = '☀️';
+        } else if (e.key === 'ArrowLeft' || e.key === 'm' || e.key === 'M') {
+          applyTheme(false);
+          btn.setAttribute('aria-pressed', 'false');
+          const thumb = btn.querySelector('.thumb');
+          if (thumb) thumb.textContent = '🌙';
+        }
       });
     }
   })();
