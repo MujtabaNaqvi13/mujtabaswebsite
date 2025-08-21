@@ -1,9 +1,0 @@
-body { background: var(--site-bg, #FAFAFA); color: var(--site-fg, #222); font-family: 'Fira Sans', Arial, sans-serif; }
-.auth-card { max-width: 400px; margin: 60px auto; background: var(--section-bg, #fff); border-radius: 14px; box-shadow: 0 2px 12px 0 rgba(60,60,60,0.04); padding: 32px 24px; }
-.auth-card h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem; text-align: center; }
-.auth-card form label { font-weight: 600; display: block; margin-bottom: 0.5rem; }
-.auth-card input { width: 100%; padding: 10px; margin-bottom: 1rem; border-radius: 8px; border: 1px solid #ececec; background: var(--section-bg-light, #F5F5F7); color: var(--section-fg, #222); }
-.auth-card button { width: 100%; background: #3b82f6; color: #fff; font-weight: 700; border: none; border-radius: 8px; padding: 12px; font-size: 1.1rem; margin-top: 0.5rem; transition: background 0.2s; }
-.auth-card button:hover { background: #2563eb; }
-.auth-card p { text-align: center; margin-top: 1rem; }
-.auth-card a { color: #3b82f6; text-decoration: underline; }

@@ -1,3 +1,8 @@
+// Minimal placeholder script.js
+document.addEventListener('DOMContentLoaded', ()=> {
+  console.log('core skeleton loaded — index.html, styles.css, script.js kept but emptied.');
+});
+
 // TIMELINE ANIMATION (IntersectionObserver)
 document.addEventListener('DOMContentLoaded', function() {
   const items = document.querySelectorAll('.timeline-item');
