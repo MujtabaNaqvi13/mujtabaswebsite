@@ -1,980 +1,383 @@
-<script>
-// Set active nav link and aria-current
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.nav-list a').forEach(a => {
-    const href = a.getAttribute('href').split('/').pop();
-    const page = location.pathname.split('/').pop() || 'index.html';
-    if (href === page) {
-      a.classList.add('active');
-      a.setAttribute('aria-current', 'page');
-    }
-  });
-});
-</script>
-  <script src="auth/auth.js"></script>
-  <script>
-    const user = getCurrentUser && getCurrentUser();
-    if(!user){
-      window.location.href = '/auth/login.html';
-    } else {
-      // Optionally show username in navbar or elsewhere
-      // document.getElementById('username-spot').textContent = user;
-    }
-  </script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-      /* Fade-in on scroll */
-      .fade-in-section {
-        opacity: 0;
-        transform: translateY(40px) scale(0.98);
-        filter: blur(6px);
-        transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1), filter 0.8s cubic-bezier(.4,0,.2,1);
-        will-change: opacity, transform, filter;
-      }
-      .fade-in-section.visible {
-        opacity: 1;
-        transform: none;
-        filter: none;
-      }
-      /* Button, link, card hover effects */
-      button, .btn, .card, .section-bg, .section-bg-light, a {
-        transition: box-shadow 0.2s, background 0.2s, color 0.2s, transform 0.18s;
-      }
-      button:hover, .btn:hover {
-        box-shadow: 0 4px 18px 0 rgba(30,32,60,0.10);
-        transform: translateY(-2px) scale(1.045);
-        filter: brightness(1.08);
-      }
-      a:hover {
-        color: #3b82f6;
-        text-decoration: underline;
-        transform: scale(1.045);
-      }
-      .card:hover, .section-bg:hover, .section-bg-light:hover {
-        box-shadow: 0 8px 32px 0 rgba(30,32,60,0.13);
-        transform: translateY(-2px) scale(1.025);
-      }
-      html { scroll-behavior: smooth; }
-      body, .site-bg {
-        background: var(--site-bg, #FAFAFA);
-        color: var(--site-fg, #222222);
-        transition: background 0.3s, color 0.3s;
-      }
-      .section-bg {
-        background: var(--section-bg, #FFFFFF) !important;
-        color: var(--section-fg, #222222) !important;
-        box-shadow: 0 2px 12px 0 rgba(60,60,60,0.04);
-        border-radius: 14px;
-        border: 1px solid #ececec;
-        transition: background 0.3s, color 0.3s, box-shadow 0.3s;
-      }
-      [data-theme="light"] .section-bg {
-        --section-bg: #18181b;
-        --section-fg: #f3f4f6;
-        box-shadow: 0 4px 18px 0 rgba(30,32,60,0.10);
-        border: 1.5px solid #22222222;
-      }
-      .section-bg-light {
-        background: var(--section-bg-light, #F5F5F7) !important;
-        color: var(--section-fg-light, #222222) !important;
-        box-shadow: 0 2px 12px 0 rgba(60,60,60,0.04);
-        border-radius: 14px;
-        border: 1px solid #ececec;
-      }
-      .navbar-bg {
-      /* Hamburger styles */
-      .navbar-hamburger {
-        display: none;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-        margin-left: 1.5rem;
-        z-index: 1100;
-      }
-      .navbar-hamburger span {
-        display: block;
-        width: 26px;
-        height: 3px;
-        margin: 4px 0;
-        background: var(--navbar-fg, #fff);
-        border-radius: 2px;
-        transition: all 0.3s;
-      }
-      @media (max-width: 900px) {
-        .navbar-options-box {
-          margin-left: 0;
-          margin-right: 0;
-        }
-      }
-      @media (max-width: 768px) {
-        .navbar-options-box {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          background: var(--navbar-bg, #252945);
-          border-radius: 0 0 16px 16px;
-          box-shadow: 0 8px 32px 0 rgba(30,32,60,0.13);
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 0;
-          padding: 0.5rem 1.5rem 1rem 1.5rem;
-          z-index: 1050;
-          display: none;
-        }
-        .navbar-options-box.open {
-          display: flex;
-        }
-        .navbar-hamburger {
-          display: flex;
-        }
-        .navbar-bg .nav-link {
-          padding: 0.75rem 0;
-          width: 100%;
-          display: block;
-        }
-        .navbar-bg ul {
-          flex-direction: column;
-          width: 100%;
-          gap: 0;
-        }
-      }
-      .navbar-options-box {
-        background: rgba(34, 44, 68, 0.13);
-        border-radius: 16px;
-        padding: 0.25rem 1.25rem;
-        margin-left: 1.5rem;
-        margin-right: 1.5rem;
-        box-shadow: 0 2px 10px 0 rgba(30,32,60,0.10);
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        transition: background 0.3s, box-shadow 0.3s;
-      }
-        background: var(--navbar-bg, #252945) !important;
-        color: var(--navbar-fg, #fff) !important;
-  box-shadow: 0 6px 24px 0 rgba(30,32,60,0.18), 0 1.5px 0 0 #222c44;
-        border-bottom: 1.5px solid #222c44;
-        transition: background 0.3s, color 0.3s, box-shadow 0.3s;
-        opacity: 1 !important;
-        z-index: 1000;
-      }
-      .navbar-bg .nav-link {
-        color: var(--navbar-link, #fff) !important;
-        font-weight: 600;
-        letter-spacing: 0.02em;
-        opacity: 1 !important;
-        text-shadow: 0 1px 2px rgba(0,0,0,0.08);
-        transition: color 0.2s;
-      }
-      [data-theme="light"] .navbar-bg .nav-link {
-        --navbar-link: #fff;
-      }
-      [data-theme="dark"] .navbar-bg .nav-link {
-        --navbar-link: #252945;
-      }
-      .navbar-bg .nav-link:hover {
-        color: #3b82f6 !important;
-        text-decoration: underline;
-      }
-      [data-theme="light"] body, [data-theme="light"] .site-bg {
-        --site-bg: #121212;
-        --site-fg: #E0E0E0;
-      }
-      [data-theme="light"] .section-bg {
-        --section-bg: #1E1E2F;
-        --section-fg: #E0E0E0;
-        box-shadow: 0 4px 18px 0 rgba(30,32,60,0.18);
-        border: 1.5px solid #333344;
-      }
-      [data-theme="light"] .section-bg-light {
-        --section-bg-light: #232336;
-        --section-fg-light: #E0E0E0;
-      }
-      [data-theme="light"] .navbar-bg {
-  --navbar-bg: #252945;
-  --navbar-fg: #fff;
-      }
-      [data-theme="dark"] body, [data-theme="dark"] .site-bg {
-        --site-bg: #FAFAFA;
-        --site-fg: #222222;
-      }
-      [data-theme="dark"] .section-bg {
-        --section-bg: #FFFFFF;
-        --section-fg: #222222;
-  box-shadow: 0 4px 24px 0 rgba(30,32,60,0.10), 0 1.5px 0 0 #222c44;
-        border-radius: 14px;
-        border: 1px solid #ececec;
-        transition: background 0.3s, color 0.3s, box-shadow 0.3s;
-      }
-      [data-theme="dark"] .section-bg-light {
-        --section-bg-light: #F5F5F7;
-        --section-fg-light: #222222;
-      }
-      [data-theme="dark"] .navbar-bg {
-  --navbar-bg: #fff;
-  --navbar-fg: #252945;
-      }
-      .typewriter {
-        display: inline-block;
-        border-right: 2px solid #3b82f6;
-        white-space: pre-wrap;
-        overflow-wrap: break-word;
-        word-break: break-word;
-        max-width: 100%;
-        font-family: inherit;
-        font-size: inherit;
-        animation: blink-cursor 0.8s steps(1) infinite;
-        overflow: hidden;
-      }
-      @keyframes blink-cursor { 0%, 100% { border-color: #3b82f6; } 50% { border-color: transparent; } }
-    </style>
-  <!-- Removed duplicate and broken .typewriter CSS block -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mujtaba Naqvi – The Coder, The Gamer, The Thinker</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- EmailJS SDK for contact form email sending -->
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="assets/css/components-extra.css">
-  <link rel="stylesheet" href="assets/css/components-extra-overrides.css">
-  <script defer src="script.js"></script>
-  <script defer src="assets/js/site-extra.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <meta name="description" content="Mujtaba Naqvi’s coding portfolio: coder, gamer, thinker. Projects, skills, and inspirations.">
-  <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+    <title>Mujtaba Naqvi - Builder • Problem Solver • Web Dev</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+<body>
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
-<body class="bg-gray-50 text-gray-900" style="font-family: 'Open Sans', Arial, sans-serif;">
-    <div class="hero">
-      <h1 style="font-size: 2.5em; margin-bottom: 0.3em;">Code. Play. Think.</h1>
-      <p>Welcome to My World — Portfolio of Mujtaba Naqvi</p>
-    </div>
-    <!-- NAVBAR: boxed and visually distinct -->
-    <nav class="header-bg card" style="margin-bottom: 32px; padding: 0.5rem 2rem; border-radius: 18px; box-shadow: 0 4px 24px 0 rgba(30,32,60,0.13); background: var(--section-bg, #fff);">
-      <ul class="nav-list">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="skills.html">Skills</a></li>
-        <li><a href="stats.html">Stats</a></li>
-        <li><a href="fun.html">Fun</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-  <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
-    </nav>
-      <script>
-      // Responsive navbar hamburger toggle
-      document.addEventListener('DOMContentLoaded', function() {
-        const hamburger = document.getElementById('navbar-hamburger');
-        const navBox = document.getElementById('navbar-options-box');
-        if (hamburger && navBox) {
-          hamburger.addEventListener('click', function() {
-            navBox.classList.toggle('open');
-          });
-          hamburger.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-              navBox.classList.toggle('open');
-            }
-          });
-          // Close menu on link click (mobile)
-          navBox.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-              if (window.innerWidth <= 768) navBox.classList.remove('open');
-            });
-          });
-        }
-      });
-      </script>
-    </nav>
+    <!-- Header with navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Mujtaba Naqvi</a>
+            
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#stats" class="nav-link">Stats</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#fun" class="nav-link">Fun</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
 
-    <main>
-      <section id="about" class="card" style="margin-bottom: 28px; padding: 2.2rem 2.2rem 1.5rem 2.2rem; border-radius: 18px; box-shadow: 0 4px 24px 0 rgba(30,32,60,0.13); background: var(--section-bg, #fff); max-width: 700px; width: 100%;">
-  <h2 class="section-title">About Me</h2>
-  <p><strong>Welcome!</strong> I’m Mujtaba, a passionate coder, gamer, and lifelong learner. My journey began in 2020, driven by curiosity and a love for technology. Over the years, I’ve mastered HTML, CSS, and JavaScript through 200+ hours of online courses and hands-on projects. My skills extend to Python, Go, and C#, and I thrive on building interactive, user-friendly web experiences. I believe in continuous learning, tackling new challenges, and sharing knowledge with others. Whether I’m coding a new project, exploring game mechanics, or diving into the latest tech trends, I approach every task with creativity and determination. This site is a reflection of my growth, skills, and the joy I find in solving problems and creating digital experiences.</p>
-      </section>
-
-      <section id="skills" class="card" style="margin-bottom: 28px; padding: 2.2rem 2.2rem 1.5rem 2.2rem; border-radius: 18px; box-shadow: 0 4px 24px 0 rgba(30,32,60,0.13); background: var(--section-bg, #fff); max-width: 700px; width: 100%;">
-    <h3 class="section-title">Skills</h3>
-        <p>I have developed a strong foundation in both programming languages and essential tools. My expertise includes:</p>
-        <div style="margin-bottom:1em;">
-          <button class="btn" onclick="showSkillTab('languages')" id="tab-languages" aria-selected="true" style="margin-right:0.5em;">Languages</button>
-          <button class="btn" onclick="showSkillTab('tools')" id="tab-tools" aria-selected="false">Tools</button>
+            <div class="accessibility-controls">
+                <button class="theme-toggle" aria-label="Toggle dark mode">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button class="contrast-toggle" aria-label="Toggle high contrast mode">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 18a6 6 0 0 0 0-12v12z"></path>
+                    </svg>
+                </button>
+                <button class="text-size-toggle" aria-label="Toggle large text mode">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <text x="5" y="17" font-size="16">A</text>
+                    </svg>
+                </button>
+            </div>
         </div>
-        <div id="skills-languages" class="skills-tab">
-          <ul>
-            <li><strong>HTML/CSS/JavaScript:</strong> Built this portfolio and several interactive web projects, focusing on semantic structure and responsive design.</li>
-            <li><strong>Python:</strong> Used for scripting, automation, and backend APIs, including a Science Facts API project.</li>
-            <li><strong>Go & C#:</strong> Explored for systems programming and game development, expanding my problem-solving toolkit.</li>
-          </ul>
-        </div>
-        <div id="skills-tools" class="skills-tab" style="display:none;">
-          <ul>
-            <li><strong>Git & GitHub:</strong> Version control and collaboration on open source projects.</li>
-            <li><strong>VS Code & Replit:</strong> My go-to environments for efficient coding and rapid prototyping.</li>
-            <li><strong>Chrome DevTools:</strong> Debugging and performance optimization for web apps.</li>
-          </ul>
-        </div>
-        <script>
-        function showSkillTab(tab) {
-          document.getElementById('skills-languages').style.display = (tab === 'languages') ? '' : 'none';
-          document.getElementById('skills-tools').style.display = (tab === 'tools') ? '' : 'none';
-          document.getElementById('tab-languages').setAttribute('aria-selected', tab === 'languages');
-          document.getElementById('tab-tools').setAttribute('aria-selected', tab === 'tools');
-        }
-        </script>
-        <p style="margin-top:1em;">I continually expand my skills through online courses, coding challenges, and real-world projects. My approach blends analytical thinking, creativity, and a commitment to best practices, ensuring every project is robust, maintainable, and user-focused.</p>
-      </section>
+    </header>
 
-      <section id="quotes" class="card" style="margin-bottom: 28px; padding: 2.2rem 2.2rem 1.5rem 2.2rem; border-radius: 18px; box-shadow: 0 4px 24px 0 rgba(30,32,60,0.13); background: var(--section-bg, #fff); max-width: 700px; width: 100%;">
-    <h3 class="section-title">Quotes</h3>
-        <p style="margin-bottom:1em;">These quotes inspire my journey as a coder, gamer, and thinker. Each one reflects a lesson learned or a mindset that drives my growth in technology and life.</p>
-        <details>
-          <summary style="font-weight:600;cursor:pointer;">Show Inspirational Quotes</summary>
-          <ul style="list-style:none;padding:0;margin:0;">
-            <li style="margin-bottom:1.2em;"><q>Talk is cheap. Show me the code.</q> <span style="color:#64748b;">— Linus Torvalds</span></li>
-            <li style="margin-bottom:1.2em;"><q>Code is like humor. When you have to explain it, it’s bad.</q> <span style="color:#64748b;">— Cory House</span></li>
-            <li style="margin-bottom:1.2em;"><q>First, solve the problem. Then, write the code.</q> <span style="color:#64748b;">— John Johnson</span></li>
-            <li style="margin-bottom:1.2em;"><q>Debugging is like being the detective in a crime movie where you are also the murderer.</q> <span style="color:#64748b;">— Filipe Fortes</span></li>
-            <li style="margin-bottom:1.2em;"><q>The best way to predict the future is to invent it.</q> <span style="color:#64748b;">— Alan Kay</span></li>
-            <li style="margin-bottom:1.2em;"><q>Simplicity is the soul of efficiency.</q> <span style="color:#64748b;">— Austin Freeman</span></li>
-            <li style="margin-bottom:1.2em;"><q>The only way to learn a new programming language is by writing programs in it.</q> <span style="color:#64748b;">— Dennis Ritchie</span></li>
-          </ul>
-        </details>
-      </section>
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container hero-content">
+                <h1 class="hero-title">Mujtaba Naqvi</h1>
+                <p class="hero-tagline">Builder • Problem Solver • Web Dev</p>
+                <p class="hero-about">Hi — I’m Mujtaba Naqvi. I started coding in 2020 and built my first project in 2021. Since then I’ve learned multiple languages and launched this website in 2023. I enjoy front-end UI, game prototypes, and solving problems with elegant code.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                    <a href="#" class="btn btn-secondary">Download Resume</a>
+                </div>
+            </div>
+        </section>
 
-  <!-- Gallery section removed as requested -->
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Hi! My name is Mujtaba Naqvi and I'm a Year 8 student with a big interest in technology and creativity. I started getting curious about coding a couple of years ago, and since then, I've been teaching myself new programming languages and skills.</p>
+                        <p>I enjoy building websites, experimenting with design, and even playing around with advanced languages like GoLang and C#. One of my proudest achievements is creating this website, because it shows how far I've come in a short time.</p>
+                        <p>I've also learned how to use GitHub to share my projects, which makes me feel like part of the worldwide coding community.</p>
+                        <p>At school, I enjoy subjects like Maths, Science, and English, because they help me think logically and creatively at the same time. For example, Maths sharpens my problem-solving, while English helps me communicate ideas clearly.</p>
+                        <p>Outside of coding and schoolwork, I enjoy discovering fun facts about computers and the internet, and I love finding the humor in technology through computer jokes.</p>
+                        <p>My goal is to keep improving every year, learn more advanced programming, and maybe even create something people around the world could use. Right now, I'm proud to say I'm a student with a developer's mindset: curious, hardworking, and ready to face challenges.</p>
+                        <p>I know this is just the beginning of my journey, but I'm excited for the future!</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://via.placeholder.com/400x500/2563eb/ffffff?text=Mujtaba+Naqvi" alt="Mujtaba Naqvi" class="profile-img">
+                        <div class="timeline">
+                            <h3>My Journey</h3>
+                            <div class="timeline-item">
+                                <div class="timeline-year">2020</div>
+                                <div class="timeline-content">Started coding</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">2021</div>
+                                <div class="timeline-content">First project</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">2022</div>
+                                <div class="timeline-content">Learned new languages</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">2023</div>
+                                <div class="timeline-content">Launched this website</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <!-- Removed duplicate stats section for clarity -->
-
-  <button id="reaction-game-trigger" aria-label="Open reaction time game" title="Reaction test" class="reaction-trigger" style="position:fixed;right:18px;bottom:18px;width:44px;height:44px;border-radius:50%;background:#3b82f6;color:#fff;border:none;box-shadow:0 8px 24px rgba(0,0,0,0.3);z-index:1400;">⚡</button>
-    <style>
-      .card {
-        transition: box-shadow 0.25s cubic-bezier(.4,0,.2,1), transform 0.18s;
-      }
-      .card:hover, .card:focus-within {
-        box-shadow: 0 8px 32px 0 rgba(30,32,60,0.18);
-        transform: translateY(-2px) scale(1.025);
-      }
-    </style>
-      <section id="contact-bottom" class="card" style="margin: 40px auto 0 auto; padding: 2.2rem 2.2rem 1.5rem 2.2rem; border-radius: 18px; box-shadow: 0 4px 24px 0 rgba(30,32,60,0.13); background: var(--section-bg, #fff); max-width: 700px; width: 100%; text-align:center;">
-        <h3 class="section-title">Contact</h3>
-        <p style="font-size:1.1em;margin-bottom:1.2em;">You can reach me at <a href="mailto:s.mujtaba.naqvi@outlook.com" style="color:#3b82f6;text-decoration:underline;">s.mujtaba.naqvi@outlook.com</a></p>
-        <form style="max-width:400px;margin:0 auto;">
-          <input type="text" placeholder="Your Name" required style="width:100%;margin-bottom:0.7em;padding:0.7em 1em;border-radius:7px;border:1px solid #d1d5db;">
-          <input type="email" placeholder="Your Email" required style="width:100%;margin-bottom:0.7em;padding:0.7em 1em;border-radius:7px;border:1px solid #d1d5db;">
-          <textarea placeholder="Your Message" required style="width:100%;margin-bottom:0.7em;padding:0.7em 1em;border-radius:7px;border:1px solid #d1d5db;min-height:90px;"></textarea>
-          <button type="submit" style="background:#3b82f6;color:#fff;padding:0.7em 2em;border:none;border-radius:7px;font-weight:600;">Send</button>
-        </form>
-      </section>
-    <!-- Center main layout and improve theme background for better appearance -->
-    <style>
-      main { max-width: 900px; margin: 0 auto; padding: 32px 0; display: flex; flex-direction: column; align-items: center; }
-      body { background: linear-gradient(120deg, #f3f4f6 0%, #e0e7ef 100%); min-height: 100vh; }
-      @media (max-width: 900px) { main { padding: 12px 0; } }
-    </style>
-
-      <section id="contact" class="card">
-  <h3 class="section-title">Contact</h3>
-        <form id="contact-form" novalidate>
-            <label for="c-name">Name</label>
-          <input id="c-name" name="name" required>
-            <label for="c-email">Email</label>
-          <input id="c-email" name="email" type="email" required>
-            <label for="c-message">Message</label>
-          <textarea id="c-message" name="message" rows="4" required></textarea>
-          <button type="submit">send</button>
-        </form>
-      </section>
-
-      <section id="timeline" class="card">
-    <h3 class="section-title">Timeline</h3>
-        <p style="margin-bottom:1em;">My journey as a coder, gamer, and thinker is marked by continuous learning and meaningful milestones. Each year brought new challenges and achievements, shaping my skills and perspective. Here’s a look at my growth so far:</p>
-        <ol class="timeline-list" style="border-left: 3px solid #3b82f6; padding-left: 1.5em;">
-          <li><strong>2020:</strong> Began self-taught coding with HTML/CSS via freeCodeCamp, completing 100+ exercises. This foundational year sparked my passion for web development and problem-solving.</li>
-          <li><strong>2021:</strong> Built my first project—a browser-based game using JavaScript and HTML5 Canvas. This experience taught me the value of persistence and creative thinking in overcoming technical challenges.</li>
-          <li><strong>2022:</strong> Expanded my skills to Python, Go, and C#, contributing to open source on GitHub and collaborating with peers. I learned the importance of teamwork and adaptability in tech.</li>
-          <li><strong>2023:</strong> Launched this portfolio website and began sharing coding tutorials. I focused on user experience, accessibility, and modern design, aiming to inspire and help others in their learning journeys.</li>
-        </ol>
-      </section>
-
-      <section id="testimonials" class="card">
-    <h3 class="section-title">Testimonials</h3>
-        <div class="testimonials-slider">
-          <blockquote>
-            <p>"Mujtaba is always eager to learn new things and helps others in class. His curiosity and willingness to tackle tough problems make him a valuable collaborator on any project."<br><span style="color:#64748b;">— Ali, Classmate</span></p>
-          </blockquote>
-          <blockquote>
-            <p>"Solved a complex algorithm problem in record time and explained the solution to peers. Mujtaba’s analytical skills and clear communication set him apart as a top student in my programming class."<br><span style="color:#64748b;">— Ms. Khan, Instructor</span></p>
-          </blockquote>
-          <blockquote>
-            <p>"Very creative and persistent, especially in game design projects. Mujtaba’s ability to turn ideas into interactive experiences is inspiring, and he always brings a positive attitude to group work."<br><span style="color:#64748b;">— Sarah, Friend</span></p>
-          </blockquote>
-        </div>
-      </section>
-
-      <section id="badges" class="card">
-    <h3 class="section-title">Contact</h3>
-        <ul style="list-style:none;padding:0;">
-          <li><strong>HTML:</strong> Built multiple responsive web pages, focusing on semantic structure and accessibility. My HTML skills are demonstrated throughout this portfolio and in collaborative projects on GitHub.</li>
-          <li><strong>CSS:</strong> Designed visually appealing layouts with Flexbox, Grid, and custom animations. I prioritize cross-browser compatibility and mobile-first design in all my work.</li>
-          <li><strong>JavaScript:</strong> Developed interactive features, games, and dynamic content. My JavaScript experience includes DOM manipulation, API integration, and building a Science Facts API project.</li>
-          <li><strong>Problem Solving:</strong> Consistently tackle coding challenges and algorithmic problems, both independently and in team settings. My approach blends creativity, logic, and perseverance to deliver robust solutions.</li>
-        </ul>
-      </section>
-  </main>
-
-      <!-- Fun Corner Section -->
-      <section id="fun-corner" class="section-bg card" style="background: #8B00FF; color: #fff; border-radius: 10px; margin: 40px auto; max-width: 700px; padding: 2.2rem 2.2rem 1.5rem 2.2rem; box-shadow: 0 4px 24px 0 rgba(30,32,60,0.13);">
-        <h2 class="section-title" style="color: #fff;">Fun Corner</h2>
-        <p style="margin-bottom:1em;">This Fun Corner blends my ‘Gamer’ and ‘Coder’ sides with humor inspired by late-night coding sessions and gaming marathons, designed to entertain and engage. Enjoy a rotating selection of jokes that reflect the lighter side of tech and gaming culture!</p>
-        <div id="joke" style="font-size: 1.2em; font-weight: 600; min-height: 48px; margin-bottom: 1em;">Loading joke...</div>
-      </section>
-
-      <!-- Typing Test Section (Enhanced) -->
-      <section id="typing-test" class="section-bg card" style="border: 2px solid #00B7EB; padding: 32px; font-family: 'Press Start 2P', 'JetBrains Mono', 'Fira Sans', Arial, sans-serif; background: #181828; color: #fff; border-radius: 12px; margin: 40px auto; max-width: 700px;">
-        <h2 class="section-title" style="color: #00B7EB;">Typing Test</h2>
-        <p style="margin-bottom:1em;">Test your typing speed in this game-inspired challenge, built with JavaScript to reflect my passion for interactive coding. Track your words per minute (WPM) and accuracy in real time, and see how you stack up against your best scores. This feature brings together my love for coding and gaming, offering a fun way to improve your skills!</p>
-        <div id="passage" style="background: #232336; color: #fff; border: 2px solid #3b82f6; font-size: 20px; padding: 18px; border-radius: 8px; margin-bottom: 10px; min-height: 48px; letter-spacing: 1px; font-family: 'JetBrains Mono', 'Fira Sans', Arial, sans-serif; font-weight: 500;">Type this to test your speed!</div>
-        <textarea id="typing-input" aria-label="Typing input" spellcheck="false" autocomplete="off" placeholder="Start typing here..." style="background: #18181b; color: #e5e7eb; border: 1.5px solid #3b82f6; font-size: 18px; font-family: 'JetBrains Mono', 'Fira Sans', Arial, sans-serif; margin-bottom: 0.5rem; width: 100%;"></textarea>
-        <div style="margin-top: 1em;">
-          <span id="wpm">WPM: 0</span> &nbsp;|&nbsp; <span id="accuracy">Accuracy: 100%</span>
-        </div>
-      </section>
-
-<script>
-// ScrollReveal initialization for all sections
-ScrollReveal().reveal('section', { delay: 200, distance: '50px', origin: 'bottom', duration: 800, easing: 'ease-in-out' });
-
-// Fun Corner Joke Carousel
-const jokes = [
-  "Why do coders prefer dark mode? Light attracts bugs!",
-  "Python’s a gamer’s favorite—it slithers through code like a pro!",
-  "Thinkers don’t game; they ponder the ‘pause’ button’s meaning!",
-  "Why did the coder quit? Their code was too ‘byte’-sized!",
-  "Gamers and coders agree: lag is the real enemy!"
-];
-let jokeIndex = 0;
-function showJoke() {
-  document.getElementById('joke').innerText = jokes[jokeIndex];
-  jokeIndex = (jokeIndex + 1) % jokes.length;
-}
-setInterval(showJoke, 5000);
-showJoke();
-
-// Typing Test Logic
-const passageText = "Type this to test your speed!";
-let startTime, wpm, accuracy;
-const typingInput = document.getElementById('typing-input');
-const passage = document.getElementById('passage');
-typingInput.addEventListener('input', (e) => {
-  if (!startTime) startTime = new Date();
-  const input = e.target.value;
-  const timeElapsed = (new Date() - startTime) / 60000;
-  wpm = Math.round((input.split(' ').length / timeElapsed) || 0);
-  let correct = 0;
-  for (let i = 0; i < input.length; i++) {
-    if (input[i] === passageText[i]) correct++;
-  }
-  accuracy = input.length ? Math.round((correct / input.length) * 100) : 100;
-  document.getElementById('wpm').innerText = `WPM: ${isFinite(wpm) ? wpm : 0}`;
-  document.getElementById('accuracy').innerText = `Accuracy: ${accuracy}%`;
-});
-typingInput.addEventListener('focus', () => { if (!startTime) startTime = new Date(); });
-typingInput.addEventListener('blur', () => { startTime = null; });
-</script>
-  <script src="assets/js/site-fixes-guidance.js"></script>
-
-  <!-- Gallery section removed as requested -->
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title">My Skills</h2>
+                <div class="skills-container">
+                    <div class="skills-category">
+                        <h3>💻 Coding Skills</h3>
+                        <div class="skill">
+                            <div class="skill-info">
+                                <span class="skill-name">HTML, CSS, JavaScript</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-info">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-percentage">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-info">
+                                <span class="skill-name">GoLang</span>
+                                <span class="skill-percentage">60%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="60"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-info">
+                                <span class="skill-name">C and C#</span>
+                                <span class="skill-percentage">65%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="65"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-info">
+                                <span class="skill-name">Scratch</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-info">
+                                <span class="skill-name">GitHub</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-category">
+                        <h3>📚 School Skills</h3>
+                        <div class="skill">
+                            <div class="skill-info">
+                                <span class="skill-name">Maths (logic, problem solving)</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-info">
+                                <span class="skill-name">Science (experiments, curiosity)</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-info">
+                                <span class="skill-name">English (creativity, communication)</span>
+                                <span class="skill-percentage">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Stats Section -->
-        <section id="stats" class="section-bg p-6 rounded-lg shadow fade-in-section">
-          <h2 class="section-title">Stats</h2>
-          <p style="margin-bottom:1.2em;">Since 2020, I have built three major projects, including this portfolio website and a browser-based game. Over the years, I have logged more than 500 hours of focused coding and made over 150 commits to GitHub. These numbers reflect my dedication to coding excellence, continuous learning, and a passion for building interactive, user-friendly experiences. Every milestone represents a step forward in my journey as a coder, gamer, and thinker, and I am committed to pushing my skills further with each new challenge.</p>
-          <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 2.5em; margin-top: 1.5em;">
-            <div style="text-align:center;">
-              <span style="font-size:2.5em; font-weight:700; color:#00B7EB;">3</span><br>
-              <span style="font-size:1.1em; color:#8B00FF;">Projects</span>
+        <section id="stats">
+            <div class="container">
+                <h2 class="section-title">Key Stats</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="3">0</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="500">0</div>
+                        <div class="stat-label">Hours Coding</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="150">0</div>
+                        <div class="stat-label">GitHub Commits</div>
+                    </div>
+                </div>
             </div>
-            <div style="text-align:center;">
-              <span style="font-size:2.5em; font-weight:700; color:#00B7EB;">500+</span><br>
-              <span style="font-size:1.1em; color:#8B00FF;">Hours Coding</span>
-            </div>
-            <div style="text-align:center;">
-              <span style="font-size:2.5em; font-weight:700; color:#00B7EB;">150+</span><br>
-              <span style="font-size:1.1em; color:#8B00FF;">GitHub Commits</span>
-            </div>
-          </div>
         </section>
 
-        <!-- Hidden Reaction Time Game Trigger (small icon, bottom right corner) -->
-        <div id="reaction-game-trigger" title="Play Reaction Time Game (or press Shift+R)" class="fixed bottom-6 right-6 z-50 cursor-pointer opacity-30 hover:opacity-80 transition-opacity duration-300" style="font-size: 2.2rem; display: none;">
-          <i class="fas fa-bolt"></i>
-        </div>
-    <script>
-      // Navbar smooth scroll with offset for fixed navbar
-      document.addEventListener('DOMContentLoaded', function() {
-        const navbar = document.querySelector('nav');
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-          link.addEventListener('click', function(e) {
-            const href = link.getAttribute('href');
-            if (href && href.startsWith('#')) {
-              const target = document.querySelector(href);
-              if (target) {
-                e.preventDefault();
-                const navHeight = navbar.offsetHeight;
-                const rect = target.getBoundingClientRect();
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const top = rect.top + scrollTop - navHeight + 1;
-                window.scrollTo({ top, behavior: 'smooth' });
-                history.replaceState(null, '', href);
-              }
-            }
-          });
-        });
-      });
-    </script>
-    <script>
-      // Typewriter effect for all .typewriter elements with data-typewriter
-      document.addEventListener('DOMContentLoaded', function() {
-        function typewriterEffect(el, text, speed = 28, cb) {
-          let i = 0;
-          function type() {
-            el.textContent = text.slice(0, i);
-            if (i < text.length) {
-              i++;
-              setTimeout(type, speed + Math.random()*40);
-            } else if (cb) {
-              cb();
-            }
-          }
-          type();
-        }
-        document.querySelectorAll('.typewriter[data-typewriter]').forEach((el, idx) => {
-          el.textContent = '';
-          setTimeout(() => {
-            typewriterEffect(el, el.getAttribute('data-typewriter'));
-          }, idx * 600); // stagger if multiple
-        });
-      });
-    </script>
-        </section>
-        <!-- Contact Area -->
-  <section id="contact" class="section-bg p-6 rounded-lg shadow fade-in-section">
-            <h2 class="text-2xl font-bold mb-4">Contact Me</h2>
-            <div class="mb-4">
-                <button id="guest-btn" class="bg-gray-600 text-white px-4 py-2 rounded">Sign in as Guest</button>
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">Project Highlights</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/600x400/2563eb/ffffff?text=Project+1" alt="Project 1 screenshot" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">E-Commerce Website</h3>
+                            <p class="project-description">A fully responsive e-commerce platform with product filtering, cart functionality, and secure checkout.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">React</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn btn-primary">Live Demo</a>
+                                <a href="#" class="btn btn-secondary">View Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/600x400/f59e0b/ffffff?text=Project+2" alt="Project 2 screenshot" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">Game Prototype</h3>
+                            <p class="project-description">A 2D browser-based game with physics engine, character movement, and interactive obstacles.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">HTML5 Canvas</span>
+                                <span class="tech-tag">CSS</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn btn-primary">Play Game</a>
+                                <a href="#" class="btn btn-secondary">View Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/600x400/10b981/ffffff?text=Project+3" alt="Project 3 screenshot" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">Productivity App</h3>
+                            <p class="project-description">A task management application with drag-and-drop interface, due dates, and progress tracking.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn btn-primary">Try App</a>
+                                <a href="#" class="btn btn-secondary">View Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        <form id="contact-form" class="space-y-3 hidden" autocomplete="off" style="display: none;">
-          <input type="text" id="contact-name" class="border p-2 w-full" placeholder="Your Name" required>
-          <input type="email" id="contact-email" class="border p-2 w-full" placeholder="Your Email" required>
-          <textarea id="contact-message" class="border p-2 w-full" placeholder="Your Message" required></textarea>
-          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Send</button>
-        </form>
         </section>
 
-        <!-- Skills -->
-  <section id="skills" class="section-bg-light p-6 rounded-lg shadow fade-in-section">
-            <h2 class="text-2xl font-bold mb-4">Skills</h2>
-            <ul class="list-disc pl-6 space-y-2">
-                <li>HTML, CSS, JavaScript</li>
-                <li>Go, C#, Python</li>
-                <li>GitHub, VS Code, Replit</li>
-            </ul>
+        <!-- Fun Section -->
+        <section id="fun">
+            <div class="container">
+                <h2 class="section-title">Fun & Games</h2>
+                
+                <div class="fun-tabs">
+                    <button class="tab-btn active" data-tab="jokes">Jokes</button>
+                    <button class="tab-btn" data-tab="facts">Fun Facts</button>
+                    <button class="tab-btn" data-tab="typing">Typing Test</button>
+                </div>
+                
+                <div class="tab-content active" id="jokes-tab">
+                    <div class="joke-card">
+                        <h3>Developer Jokes</h3>
+                        <p class="joke-setup">Why don't programmers like nature?</p>
+                        <p class="joke-punchline">Too many bugs.</p>
+                        <button class="btn btn-primary" id="new-joke">Tell Me Another</button>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="facts-tab">
+                    <div class="facts-grid">
+                        <div class="fact-card">
+                            <h3>Did You Know?</h3>
+                            <p class="fact-text">The first computer "bug" was an actual moth trapped in a machine in 1947.</p>
+                        </div>
+                        <div class="fact-card">
+                            <h3>Did You Know?</h3>
+                            <p class="fact-text">The Apollo 11 mission computer had less power than your phone's calculator app.</p>
+                        </div>
+                        <div class="fact-card">
+                            <h3>Did You Know?</h3>
+                            <p class="fact-text">More than 90% of money today exists only in computers, not as coins or notes.</p>
+                        </div>
+                        <div class="fact-card">
+                            <h3>Did You Know?</h3>
+                            <p class="fact-text">"Captcha" is an acronym for Completely Automated Public Turing test to tell Computers and Humans Apart.</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="more-facts">More Facts</button>
+                </div>
+                
+                <div class="tab-content" id="typing-tab">
+                    <div class="typing-test">
+                        <h3>Typing Speed Test</h3>
+                        <div class="typing-text" id="typing-text">The quick brown fox jumps over the lazy dog. This sentence contains all letters of the alphabet.</div>
+                        <textarea class="typing-input" id="typing-input" placeholder="Start typing here..."></textarea>
+                        <div class="typing-stats">
+                            <span>Time: <span id="typing-time">0</span>s</span>
+                            <span>WPM: <span id="typing-wpm">0</span></span>
+                            <span>Accuracy: <span id="typing-accuracy">0</span>%</span>
+                        </div>
+                        <button class="btn btn-primary" id="typing-restart">Restart Test</button>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Projects -->
-  <section id="projects" class="section-bg-light card projects-grid fade-in-section" style="margin: 40px auto; max-width: 900px; padding: 2.2rem 2.2rem 1.5rem 2.2rem; border-radius: 18px; box-shadow: 0 4px 24px 0 rgba(30,32,60,0.13);">
-    <h2 class="section-title">Projects</h2>
-    <div class="projects-grid">
-      <div class="card" style="background: #232336; color: #fff; border-radius: 12px; padding: 1.5em;">
-        <img src="assets/img/portfolio-thumb.png" alt="Portfolio Website Screenshot" style="width:100%;border-radius:8px;margin-bottom:1em;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-        <h3 style="color:#00B7EB;">Portfolio Website</h3>
-        <p>This site is my digital home, built with HTML, CSS, and JavaScript. It features a modern, responsive design, interactive sections, and a custom theme toggle. Every detail—from the hero banner to the fun corner—reflects my journey as a coder, gamer, and thinker. <a href="https://mujtabanaqvi.com/" target="_blank" style="color:#8B00FF;">Visit live site</a>.</p>
-      </div>
-      <div class="card" style="background: #232336; color: #fff; border-radius: 12px; padding: 1.5em;">
-        <img src="assets/img/game-thumb.png" alt="Browser Game Screenshot" style="width:100%;border-radius:8px;margin-bottom:1em;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-        <h3 style="color:#00B7EB;">Browser Game</h3>
-        <p>A JavaScript-based puzzle game with interactive mechanics and retro-inspired visuals. This project showcases my skills in event-driven programming, game logic, and UI design. <a href="https://mujtabanaqvi.com/game-demo" target="_blank" style="color:#8B00FF;">Play demo</a>.</p>
-      </div>
-      <div class="card" style="background: #232336; color: #fff; border-radius: 12px; padding: 1.5em;">
-        <img src="assets/img/api-thumb.png" alt="Science Facts API Screenshot" style="width:100%;border-radius:8px;margin-bottom:1em;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-        <h3 style="color:#00B7EB;">Science Facts API</h3>
-        <p>This RESTful API delivers random science facts, built with Python and Flask. It powers the science facts section of my site and demonstrates my backend and API design skills. <a href="https://github.com/MujtabaNaqvi13/science-facts-api" target="_blank" style="color:#8B00FF;">View on GitHub</a>.</p>
-      </div>
-    </div>
-  </section>
-
-        <!-- Quranic Section (now its own main section) -->
-  <section id="inspirations" class="section-bg card fade-in-section" style="margin: 40px auto; max-width: 800px; padding: 2.2rem 2.2rem 1.5rem 2.2rem; border-radius: 18px; box-shadow: 0 4px 24px 0 rgba(30,32,60,0.13);">
-    <h2 class="section-title">Inspirations</h2>
-    <div style="margin-bottom:2em;">
-      <h3 style="color:#00B7EB;">Quranic Verses</h3>
-      <p style="margin-bottom:1em;">These verses from the Quran fuel my “Thinker” mindset, guiding my approach to problem-solving and life. They offer wisdom, reflection, and a sense of purpose that inspires me to pursue excellence in all I do.</p>
-      <div class="quranic-verse-block p-4 rounded-lg" style="background: var(--section-bg, #fff); box-shadow: 0 2px 8px 0 rgba(30,32,60,0.07);">
-        <div class="text-right" dir="rtl" lang="ar" style="font-family: 'Amiri', 'Noto Naskh Arabic', serif; font-size: 1.5rem; line-height: 2.2rem; color: #2d3748;">
-          بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-        </div>
-        <div class="text-left mt-2 text-base" style="color: var(--section-fg, #222);">
-          In the name of Allah, the Most Gracious, the Most Merciful.
-        </div>
-        <div class="mt-2 text-sm text-gray-500 flex items-center gap-2">
-          <span>Al-Fatiha</span>
-          <span>•</span>
-          <span>1:1</span>
-          <button class="ml-2 px-2 py-1 text-xs rounded bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-800" onclick="navigator.clipboard.writeText('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ')">Copy</button>
-        </div>
-      </div>
-    </div>
-    <div>
-      <h3 style="color:#00B7EB;">Science Facts</h3>
-      <p style="margin-bottom:1em;">Science facts, tied to my API project, spark curiosity and encourage exploration. This section rotates through interesting facts, reflecting my love for learning and sharing knowledge.</p>
-      <div id="science-fact" style="background: #232336; color: #fff; border-radius: 10px; padding: 1.2em; font-size: 1.1em; text-align: center; margin-bottom: 0.5em;">Loading fact...</div>
-    </div>
-  </section>
-  <script>
-    const scienceFacts = [
-      "The speed of light is about 299,792 kilometers per second!",
-      "Honey never spoils — even after 3000 years.",
-      "Octopuses have three hearts and blue blood.",
-      "Bananas are berries, but strawberries are not.",
-      "A day on Venus is longer than its year.",
-      "There are more stars in the universe than grains of sand on Earth."
-    ];
-    let factIndex = 0;
-    function showScienceFact() {
-      document.getElementById('science-fact').innerText = scienceFacts[factIndex];
-      factIndex = (factIndex + 1) % scienceFacts.length;
-    }
-    setInterval(showScienceFact, 5000);
-    showScienceFact();
-  </script>
-
-  <!-- Fun Section at Bottom -->
-  <section id="fun" class="section-bg p-6 rounded-lg shadow space-y-8 fade-in-section">
-            
-            <!-- Ask a Question (demo, localStorage only) -->
-            <div>
-                <h3 class="text-xl font-bold mb-4">❓ Ask a Question</h3>
-                <form id="ask-form" autocomplete="off">
-                    <label>Your Name:</label>
-                    <input type="text" id="ask-name" placeholder="Enter your name" class="border p-2 w-full mb-3" required>
-                    <label>Your Email:</label>
-                    <input type="email" id="ask-email" placeholder="Enter your email" class="border p-2 w-full mb-3" required>
-                    <label>Your Question:</label>
-                    <textarea id="ask-question" placeholder="Type your question here..." class="border p-2 w-full mb-3" required></textarea>
-                    <input type="text" id="ask-hp" class="hidden" tabindex="-1" autocomplete="off">
-                    <button class="bg-blue-600 text-white px-4 py-2 rounded" type="submit">Send Question</button>
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-success" id="form-success">
+                        Thank you for your message! I'll get back to you soon.
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" class="form-input" required>
+                        <div class="form-error" id="name-error">Please enter your name</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-input" required>
+                        <div class="form-error" id="email-error">Please enter a valid email address</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" class="form-textarea" required></textarea>
+                        <div class="form-error" id="message-error">Please enter your message</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
-                <div id="ask-success" class="text-green-600 mt-2 hidden">Question sent (demo only)!</div>
             </div>
-
-            <!-- Science Facts -->
-            <div>
-                  <h3 class="text-xl font-bold mb-4">🧪 Science Facts</h3>
-                <ul class="list-disc pl-6 space-y-1">
-                    <li>The speed of light is about 299,792 kilometers per second!</li>
-                    <li>Honey never spoils — even after 3000 years.</li>
-                    <li>Octopuses have three hearts and blue blood.</li>
-                    <li>Bananas are berries, but strawberries are not.</li>
-                </ul>
-            </div>
-
-            <!-- Typing Test Section -->
-            <section id="typing-test" class="typing-test-container">
-              <h2>Typing Test</h2>
-              <label for="typing-input" id="passage-label" class="block mb-1 font-semibold">Type This Sentence:</label>
-              <div id="passage" aria-live="polite" class="passage" tabindex="-1" role="region" aria-label="Typing passage" style="background: var(--tt-bg, #222); color: var(--tt-fg, #fff); border: 2px solid var(--tt-border, #3b82f6); font-size: 20px; padding: 18px; border-radius: 8px; margin-bottom: 10px; min-height: 48px; letter-spacing: 1px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); font-family: 'JetBrains Mono', 'Fira Sans', Arial, sans-serif; font-weight: 500; transition: background 0.3s, color 0.3s, border 0.3s; user-select: none;">
-              </div>
-              <textarea id="typing-input" aria-label="Typing input" spellcheck="false" autocomplete="off" placeholder="Start typing here..." style="background: var(--tt-input-bg, #18181b); color: var(--tt-input-fg, #e5e7eb); border: 1.5px solid #3b82f6; font-size: 18px; font-family: 'JetBrains Mono', 'Fira Sans', Arial, sans-serif; margin-bottom: 0.5rem;"></textarea>
-              <div class="stats">
-                <div>WPM: <span id="wpm">0</span></div>
-                <div>Accuracy: <span id="accuracy">100%</span></div>
-                <div>Time Left: <span id="time-left">30</span>s</div>
-              </div>
-              <div class="controls">
-                <button id="start-btn">Start</button>
-                <button id="reset-btn">Reset</button>
-                <label for="time-select">Duration:</label>
-                <select id="time-select">
-                  <option value="15">15s</option>
-                  <option value="30" selected>30s</option>
-                  <option value="60">60s</option>
-                </select>
-              </div>
-            </section>
-            <style>
-              .typing-test-container {
-                max-width: 600px;
-                margin: 20px auto;
-                font-family: Arial, sans-serif;
-              }
-              #passage {
-                background: var(--tt-bg, #222);
-                color: var(--tt-fg, #fff);
-                border: 2px solid var(--tt-border, #3b82f6);
-                font-size: 20px;
-                font-family: 'JetBrains Mono', 'Fira Sans', Arial, sans-serif;
-                font-weight: 500;
-                padding: 18px;
-                border-radius: 8px;
-                margin-bottom: 10px;
-                min-height: 48px;
-                letter-spacing: 1px;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-                line-height: 1.5;
-                user-select: none;
-                white-space: pre-wrap;
-                transition: background 0.3s, color 0.3s, border 0.3s;
-              }
-              #passage .correct { color: #22c55e; background: none; }
-              #passage .incorrect { color: #ef4444; background: none; text-decoration: underline wavy #ef4444; }
-              #passage .current { border-bottom: 2px solid #3b82f6; background: #1e293b; color: #60a5fa; }
-              @media (prefers-color-scheme: light) {
-                #passage { background: #f8fafc; color: #222; border-color: #3b82f6; }
-                #passage .current { background: #e0e7ef; color: #2563eb; }
-              }
-              #typing-input {
-                width: 100%;
-                height: 80px;
-                font-size: 16px;
-                padding: 10px;
-                border-radius: 6px;
-                border: 1px solid #ccc;
-                resize: none;
-              }
-              .stats {
-                display: flex;
-                justify-content: space-between;
-                margin-top: 10px;
-                font-weight: bold;
-              }
-              .controls {
-                margin-top: 10px;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-              }
-              button {
-                padding: 6px 12px;
-                border-radius: 5px;
-                border: none;
-                background-color: #3b82f6;
-                color: white;
-                cursor: pointer;
-              }
-              button:disabled {
-                background-color: #a5b4fc;
-                cursor: not-allowed;
-              }
-            </style>
-            <script>
-              (function(){
-                const passages = [
-                  "Keep learning, keep shipping.",
-                  "Code is poetry in motion.",
-                  "Build small, think big.",
-                  "Ship early, iterate often.",
-                  "Simplicity beats cleverness.",
-                  "Debugging is problem solving.",
-                  "Curiosity powers progress.",
-                  "Fail fast, recover faster.",
-                  "Teach to learn.",
-                  "Design for people.",
-                  "Play to explore.",
-                  "Details matter.",
-                  "Stay curious every day."
-                ];
-
-                const passageEl = document.getElementById('passage');
-                const inputEl = document.getElementById('typing-input');
-                const wpmEl = document.getElementById('wpm');
-                const accuracyEl = document.getElementById('accuracy');
-                const timeLeftEl = document.getElementById('time-left');
-                const startBtn = document.getElementById('start-btn');
-                const resetBtn = document.getElementById('reset-btn');
-                const timeSelect = document.getElementById('time-select');
-
-                let timer = null;
-                let startTime = null;
-                let timeLimit = parseInt(timeSelect.value);
-                let timeLeft = timeLimit;
-                let running = false;
-                let currentPassage = '';
-                let correctChars = 0;
-                let totalTyped = 0;
-
-                function pickPassage() {
-                  const idx = Math.floor(Math.random() * passages.length);
-                  return passages[idx];
-                }
-
-                function renderPassage(text) {
-                  passageEl.innerHTML = '';
-                  [...text].forEach((char, index) => {
-                    const span = document.createElement('span');
-                    span.textContent = char;
-                    span.dataset.index = index;
-                    passageEl.appendChild(span);
-                  });
-                  // Do not highlight any char until test starts
-                }
-
-                function resetTest() {
-                  clearInterval(timer);
-                  running = false;
-                  timeLimit = parseInt(timeSelect.value);
-                  timeLeft = timeLimit;
-                  timeLeftEl.textContent = timeLeft;
-                  inputEl.value = '';
-                  inputEl.disabled = true;
-                  wpmEl.textContent = '0';
-                  accuracyEl.textContent = '100%';
-                  correctChars = 0;
-                  totalTyped = 0;
-                  currentPassage = pickPassage();
-                  renderPassage(currentPassage);
-                  startBtn.disabled = false;
-                }
-
-                function updateUI() {
-                  const spans = passageEl.querySelectorAll('span');
-                  const inputValue = inputEl.value;
-                  correctChars = 0;
-                  totalTyped = inputValue.length;
-
-                  spans.forEach((span, index) => {
-                    span.classList.remove('correct', 'incorrect', 'current');
-                    if (index < inputValue.length) {
-                      if (inputValue[index] === span.textContent) {
-                        span.classList.add('correct');
-                        correctChars++;
-                      } else {
-                        span.classList.add('incorrect');
-                      }
-                    }
-                  });
-
-                  // Highlight current char
-                  if (totalTyped < spans.length) {
-                    spans[totalTyped].classList.add('current');
-                  }
-
-                  // Calculate stats
-                  const elapsedMinutes = (timeLimit - timeLeft) / 60;
-                  const wpm = elapsedMinutes > 0 ? Math.round((correctChars / 5) / elapsedMinutes) : 0;
-                  const accuracy = totalTyped === 0 ? 100 : Math.round((correctChars / totalTyped) * 100);
-
-                  wpmEl.textContent = wpm;
-                  accuracyEl.textContent = accuracy + '%';
-                }
-
-                function tick() {
-                  timeLeft--;
-                  timeLeftEl.textContent = timeLeft;
-                  if (timeLeft <= 0) {
-                    finishTest();
-                  }
-                }
-
-                function finishTest() {
-                  clearInterval(timer);
-                  running = false;
-                  inputEl.disabled = true;
-                  startBtn.disabled = false;
-                  updateUI();
-                }
-
-                startBtn.addEventListener('click', () => {
-                  if (running) return;
-                  running = true;
-                  inputEl.disabled = false;
-                  inputEl.focus();
-                  startTime = Date.now();
-                  timer = setInterval(tick, 1000);
-                  startBtn.disabled = true;
-                  // Highlight current char on start
-                  const spans = passageEl.querySelectorAll('span');
-                  if (spans.length) spans[0].classList.add('current');
-                });
-
-                resetBtn.addEventListener('click', () => {
-                  resetTest();
-                });
-
-                inputEl.addEventListener('input', () => {
-                  if (!running) return;
-                  updateUI();
-                });
-
-                timeSelect.addEventListener('change', () => {
-                  if (running) {
-                    clearInterval(timer);
-                    running = false;
-                    startBtn.disabled = false;
-                  }
-                  resetTest();
-                });
-
-                // Initialize
-                resetTest();
-
-              })();
-            </script>
-
-            <!-- Ideas -->
-            <div>
-                <h3 class="text-xl font-bold mb-4">💡 Ideas I'm Working On</h3>
-                <ul class="list-disc pl-6 space-y-1">
-                    <li>Personal blog with interactive coding tutorials</li>
-                    <li>Multiplayer browser game</li>
-                    <li>Science facts API</li>
-                    <li>Productivity app for students and gamers</li>
-                    <li>Meme generator for fun</li>
-                </ul>
-            </div>
-
-    <!-- Contact Section -->
-  <section id="contact" class="section-bg p-6 rounded-lg shadow mt-12 fade-in-section">
-      <h2 class="text-2xl font-bold mb-4">Contact</h2>
-      <div class="mb-4">
-        <span class="font-semibold">Email:</span>
-        <a href="mailto:s.mujtaba.naqvi@outlook.com" class="underline text-blue-600 dark:text-blue-400 break-all">s.mujtaba.naqvi@outlook.com</a>
-      </div>
-      <form class="space-y-3" autocomplete="off" style="max-width:400px;">
-  <input type="text" id="contact2-name" class="border p-2 w-full rounded bg-white dark:bg-[#232336] text-[#222] dark:text-[#E0E0E0]" placeholder="Your Name" required>
-  <input type="email" id="contact2-email" class="border p-2 w-full rounded bg-white dark:bg-[#232336] text-[#222] dark:text-[#E0E0E0]" placeholder="Your Email" required>
-  <textarea id="contact2-message" class="border p-2 w-full rounded bg-white dark:bg-[#232336] text-[#222] dark:text-[#E0E0E0]" placeholder="Your Message" required></textarea>
-  <button type="submit" id="contact2-submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Send</button>
-  <div id="contact2-status" class="mt-2 text-sm"></div>
-      </form>
-    </section>
-
         </section>
-
     </main>
 
-<script defer src="assets/js/navbar-enhance.js"></script>
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="social-links">
+                <a href="#" class="social-link">GitHub</a>
+                <a href="#" class="social-link">LinkedIn</a>
+                <a href="#" class="social-link">Twitter</a>
+                <a href="#" class="social-link">CodePen</a>
+            </div>
+            <p class="copyright">© 2023 Mujtaba Naqvi. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
-<script>
-// ScrollReveal transitions for sections
-document.addEventListener('DOMContentLoaded', function() {
-  if (window.ScrollReveal) {
-    ScrollReveal().reveal('section', {
-      delay: 200,
-      distance: '50px',
-      origin: 'bottom',
-      duration: 800,
-      easing: 'ease-in-out'
-    });
-  }
-});
-</script>
 </html>
