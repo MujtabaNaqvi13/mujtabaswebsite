@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mujtaba Naqvi - Developer & Student</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
     <style>
         /* CSS Variables for Theming */
         :root {
@@ -750,6 +751,49 @@
             color: var(--accent);
         }
 
+        /* Lessons & Books Section */
+        .lessons-books {
+            background-color: var(--bg-secondary);
+        }
+
+        .lessons-container, .books-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .lesson-card, .book-card {
+            padding: 25px;
+            position: relative;
+        }
+
+        .lesson-card h3, .book-card h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .lesson-card p, .book-card p {
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .lesson-number, .book-number {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
         /* Footer */
         footer {
             background-color: var(--bg-secondary);
@@ -760,6 +804,9 @@
         .footer-content {
             max-width: 800px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .social-links {
@@ -935,6 +982,10 @@
             .games-container {
                 grid-template-columns: 1fr;
             }
+            
+            .lessons-container, .books-container {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Accessibility */
@@ -981,6 +1032,7 @@
                 <li><a href="#jokes">Jokes</a></li>
                 <li><a href="#games">Games</a></li>
                 <li><a href="#quizzes">Quizzes</a></li>
+                <li><a href="#lessons-books">Lessons & Books</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li>
                     <button class="theme-toggle" id="theme-toggle">
@@ -1385,6 +1437,171 @@
                     <div class="quiz-options" id="quiz-options"></div>
                     <div class="quiz-result" id="quiz-result"></div>
                     <button class="btn new-quiz-btn mt-20" id="new-quiz-btn">Next Question</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lessons & Books Section -->
+    <section class="lessons-books" id="lessons-books">
+        <div class="container">
+            <h2>Lessons & Books</h2>
+            
+            <h3 class="text-center" style="margin-top: 40px;">📚 Wise Life Lessons</h3>
+            <div class="lessons-container">
+                <div class="card lesson-card">
+                    <div class="lesson-number">1</div>
+                    <h3>Embrace Failure</h3>
+                    <p>Failure is not the opposite of success—it's part of it.</p>
+                </div>
+                <div class="card lesson-card">
+                    <div class="lesson-number">2</div>
+                    <h3>Value Time</h3>
+                    <p>Time is the most valuable currency; spend it wisely.</p>
+                </div>
+                <div class="card lesson-card">
+                    <div class="lesson-number">3</div>
+                    <h3>True Strength</h3>
+                    <p>True strength is found in kindness and patience.</p>
+                </div>
+                <div class="card lesson-card">
+                    <div class="lesson-number">4</div>
+                    <h3>Share Knowledge</h3>
+                    <p>Knowledge grows when shared.</p>
+                </div>
+                <div class="card lesson-card">
+                    <div class="lesson-number">5</div>
+                    <h3>Avoid Comparison</h3>
+                    <p>Comparison steals joy; focus on your journey.</p>
+                </div>
+                <div class="card lesson-card">
+                    <div class="lesson-number">6</div>
+                    <h3>Practice Gratitude</h3>
+                    <p>Gratitude turns little into enough.</p>
+                </div>
+                <div class="card lesson-card">
+                    <div class="lesson-number">7</div>
+                    <h3>Consistent Actions</h3>
+                    <p>Small consistent actions build great achievements.</p>
+                </div>
+                <div class="card lesson-card">
+                    <div class="lesson-number">8</div>
+                    <h3>Listen More</h3>
+                    <p>Listening is more powerful than speaking.</p>
+                </div>
+                <div class="card lesson-card">
+                    <div class="lesson-number">9</div>
+                    <h3>Be Adaptable</h3>
+                    <p>Adaptability is the greatest survival skill.</p>
+                </div>
+                <div class="card lesson-card">
+                    <div class="lesson-number">10</div>
+                    <h3>Earn Respect</h3>
+                    <p>Respect is earned by actions, not demanded by words.</p>
+                </div>
+            </div>
+
+            <h3 class="text-center" style="margin-top: 60px;">📖 All-Time Great Books</h3>
+            <div class="books-container">
+                <div class="card book-card">
+                    <div class="book-number">1</div>
+                    <h3>To Kill a Mockingbird</h3>
+                    <p>Harper Lee</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">2</div>
+                    <h3>1984</h3>
+                    <p>George Orwell</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">3</div>
+                    <h3>Pride and Prejudice</h3>
+                    <p>Jane Austen</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">4</div>
+                    <h3>The Great Gatsby</h3>
+                    <p>F. Scott Fitzgerald</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">5</div>
+                    <h3>Moby-Dick</h3>
+                    <p>Herman Melville</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">6</div>
+                    <h3>War and Peace</h3>
+                    <p>Leo Tolstoy</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">7</div>
+                    <h3>Crime and Punishment</h3>
+                    <p>Fyodor Dostoevsky</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">8</div>
+                    <h3>The Catcher in the Rye</h3>
+                    <p>J.D. Salinger</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">9</div>
+                    <h3>One Hundred Years of Solitude</h3>
+                    <p>Gabriel García Márquez</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">10</div>
+                    <h3>The Lord of the Rings</h3>
+                    <p>J.R.R. Tolkien</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">11</div>
+                    <h3>Brave New World</h3>
+                    <p>Aldous Huxley</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">12</div>
+                    <h3>Anna Karenina</h3>
+                    <p>Leo Tolstoy</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">13</div>
+                    <h3>The Odyssey</h3>
+                    <p>Homer</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">14</div>
+                    <h3>Don Quixote</h3>
+                    <p>Miguel de Cervantes</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">15</div>
+                    <h3>The Brothers Karamazov</h3>
+                    <p>Fyodor Dostoevsky</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">16</div>
+                    <h3>The Hobbit</h3>
+                    <p>J.R.R. Tolkien</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">17</div>
+                    <h3>The Divine Comedy</h3>
+                    <p>Dante Alighieri</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">18</div>
+                    <h3>Meditations</h3>
+                    <p>Marcus Aurelius</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">19</div>
+                    <h3>The Alchemist</h3>
+                    <p>Paulo Coelho</p>
+                </div>
+                <div class="card book-card">
+                    <div class="book-number">20</div>
+                    <h3>Sapiens: A Brief History of Humankind</h3>
+                    <p>Yuval Noah Harari</p>
                 </div>
             </div>
         </div>
@@ -2058,28 +2275,253 @@
 
         const quizzes = [
             {
-                question: "What does HTML stand for?",
-                options: ["Hyper Text Markup Language", "High Tech Modern Language", "Hyper Tool Multi Language", "Home Tool Markup Language"],
+                question: "What does 'HTTP' stand for?",
+                options: ["HyperText Transfer Protocol", "High Tech Transfer Process", "HyperText Transmission Protocol", "Hyper Transfer Text Protocol"],
                 answer: 0
             },
             {
-                question: "Which language is used for styling web pages?",
-                options: ["HTML", "CSS", "JavaScript", "Python"],
-                answer: 1
-            },
-            {
-                question: "What is the capital of France?",
-                options: ["Berlin", "Madrid", "Paris", "Rome"],
+                question: "Who painted the Mona Lisa?",
+                options: ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"],
                 answer: 2
             },
             {
-                question: "What is 2 + 2?",
-                options: ["3", "4", "5", "6"],
+                question: "What is the capital of Japan?",
+                options: ["Seoul", "Beijing", "Tokyo", "Bangkok"],
+                answer: 2
+            },
+            {
+                question: "Which element has the chemical symbol 'O'?",
+                options: ["Gold", "Oxygen", "Osmium", "Oganesson"],
+                answer: 1
+            },
+            {
+                question: "Who wrote Romeo and Juliet?",
+                options: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
+                answer: 1
+            },
+            {
+                question: "What is the largest planet in our solar system?",
+                options: ["Earth", "Saturn", "Jupiter", "Neptune"],
+                answer: 2
+            },
+            {
+                question: "In which year did World War II end?",
+                options: ["1943", "1945", "1947", "1950"],
+                answer: 1
+            },
+            {
+                question: "What is the fastest land animal?",
+                options: ["Lion", "Cheetah", "Pronghorn Antelope", "Greyhound"],
+                answer: 1
+            },
+            {
+                question: "Who invented the telephone?",
+                options: ["Thomas Edison", "Alexander Graham Bell", "Nikola Tesla", "Guglielmo Marconi"],
+                answer: 1
+            },
+            {
+                question: "What is 12 × 12?",
+                options: ["121", "144", "132", "156"],
+                answer: 1
+            },
+            {
+                question: "Which is the smallest continent?",
+                options: ["Europe", "Australia", "Antarctica", "South America"],
+                answer: 1
+            },
+            {
+                question: "What is the boiling point of water in Celsius?",
+                options: ["90°C", "100°C", "110°C", "120°C"],
+                answer: 1
+            },
+            {
+                question: "Who discovered gravity under an apple tree?",
+                options: ["Albert Einstein", "Isaac Newton", "Galileo Galilei", "Stephen Hawking"],
+                answer: 1
+            },
+            {
+                question: "What is the longest river in the world?",
+                options: ["Amazon River", "Nile River", "Mississippi River", "Yangtze River"],
+                answer: 1
+            },
+            {
+                question: "Which is the tallest mountain on Earth?",
+                options: ["K2", "Mount Kilimanjaro", "Mount Everest", "Matterhorn"],
+                answer: 2
+            },
+            {
+                question: "What is the currency of the United Kingdom?",
+                options: ["Euro", "Dollar", "Pound Sterling", "Yen"],
+                answer: 2
+            },
+            {
+                question: "Who painted Starry Night?",
+                options: ["Pablo Picasso", "Claude Monet", "Vincent van Gogh", "Salvador Dalí"],
+                answer: 2
+            },
+            {
+                question: "What is the main gas humans exhale?",
+                options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
+                answer: 2
+            },
+            {
+                question: "Who was the first man on the moon?",
+                options: ["Buzz Aldrin", "Neil Armstrong", "Yuri Gagarin", "John Glenn"],
+                answer: 1
+            },
+            {
+                question: "What does 'CPU' stand for in computers?",
+                options: ["Central Processing Unit", "Computer Processing Unit", "Central Program Utility", "Computer Primary Unit"],
+                answer: 0
+            },
+            {
+                question: "Which country gifted the Statue of Liberty to the USA?",
+                options: ["England", "Spain", "France", "Italy"],
+                answer: 2
+            },
+            {
+                question: "What is the hardest natural substance on Earth?",
+                options: ["Platinum", "Titanium", "Diamond", "Quartz"],
+                answer: 2
+            },
+            {
+                question: "Which ocean is the largest?",
+                options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+                answer: 3
+            },
+            {
+                question: "Who discovered penicillin?",
+                options: ["Marie Curie", "Alexander Fleming", "Louis Pasteur", "Robert Koch"],
+                answer: 1
+            },
+            {
+                question: "What is the square root of 81?",
+                options: ["7", "8", "9", "10"],
+                answer: 2
+            },
+            {
+                question: "What is the longest bone in the human body?",
+                options: ["Tibia", "Humerus", "Femur", "Radius"],
+                answer: 2
+            },
+            {
+                question: "Who was the first President of the United States?",
+                options: ["Thomas Jefferson", "Abraham Lincoln", "George Washington", "John Adams"],
+                answer: 2
+            },
+            {
+                question: "Which is the largest desert in the world?",
+                options: ["Gobi Desert", "Sahara Desert", "Arabian Desert", "Kalahari Desert"],
+                answer: 1
+            },
+            {
+                question: "What is the main language spoken in Brazil?",
+                options: ["Spanish", "Portuguese", "French", "English"],
+                answer: 1
+            },
+            {
+                question: "Which planet is closest to the sun?",
+                options: ["Venus", "Earth", "Mars", "Mercury"],
+                answer: 3
+            },
+            {
+                question: "What is the currency of Japan?",
+                options: ["Yuan", "Won", "Yen", "Ringgit"],
+                answer: 2
+            },
+            {
+                question: "Who painted The Last Supper?",
+                options: ["Michelangelo", "Raphael", "Leonardo da Vinci", "Caravaggio"],
+                answer: 2
+            },
+            {
+                question: "Which blood type is known as the universal donor?",
+                options: ["A positive", "AB negative", "O negative", "B positive"],
+                answer: 2
+            },
+            {
+                question: "How many players are there in a football (soccer) team?",
+                options: ["9", "10", "11", "12"],
+                answer: 2
+            },
+            {
+                question: "Who wrote Harry Potter?",
+                options: ["J.R.R. Tolkien", "J.K. Rowling", "C.S. Lewis", "Stephen King"],
+                answer: 1
+            },
+            {
+                question: "What is the chemical formula for water?",
+                options: ["HO", "H₂O", "H₂O₂", "HO₂"],
+                answer: 1
+            },
+            {
+                question: "Which country is famous for the Great Wall?",
+                options: ["Japan", "India", "China", "Mongolia"],
+                answer: 2
+            },
+            {
+                question: "Who was known as the 'Maid of Orléans'?",
+                options: ["Queen Elizabeth I", "Catherine the Great", "Joan of Arc", "Marie Antoinette"],
+                answer: 2
+            },
+            {
+                question: "What is the capital of Australia?",
+                options: ["Sydney", "Melbourne", "Canberra", "Perth"],
+                answer: 2
+            },
+            {
+                question: "Which instrument has black and white keys?",
+                options: ["Guitar", "Violin", "Piano", "Flute"],
+                answer: 2
+            },
+            {
+                question: "What is the process plants use to make food?",
+                options: ["Respiration", "Photosynthesis", "Transpiration", "Germination"],
                 answer: 1
             },
             {
                 question: "Which planet is known as the Red Planet?",
-                options: ["Earth", "Mars", "Jupiter", "Venus"],
+                options: ["Venus", "Jupiter", "Mars", "Saturn"],
+                answer: 2
+            },
+            {
+                question: "Who is the Greek god of the sea?",
+                options: ["Zeus", "Hades", "Apollo", "Poseidon"],
+                answer: 3
+            },
+            {
+                question: "Which is the longest-running TV show in history?",
+                options: ["The Simpsons", "Friends", "Doctor Who", "Gunsmoke"],
+                answer: 0
+            },
+            {
+                question: "What is the national animal of China?",
+                options: ["Tiger", "Dragon", "Giant Panda", "Red-Crowned Crane"],
+                answer: 2
+            },
+            {
+                question: "Who was the first woman to win a Nobel Prize?",
+                options: ["Rosalind Franklin", "Marie Curie", "Dorothy Crowfoot Hodgkin", "Maria Goeppert-Mayer"],
+                answer: 1
+            },
+            {
+                question: "What is the capital of Canada?",
+                options: ["Toronto", "Vancouver", "Ottawa", "Montreal"],
+                answer: 2
+            },
+            {
+                question: "Which country hosted the 2016 Olympics?",
+                options: ["China", "Russia", "Brazil", "Japan"],
+                answer: 2
+            },
+            {
+                question: "What is the largest mammal on Earth?",
+                options: ["African Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
+                answer: 1
+            },
+            {
+                question: "Who is considered the 'Father of Computers'?",
+                options: ["Alan Turing", "Charles Babbage", "Bill Gates", "Steve Jobs"],
                 answer: 1
             }
         ];
@@ -2131,6 +2573,7 @@
             { title: 'Jokes', id: 'jokes', content: 'Computer Jokes like Why don\'t programmers like nature? Too many bugs.' },
             { title: 'Games', id: 'games', content: 'Mini-Games: Typing Test, Reaction Time, Memory Game.' },
             { title: 'Quizzes', id: 'quizzes', content: 'Interactive Quizzes about tech, coding, school subjects.' },
+            { title: 'Lessons & Books', id: 'lessons-books', content: 'Life lessons and recommended books for personal growth and learning.' },
             { title: 'Contact', id: 'contact', content: 'Get In Touch: Have a question or want to work together? Feel free to contact me!' }
         ];
 
