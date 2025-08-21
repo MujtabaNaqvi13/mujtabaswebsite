@@ -1487,20 +1487,41 @@
 
         let currentJokeIndex = 0;
 
+
+        // Typewriter effect for jokes and punchlines
+        function typewriterEffect(element, text, speed = 32, callback) {
+            element.textContent = '';
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else if (callback) {
+                    callback();
+                }
+            }
+            type();
+        }
+
         function showNewJoke() {
             currentJokeIndex = Math.floor(Math.random() * jokes.length);
-            jokeText.textContent = jokes[currentJokeIndex].joke;
-            punchline.textContent = jokes[currentJokeIndex].punchline;
             punchline.style.opacity = '0';
             revealBtn.textContent = 'Reveal Punchline';
+            typewriterEffect(jokeText, jokes[currentJokeIndex].joke, 32);
+            punchline.textContent = '';
         }
 
         revealBtn.addEventListener('click', () => {
             if (punchline.style.opacity === '0') {
-                punchline.style.opacity = '1';
+                // Type out the punchline
+                typewriterEffect(punchline, jokes[currentJokeIndex].punchline, 32, () => {
+                    punchline.style.opacity = '1';
+                });
                 revealBtn.textContent = 'Hide Punchline';
             } else {
                 punchline.style.opacity = '0';
+                punchline.textContent = '';
                 revealBtn.textContent = 'Reveal Punchline';
             }
         });
