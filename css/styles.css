@@ -1,0 +1,123 @@
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #666666;
+  --card-bg: #f7f7f7;
+  --accent: #1e88e5;
+  --toggle-icon: #000000;
+}
+:root.dark {
+  --bg: #0b0b0d;
+  --text: #f3f4f6;
+  --muted: #bfc3c7;
+  --card-bg: #0f1113;
+  --accent: #82b1ff;
+  --toggle-icon: #ffffff;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Open Sans', Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card-bg);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(30,32,60,0.10);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.nav-logo {
+  font-weight: 700;
+  font-size: 1.2em;
+  color: var(--accent);
+  text-decoration: none;
+}
+.nav-list {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-list a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color .18s, text-decoration .18s;
+  padding: 0.25em 0.5em;
+  border-radius: 4px;
+}
+.nav-list a.active, .nav-list a[aria-current="page"] {
+  font-weight: 700;
+  text-decoration: underline;
+  color: var(--accent);
+}
+#theme-toggle {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.08);
+  color: var(--toggle-icon);
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: color .18s, background .18s;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+.skills-grid {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.skill-col {
+  flex: 1 1 220px;
+  background: var(--card-bg);
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(30,32,60,0.07);
+  margin-bottom: 1.5rem;
+}
+.skill-col h3 {
+  margin-top: 0;
+  color: var(--accent);
+}
+.stats-page h1 {
+  margin-bottom: 1.5rem;
+}
+.stats-cards {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.stat-card {
+  flex: 1 1 220px;
+  background: var(--card-bg);
+  border-radius: 10px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(30,32,60,0.07);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.stat-number {
+  font-size: 2.5em;
+  font-weight: 700;
+  color: var(--accent);
+}
+.stat-label {
+  font-size: 1.1em;
+  color: var(--muted);
+}
+* {
+  transition: background-color .25s, color .25s;
+}

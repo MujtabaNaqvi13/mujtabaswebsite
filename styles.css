@@ -1,3 +1,48 @@
+/* Navbar: sticky, non-overlapping, smooth transform-only transitions */
+.site-header, header, .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    transition: background-color .22s ease, transform .22s cubic-bezier(.2,.9,.3,1);
+}
+.site-header.shrink {
+    transform: translateY(0) scale(0.995);
+    background-color: rgba(255,255,255,0.92);
+    box-shadow: 0 6px 20px rgba(11,18,32,0.06);
+}
+.site-header a, .navbar a, nav a {
+    transition: color .18s ease, transform .18s ease;
+    text-decoration: none;
+    outline: none;
+}
+nav a.active, nav a[aria-current="true"] {
+    font-weight: 700;
+    color: #155bd8;
+    position: relative;
+}
+nav a.active::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -8px;
+    height: 3px;
+    border-radius: 3px;
+    background: linear-gradient(90deg,#60a5fa,#7c3aed);
+    transform: scaleX(1);
+    transition: transform .25s ease;
+}
+nav a:focus {
+    box-shadow: 0 0 0 3px rgba(96,165,250,0.14);
+    border-radius: 6px;
+}
+:root { --header-offset: 76px; }
+[id] {
+    scroll-margin-top: calc(var(--header-offset) + 8px);
+}
+@media (prefers-reduced-motion: reduce) {
+    .site-header, nav a { transition: none !important; animation: none !important; }
+}
 /* SKILLS PROGRESS BARS */
 .skills-list {
     display: flex;

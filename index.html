@@ -1,3 +1,16 @@
+<script>
+// Set active nav link and aria-current
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.nav-list a').forEach(a => {
+    const href = a.getAttribute('href').split('/').pop();
+    const page = location.pathname.split('/').pop() || 'index.html';
+    if (href === page) {
+      a.classList.add('active');
+      a.setAttribute('aria-current', 'page');
+    }
+  });
+});
+</script>
   <script src="auth/auth.js"></script>
   <script>
     const user = getCurrentUser && getCurrentUser();
@@ -246,24 +259,15 @@
     </div>
     <!-- NAVBAR: boxed and visually distinct -->
     <nav class="header-bg card" style="margin-bottom: 32px; padding: 0.5rem 2rem; border-radius: 18px; box-shadow: 0 4px 24px 0 rgba(30,32,60,0.13); background: var(--section-bg, #fff);">
-      <ul class="navbar" style="display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; justify-content: center;">
-        <li class="nav-item"><a href="#home" class="nav-link" data-scroll>Home</a></li>
-        <li class="nav-item"><a href="#about" class="nav-link" data-scroll>About</a></li>
-        <li class="nav-item fun-menu" style="position:relative;">
-          <button class="nav-link" aria-haspopup="true" aria-expanded="false">Fun</button>
-          <ul class="dropdown-menu" role="menu" aria-label="Fun menu" style="position:absolute;top:100%;left:0;min-width:140px;background:var(--section-bg,#fff);box-shadow:0 4px 18px 0 rgba(30,32,60,0.13);border-radius:10px;padding:0.5rem 0;display:none;z-index:1001;">
-            <li><button class="dropdown-action" data-action="fun-facts" role="menuitem" style="width:100%;text-align:left;padding:0.5rem 1.2rem;background:none;border:none;">Fun Facts</button></li>
-            <li><button class="dropdown-action" data-action="jokes" role="menuitem" style="width:100%;text-align:left;padding:0.5rem 1.2rem;background:none;border:none;">Jokes</button></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a href="#skills" class="nav-link" data-scroll>Skills</a></li>
-  <!-- Gallery nav link removed -->
-        <li class="nav-item"><a href="#stats" class="nav-link" data-scroll>Stats</a></li>
-        <!-- THEME TOGGLE: keep this id -->
-        <li class="nav-item">
-          <button id="theme-toggle-btn" class="toggle-button" aria-label="Toggle light and dark mode" aria-pressed="false"></button>
-        </li>
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="stats.html">Stats</a></li>
+        <li><a href="fun.html">Fun</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
+  <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
     </nav>
       <script>
       // Responsive navbar hamburger toggle
@@ -387,7 +391,6 @@
           <textarea id="c-message" name="message" rows="4" required></textarea>
           <button type="submit">send</button>
         </form>
-        <div id="contact-success" class="hidden">thanks — message received (demo)</div>
       </section>
 
       <section id="timeline" class="card">
@@ -575,7 +578,6 @@ typingInput.addEventListener('blur', () => { startTime = null; });
           <textarea id="contact-message" class="border p-2 w-full" placeholder="Your Message" required></textarea>
           <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Send</button>
         </form>
-        <div id="contact-success" class="text-green-600 mt-2 hidden">Message sent! I'll get back to you soon.</div>
         </section>
 
         <!-- Skills -->
@@ -959,6 +961,7 @@ typingInput.addEventListener('blur', () => { startTime = null; });
 
     </main>
 
+<script defer src="assets/js/navbar-enhance.js"></script>
 </body>
 <script>
 // ScrollReveal transitions for sections
