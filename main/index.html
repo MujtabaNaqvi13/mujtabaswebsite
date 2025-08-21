@@ -286,6 +286,50 @@
             color: var(--text-primary);
         }
 
+        /* Search Bar Styles */
+        .search-container {
+            margin-left: 20px;
+        }
+
+        #search-input {
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--text-secondary);
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        #search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        #search-results {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background-color: var(--bg-secondary);
+            box-shadow: 0 4px 15px var(--shadow);
+            border-radius: 8px;
+            padding: 10px;
+            display: none;
+            z-index: 999;
+            max-width: 300px;
+        }
+
+        #search-results ul {
+            list-style: none;
+        }
+
+        #search-results li {
+            margin: 5px 0;
+        }
+
+        #search-results a {
+            color: var(--text-primary);
+        }
+
         /* Hero Section */
         .hero {
             text-align: center;
@@ -627,6 +671,85 @@
             margin-bottom: 30px;
         }
 
+        /* Memory Game */
+        .memory-game {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .memory-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .memory-card {
+            width: 100%;
+            height: 100px;
+            background-color: var(--progress-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .memory-card.flipped {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .memory-stats {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        /* Quizzes Section */
+        .quizzes-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quiz-box {
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .quiz-question {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            padding: 10px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--text-secondary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .quiz-option:hover {
+            background-color: var(--accent-light);
+        }
+
+        .quiz-result {
+            font-size: 1.3rem;
+            margin-top: 20px;
+            color: var(--accent);
+        }
+
         /* Footer */
         footer {
             background-color: var(--bg-secondary);
@@ -857,6 +980,7 @@
                 <li><a href="#funfacts">Funfacts</a></li>
                 <li><a href="#jokes">Jokes</a></li>
                 <li><a href="#games">Games</a></li>
+                <li><a href="#quizzes">Quizzes</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li>
                     <button class="theme-toggle" id="theme-toggle">
@@ -864,6 +988,10 @@
                     </button>
                 </li>
             </ul>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search...">
+                <div id="search-results"></div>
+            </div>
         </div>
     </nav>
 
@@ -1235,6 +1363,29 @@
                     <p>Test how fast you can react to visual stimuli</p>
                     <button class="btn mt-20" id="reaction-game-btn">Play Game</button>
                 </div>
+                <div class="card game-card">
+                    <div class="game-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Memory Game</h3>
+                    <p>Test your memory by matching pairs</p>
+                    <button class="btn mt-20" id="memory-game-btn">Play Game</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Quizzes Section -->
+    <section class="quizzes" id="quizzes">
+        <div class="container">
+            <h2>🧪 Interactive Quizzes</h2>
+            <div class="quizzes-container">
+                <div class="card quiz-box">
+                    <div class="quiz-question" id="quiz-question"></div>
+                    <div class="quiz-options" id="quiz-options"></div>
+                    <div class="quiz-result" id="quiz-result"></div>
+                    <button class="btn new-quiz-btn mt-20" id="new-quiz-btn">Next Question</button>
+                </div>
             </div>
         </div>
     </section>
@@ -1245,7 +1396,7 @@
             <h2>Get In Touch</h2>
             <div class="contact-content text-center">
                 <p>Have a question or want to work together? Feel free to contact me!</p>
-                <a href="mailto:s.mujtaba.naqvi@outlook.com" class="btn mt-20">Send Email</a>
+                <a href="mailto:mujtaba@example.com" class="btn mt-20">Send Email</a>
             </div>
         </div>
     </section>
@@ -1324,6 +1475,28 @@
                     </div>
                 </div>
                 <button class="btn" id="start-reaction-game">Start Test</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Memory Game Modal -->
+    <div class="modal" id="memory-game-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-memory-modal">&times;</button>
+            <h2>Memory Game</h2>
+            <div class="memory-game">
+                <div class="memory-board" id="memory-board"></div>
+                <div class="memory-stats">
+                    <div class="stat">
+                        <div class="stat-value" id="memory-matches">0</div>
+                        <div class="stat-label">Matches</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="memory-flips">0</div>
+                        <div class="stat-label">Flips</div>
+                    </div>
+                </div>
+                <button class="btn" id="start-memory-game">Start Game</button>
             </div>
         </div>
     </div>
@@ -1486,7 +1659,6 @@
         const newJokeBtn = document.getElementById('new-joke-btn');
 
         let currentJokeIndex = 0;
-
 
         // Typewriter effect for jokes and punchlines
         function typewriterEffect(element, text, speed = 32, callback) {
@@ -1779,9 +1951,229 @@
             startReactionGameBtn.disabled = false;
         }
 
+        // Memory Game
+        const memoryGameBtn = document.getElementById('memory-game-btn');
+        const memoryGameModal = document.getElementById('memory-game-modal');
+        const closeMemoryModal = document.getElementById('close-memory-modal');
+        const memoryBoard = document.getElementById('memory-board');
+        const memoryMatchesElement = document.getElementById('memory-matches');
+        const memoryFlipsElement = document.getElementById('memory-flips');
+        const startMemoryGameBtn = document.getElementById('start-memory-game');
+
+        let memoryGameActive = false;
+        let memoryCards = [];
+        let flippedCards = [];
+        let matches = 0;
+        let flips = 0;
+
+        const memoryIcons = ['🍎', '🍌', '🍇', '🍉', '🍓', '🍒', '🍍', '🥝'];
+
+        memoryGameBtn.addEventListener('click', () => {
+            memoryGameModal.classList.add('visible');
+            resetMemoryGame();
+        });
+
+        closeMemoryModal.addEventListener('click', () => {
+            memoryGameModal.classList.remove('visible');
+            memoryGameActive = false;
+        });
+
+        startMemoryGameBtn.addEventListener('click', startMemoryGame);
+
+        function resetMemoryGame() {
+            memoryBoard.innerHTML = '';
+            memoryMatchesElement.textContent = '0';
+            memoryFlipsElement.textContent = '0';
+            matches = 0;
+            flips = 0;
+            flippedCards = [];
+            memoryGameActive = false;
+            startMemoryGameBtn.textContent = 'Start Game';
+        }
+
+        function startMemoryGame() {
+            if (memoryGameActive) return;
+            memoryGameActive = true;
+            startMemoryGameBtn.textContent = 'Game in progress...';
+            startMemoryGameBtn.disabled = true;
+
+            // Create cards
+            memoryCards = [...memoryIcons, ...memoryIcons].sort(() => Math.random() - 0.5);
+            memoryCards.forEach((icon, index) => {
+                const card = document.createElement('div');
+                card.classList.add('memory-card');
+                card.dataset.icon = icon;
+                card.dataset.index = index;
+                card.addEventListener('click', flipCard);
+                memoryBoard.appendChild(card);
+            });
+        }
+
+        function flipCard(e) {
+            if (!memoryGameActive || flippedCards.length >= 2 || e.target.classList.contains('flipped')) return;
+
+            const card = e.target;
+            card.classList.add('flipped');
+            card.textContent = card.dataset.icon;
+            flippedCards.push(card);
+            flips++;
+            memoryFlipsElement.textContent = flips;
+
+            if (flippedCards.length === 2) {
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            if (card1.dataset.icon === card2.dataset.icon) {
+                matches++;
+                memoryMatchesElement.textContent = matches;
+                flippedCards = [];
+                if (matches === memoryIcons.length) {
+                    endMemoryGame();
+                }
+            } else {
+                setTimeout(() => {
+                    card1.classList.remove('flipped');
+                    card2.classList.remove('flipped');
+                    card1.textContent = '';
+                    card2.textContent = '';
+                    flippedCards = [];
+                }, 1000);
+            }
+        }
+
+        function endMemoryGame() {
+            memoryGameActive = false;
+            startMemoryGameBtn.textContent = 'Play Again';
+            startMemoryGameBtn.disabled = false;
+        }
+
+        // Interactive Quizzes
+        const quizQuestion = document.getElementById('quiz-question');
+        const quizOptions = document.getElementById('quiz-options');
+        const quizResult = document.getElementById('quiz-result');
+        const newQuizBtn = document.getElementById('new-quiz-btn');
+
+        const quizzes = [
+            {
+                question: "What does HTML stand for?",
+                options: ["Hyper Text Markup Language", "High Tech Modern Language", "Hyper Tool Multi Language", "Home Tool Markup Language"],
+                answer: 0
+            },
+            {
+                question: "Which language is used for styling web pages?",
+                options: ["HTML", "CSS", "JavaScript", "Python"],
+                answer: 1
+            },
+            {
+                question: "What is the capital of France?",
+                options: ["Berlin", "Madrid", "Paris", "Rome"],
+                answer: 2
+            },
+            {
+                question: "What is 2 + 2?",
+                options: ["3", "4", "5", "6"],
+                answer: 1
+            },
+            {
+                question: "Which planet is known as the Red Planet?",
+                options: ["Earth", "Mars", "Jupiter", "Venus"],
+                answer: 1
+            }
+        ];
+
+        let currentQuizIndex = 0;
+
+        function showNewQuiz() {
+            currentQuizIndex = Math.floor(Math.random() * quizzes.length);
+            const quiz = quizzes[currentQuizIndex];
+            quizQuestion.textContent = quiz.question;
+            quizOptions.innerHTML = '';
+            quizResult.textContent = '';
+            quiz.options.forEach((option, index) => {
+                const optionElem = document.createElement('div');
+                optionElem.classList.add('quiz-option');
+                optionElem.textContent = option;
+                optionElem.addEventListener('click', () => checkAnswer(index));
+                quizOptions.appendChild(optionElem);
+            });
+        }
+
+        function checkAnswer(selected) {
+            const quiz = quizzes[currentQuizIndex];
+            if (selected === quiz.answer) {
+                quizResult.textContent = 'Correct!';
+            } else {
+                quizResult.textContent = `Wrong! The correct answer is ${quiz.options[quiz.answer]}.`;
+            }
+            // Disable options after selection
+            document.querySelectorAll('.quiz-option').forEach(opt => opt.style.pointerEvents = 'none');
+        }
+
+        newQuizBtn.addEventListener('click', showNewQuiz);
+
+        // Initialize with a quiz
+        showNewQuiz();
+
+        // Search Function
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+
+        // Define searchable content (sections)
+        const searchableSections = [
+            { title: 'Home', id: 'home', content: 'Hello, I\'m Mujtaba Naqvi A Year 8 student with a passion for technology, coding, and creativity' },
+            { title: 'About', id: 'about', content: 'Hi! My name is Mujtaba Naqvi and I\'m a Year 8 student with a big interest in technology and creativity.' },
+            { title: 'Skills', id: 'skills', content: 'Coding Skills: HTML, CSS, JavaScript, Python, GoLang, C#. School Skills: Mathematics, Science, English, Problem Solving, Creativity.' },
+            { title: 'Stats', id: 'stats', content: 'Projects Completed, Hours Coding, Thousand Lines of Code, GitHub Commits, Cups of Coffee, Languages Learned, Funfacts Collected.' },
+            { title: 'Funfacts', id: 'funfacts', content: 'Tech Funfacts like the first computer bug was a moth, Apollo 11 computer power, etc.' },
+            { title: 'Jokes', id: 'jokes', content: 'Computer Jokes like Why don\'t programmers like nature? Too many bugs.' },
+            { title: 'Games', id: 'games', content: 'Mini-Games: Typing Test, Reaction Time, Memory Game.' },
+            { title: 'Quizzes', id: 'quizzes', content: 'Interactive Quizzes about tech, coding, school subjects.' },
+            { title: 'Contact', id: 'contact', content: 'Get In Touch: Have a question or want to work together? Feel free to contact me!' }
+        ];
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            searchResults.innerHTML = '';
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            const filtered = searchableSections.filter(section => 
+                section.title.toLowerCase().includes(query) || section.content.toLowerCase().includes(query)
+            );
+
+            if (filtered.length > 0) {
+                const ul = document.createElement('ul');
+                filtered.forEach(section => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = `#${section.id}`;
+                    a.textContent = section.title;
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                });
+                searchResults.appendChild(ul);
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Hide search results when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchResults.contains(e.target) && e.target !== searchInput) {
+                searchResults.style.display = 'none';
+            }
+        });
+
         // Initialize
         resetTypingGame();
         resetReactionGame();
+        resetMemoryGame();
     </script>
 </body>
 </html>
