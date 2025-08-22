@@ -1014,6 +1014,299 @@
             margin-left: auto;
             margin-right: auto;
         }
+
+        /* NEW STYLES FOR ADDED FEATURES */
+
+        /* AI Chat Assistant */
+        .chat-assistant {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .chat-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px var(--shadow);
+            transition: var(--transition);
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-container {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            height: 450px;
+            background-color: var(--bg-secondary);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .chat-container.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .chat-header {
+            padding: 15px;
+            background-color: var(--accent);
+            color: white;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+
+        .message.bot {
+            align-self: flex-start;
+            background-color: var(--progress-bg);
+            color: var(--text-primary);
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid var(--progress-bg);
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--progress-bg);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .chat-input button {
+            margin-left: 10px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            background-color: var(--bg-secondary);
+            padding: 60px 0;
+        }
+
+        .progress-dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .progress-chart {
+            padding: 20px;
+            border-radius: 12px;
+            background-color: var(--card-bg);
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .badge {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            position: relative;
+        }
+
+        .badge.locked {
+            background-color: var(--progress-bg);
+            color: var(--text-secondary);
+        }
+
+        .badge-info {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        /* Customizable Dashboard */
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+        }
+
+        .dashboard-sidebar {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .dashboard-main {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .dashboard-widget {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px var(--shadow);
+            min-height: 200px;
+        }
+
+        .widget-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .pin-widget {
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* Offline Indicator */
+        .offline-indicator {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 5px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .offline-indicator.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Accessibility Tools */
+        .accessibility-tools {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            background-color: var(--card-bg);
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            box-shadow: 0 0 15px var(--shadow);
+            z-index: 999;
+            padding: 10px;
+        }
+
+        .accessibility-tool {
+            display: block;
+            width: 40px;
+            height: 40px;
+            margin: 10px 0;
+            border-radius: 50%;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .accessibility-tool:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        /* Screen Reader Only */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus styles for accessibility */
+        button:focus, 
+        input:focus, 
+        textarea:focus, 
+        a:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* High Contrast Mode Adjustments */
+        [data-theme="high-contrast"] button:focus, 
+        [data-theme="high-contrast"] input:focus, 
+        [data-theme="high-contrast"] textarea:focus, 
+        [data-theme="high-contrast"] a:focus {
+            outline: 3px solid var(--accent);
+        }
     </style>
 </head>
 <body>
@@ -1033,6 +1326,8 @@
                 <li><a href="#games">Games</a></li>
                 <li><a href="#quizzes">Quizzes</a></li>
                 <li><a href="#lessons-books">Lessons & Books</a></li>
+                <li><a href="#progress-tracker">Progress</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li>
                     <button class="theme-toggle" id="theme-toggle">
@@ -1046,6 +1341,27 @@
             </div>
         </div>
     </nav>
+
+    <!-- Accessibility Tools -->
+    <div class="accessibility-tools">
+        <button class="accessibility-tool" id="increase-text" title="Increase Text Size">
+            <i class="fas fa-text-height"></i>
+        </button>
+        <button class="accessibility-tool" id="decrease-text" title="Decrease Text Size">
+            <i class="fas fa-text-width"></i>
+        </button>
+        <button class="accessibility-tool" id="read-page" title="Read Page Content">
+            <i class="fas fa-assistive-listening-systems"></i>
+        </button>
+        <button class="accessibility-tool" id="high-contrast-toggle" title="High Contrast Mode">
+            <i class="fas fa-contrast"></i>
+        </button>
+    </div>
+
+    <!-- Offline Indicator -->
+    <div class="offline-indicator" id="offline-indicator">
+        <i class="fas fa-wifi"></i> You are currently offline
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -1442,6 +1758,93 @@
         </div>
     </section>
 
+    <!-- Progress Tracker Section -->
+    <section class="progress-tracker" id="progress-tracker">
+        <div class="container">
+            <h2>Progress Tracker</h2>
+            <div class="progress-dashboard">
+                <div class="progress-chart">
+                    <h3>Your Performance</h3>
+                    <canvas id="progress-chart" width="400" height="300"></canvas>
+                </div>
+                <div class="badges-container">
+                    <h3>Your Badges</h3>
+                    <div class="badge" id="quiz-badge">
+                        <i class="fas fa-brain"></i>
+                        <div class="badge-info">Quiz Master</div>
+                    </div>
+                    <div class="badge locked" id="typing-badge">
+                        <i class="fas fa-keyboard"></i>
+                        <div class="badge-info">Typing Guru</div>
+                    </div>
+                    <div class="badge locked" id="memory-badge">
+                        <i class="fas fa-memory"></i>
+                        <div class="badge-info">Memory Master</div>
+                    </div>
+                    <div class="badge locked" id="reaction-badge">
+                        <i class="fas fa-bolt"></i>
+                        <div class="badge-info">Quick Reflexes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customizable Dashboard Section -->
+    <section class="dashboard" id="dashboard">
+        <div class="container">
+            <h2>Your Dashboard</h2>
+            <div class="dashboard-container">
+                <div class="dashboard-sidebar">
+                    <h3>Customize Your View</h3>
+                    <div class="widget-selector">
+                        <h4>Add Widgets:</h4>
+                        <label><input type="checkbox" name="widget" value="recent-scores" checked> Recent Scores</label>
+                        <label><input type="checkbox" name="widget" value="favorite-games" checked> Favorite Games</label>
+                        <label><input type="checkbox" name="widget" value="suggestions" checked> Suggestions</label>
+                        <label><input type="checkbox" name="widget" value="progress"> Progress Overview</label>
+                    </div>
+                    <div class="theme-selector mt-20">
+                        <h4>Dashboard Theme:</h4>
+                        <select id="dashboard-theme">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                            <option value="fun">Fun</option>
+                            <option value="high-contrast">High Contrast</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="dashboard-main">
+                    <div class="dashboard-widget" data-widget="recent-scores">
+                        <div class="widget-header">
+                            <h3>Recent Scores</h3>
+                            <span class="pin-widget"><i class="fas fa-thumbtack"></i></span>
+                        </div>
+                        <ul id="recent-scores-list">
+                            <li>No scores yet. Play some games!</li>
+                        </ul>
+                    </div>
+                    <div class="dashboard-widget" data-widget="favorite-games">
+                        <div class="widget-header">
+                            <h3>Favorite Games</h3>
+                            <span class="pin-widget"><i class="fas fa-thumbtack"></i></span>
+                        </div>
+                        <div id="favorite-games-list">
+                            <p>Mark games as favorites to see them here!</p>
+                        </div>
+                    </div>
+                    <div class="dashboard-widget" data-widget="suggestions">
+                        <div class="widget-header">
+                            <h3>Suggestions For You</h3>
+                            <span class="pin-widget"><i class="fas fa-thumbtack"></i></span>
+                        </div>
+                        <p>Based on your activity, we recommend trying the Memory Game to improve your cognitive skills!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Lessons & Books Section -->
     <section class="lessons-books" id="lessons-books">
         <div class="container">
@@ -1613,7 +2016,7 @@
             <h2>Get In Touch</h2>
             <div class="contact-content text-center">
                 <p>Have a question or want to work together? Feel free to contact me!</p>
-                <a href="mailto:mujtaba@example.com" class="btn mt-20">Send Email</a>
+                <a href="mailto:s.mujtaba.naqvi@outlook.com?subject=Contact%20from%20Website" class="btn mt-20" rel="noopener">Send Email</a>
             </div>
         </div>
     </section>
@@ -1636,6 +2039,28 @@
             </div>
         </div>
     </footer>
+
+    <!-- AI Chat Assistant -->
+    <div class="chat-assistant">
+        <div class="chat-toggle" id="chat-toggle">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div class="chat-container" id="chat-container">
+            <div class="chat-header">
+                <h3>AI Assistant</h3>
+                <button class="close-chat" id="close-chat"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message bot">
+                    Hi there! I'm your AI assistant. How can I help you today?
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chat-input" placeholder="Type your message here...">
+                <button id="send-message"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
 
     <!-- Typing Game Modal -->
     <div class="modal" id="typing-game-modal">
@@ -1868,6 +2293,49 @@
             { joke: "Why did the CPU break up with the RAM?", punchline: "It needed more space." },
             { joke: "How does a hacker break up with their partner?", punchline: "Ctrl + Alt + Del." },
             { joke: "Why did the coder cross the road?", punchline: "To optimize the chicken's path." }
+            [
+    { joke: "Why did the developer go broke?", punchline: "Because he used up all his cache." },
+    { joke: "Why did the computer get glasses?", punchline: "To improve its web sight." },
+    { joke: "Why did the programmer get stuck in the shower?", punchline: "The instructions said: lather, rinse, repeat." },
+    { joke: "Why did the computer go to art school?", punchline: "It wanted to learn how to draw its own conclusions." },
+    { joke: "Why did the Java developer wear glasses?", punchline: "Because he couldn't C#." },
+    { joke: "Why did the computer break up with the internet?", punchline: "Too many connections." },
+    { joke: "Why did the developer bring a ladder to work?", punchline: "Because he was climbing the tech stack." },
+    { joke: "Why did the computer fail its driving test?", punchline: "It kept crashing." },
+    { joke: "Why did the coder get kicked out of school?", punchline: "He kept skipping classes." },
+    { joke: "Why did the computer get promoted?", punchline: "It had great bytes." },
+    { joke: "Why did the programmer get fired?", punchline: "He kept pushing bugs to production." },
+    { joke: "Why did the computer go to the doctor?", punchline: "It had a virus." },
+    { joke: "Why did the developer go camping?", punchline: "To debug in the wild." },
+    { joke: "Why did the computer join a band?", punchline: "It had great RAM rhythm." },
+    { joke: "Why did the coder love coffee?", punchline: "Because it helped him Java." },
+    { joke: "Why did the computer get detention?", punchline: "It wouldn't stop talking back." },
+    { joke: "Why did the programmer love nature?", punchline: "Because it had trees and branches." },
+    { joke: "Why did the computer get a job?", punchline: "It wanted to improve its processing power." },
+    { joke: "Why did the developer hate meetings?", punchline: "Because they weren’t asynchronous." },
+    { joke: "Why did the computer go to school?", punchline: "To improve its class." },
+    { joke: "Why did the coder bring a pillow to work?", punchline: "He wanted to catch some Zzz in the sleep function." },
+    { joke: "Why did the computer get a tan?", punchline: "It spent too much time in the cloud." },
+    { joke: "Why did the developer love pizza?", punchline: "Because it had all the right slices." },
+    { joke: "Why did the computer get a speeding ticket?", punchline: "It had too many tabs open." },
+    { joke: "Why did the coder go to therapy?", punchline: "He had too many unresolved issues." },
+    { joke: "Why did the laptop go to the gym?", punchline: "To get more RAM." },
+    { joke: "Why did the developer get lost?", punchline: "He didn’t follow the breadcrumbs." },
+    { joke: "Why did the computer get a promotion?", punchline: "It was outstanding in its field." },
+    { joke: "Why did the coder love hiking?", punchline: "Because he enjoyed exploring new paths." },
+    { joke: "Why did the computer get a haircut?", punchline: "Its cache was full." },
+    { joke: "Why did the developer love dark mode?", punchline: "Because light attracts bugs." },
+    { joke: "Why did the computer take a nap?", punchline: "It needed to reboot." },
+    { joke: "Why did the coder bring a flashlight?", punchline: "To debug in the dark." },
+    { joke: "Why did the computer go to the beach?", punchline: "To surf the web." },
+    { joke: "Why did the developer love silence?", punchline: "Because it meant no errors." },
+    { joke: "Why did the computer get a medal?", punchline: "It had the best performance." },
+    { joke: "Why did the coder love puzzles?", punchline: "Because he liked solving problems." },
+    { joke: "Why did the computer get a tattoo?", punchline: "To show off its code." },
+    { joke: "Why did the developer love weekends?", punchline: "Because he could finally commit." },
+    { joke: "Why did the computer go to space?", punchline: "To find more storage in the cloud." }
+]
+
         ];
 
         const jokeText = document.getElementById('joke-text');
@@ -2060,6 +2528,11 @@
             quoteInput.disabled = true;
             startTypingGameBtn.textContent = 'Play Again';
             startTypingGameBtn.disabled = false;
+            
+            // Save score to progress tracker
+            const wpm = parseInt(wpmElement.textContent);
+            const accuracy = parseInt(accuracyElement.textContent);
+            saveGameScore('typing', { wpm, accuracy });
         }
 
         // Reaction Game
@@ -2166,6 +2639,9 @@
             reactionWaiting.style.display = 'block';
             startReactionGameBtn.textContent = 'Start New Test';
             startReactionGameBtn.disabled = false;
+            
+            // Save score to progress tracker
+            saveGameScore('reaction', { bestTime });
         }
 
         // Memory Game
@@ -2265,6 +2741,9 @@
             memoryGameActive = false;
             startMemoryGameBtn.textContent = 'Play Again';
             startMemoryGameBtn.disabled = false;
+            
+            // Save score to progress tracker
+            saveGameScore('memory', { matches, flips });
         }
 
         // Interactive Quizzes
@@ -2527,6 +3006,8 @@
         ];
 
         let currentQuizIndex = 0;
+        let correctAnswers = 0;
+        let totalQuestions = 0;
 
         function showNewQuiz() {
             currentQuizIndex = Math.floor(Math.random() * quizzes.length);
@@ -2545,11 +3026,18 @@
 
         function checkAnswer(selected) {
             const quiz = quizzes[currentQuizIndex];
+            totalQuestions++;
+            
             if (selected === quiz.answer) {
                 quizResult.textContent = 'Correct!';
+                correctAnswers++;
             } else {
                 quizResult.textContent = `Wrong! The correct answer is ${quiz.options[quiz.answer]}.`;
             }
+            
+            // Save quiz progress
+            saveQuizProgress(correctAnswers, totalQuestions);
+            
             // Disable options after selection
             document.querySelectorAll('.quiz-option').forEach(opt => opt.style.pointerEvents = 'none');
         }
@@ -2573,6 +3061,8 @@
             { title: 'Jokes', id: 'jokes', content: 'Computer Jokes like Why don\'t programmers like nature? Too many bugs.' },
             { title: 'Games', id: 'games', content: 'Mini-Games: Typing Test, Reaction Time, Memory Game.' },
             { title: 'Quizzes', id: 'quizzes', content: 'Interactive Quizzes about tech, coding, school subjects.' },
+            { title: 'Progress Tracker', id: 'progress-tracker', content: 'Track your performance in games and quizzes over time.' },
+            { title: 'Dashboard', id: 'dashboard', content: 'Customizable dashboard with favorite games and recent scores.' },
             { title: 'Lessons & Books', id: 'lessons-books', content: 'Life lessons and recommended books for personal growth and learning.' },
             { title: 'Contact', id: 'contact', content: 'Get In Touch: Have a question or want to work together? Feel free to contact me!' }
         ];
@@ -2613,10 +3103,287 @@
             }
         });
 
+        // NEW FEATURES IMPLEMENTATION
+
+        // AI Chat Assistant
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatContainer = document.getElementById('chat-container');
+        const closeChat = document.getElementById('close-chat');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const sendMessage = document.getElementById('send-message');
+
+        chatToggle.addEventListener('click', () => {
+            chatContainer.classList.toggle('open');
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatContainer.classList.remove('open');
+        });
+
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(isUser ? 'user' : 'bot');
+            messageDiv.textContent = text;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function handleChatInput() {
+            const message = chatInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                chatInput.value = '';
+                
+                // Simulate AI response
+                setTimeout(() => {
+                    let response = "I'm not sure how to respond to that. Try asking about my skills, projects, or tell me a joke!";
+                    
+                    if (message.toLowerCase().includes('hi') || message.toLowerCase().includes('hello') || message.toLowerCase().includes('hey')) {
+                        response = "Hello there! How can I help you today?";
+                    } else if (message.toLowerCase().includes('skill') || message.toLowerCase().includes('what can you do')) {
+                        response = "I have skills in HTML, CSS, JavaScript, Python, GoLang, and C#. I'm also good at Mathematics, Science, and Problem Solving!";
+                    } else if (message.toLowerCase().includes('project') || message.toLowerCase().includes('what have you built')) {
+                        response = "I've completed 5 projects so far, including this website! I've also made contributions to open source projects on GitHub.";
+                    } else if (message.toLowerCase().includes('joke') || message.toLowerCase().includes('funny')) {
+                        const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+                        response = `${randomJoke.joke} ${randomJoke.punchline}`;
+                    } else if (message.toLowerCase().includes('hobby') || message.toLowerCase().includes('interest')) {
+                        response = "I love coding, learning new technologies, reading books, and discovering fun tech facts!";
+                    } else if (message.toLowerCase().includes('age') || message.toLowerCase().includes('old')) {
+                        response = "I'm a Year 8 student, which means I'm around 13 years old.";
+                    } else if (message.toLowerCase().includes('school') || message.toLowerCase().includes('study')) {
+                        response = "I enjoy Maths, Science, and English at school. They help me develop logical thinking and communication skills!";
+                    }
+                    
+                    addMessage(response);
+                }, 1000);
+            }
+        }
+
+        sendMessage.addEventListener('click', handleChatInput);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleChatInput();
+            }
+        });
+
+        // Progress Tracker
+        function saveGameScore(gameType, scoreData) {
+            let progressData = JSON.parse(localStorage.getItem('progressData')) || {};
+            if (!progressData[gameType]) {
+                progressData[gameType] = [];
+            }
+            
+            progressData[gameType].push({
+                date: new Date().toISOString(),
+                score: scoreData
+            });
+            
+            localStorage.setItem('progressData', JSON.stringify(progressData));
+            updateProgressUI();
+        }
+
+        function saveQuizProgress(correct, total) {
+            let progressData = JSON.parse(localStorage.getItem('progressData')) || {};
+            if (!progressData.quizzes) {
+                progressData.quizzes = [];
+            }
+            
+            progressData.quizzes.push({
+                date: new Date().toISOString(),
+                correct: correct,
+                total: total
+            });
+            
+            localStorage.setItem('progressData', JSON.stringify(progressData));
+            updateProgressUI();
+        }
+
+        function updateProgressUI() {
+            const progressData = JSON.parse(localStorage.getItem('progressData')) || {};
+            
+            // Update badges based on progress
+            if (progressData.quizzes && progressData.quizzes.length >= 5) {
+                document.getElementById('quiz-badge').classList.remove('locked');
+            }
+            
+            if (progressData.typing && progressData.typing.some(score => score.score.wpm >= 40)) {
+                document.getElementById('typing-badge').classList.remove('locked');
+            }
+            
+            if (progressData.memory && progressData.memory.some(score => score.score.flips <= 20)) {
+                document.getElementById('memory-badge').classList.remove('locked');
+            }
+            
+            if (progressData.reaction && progressData.reaction.some(score => score.score.bestTime <= 300)) {
+                document.getElementById('reaction-badge').classList.remove('locked');
+            }
+            
+            // Update recent scores in dashboard
+            const recentScoresList = document.getElementById('recent-scores-list');
+            recentScoresList.innerHTML = '';
+            
+            const allScores = [];
+            Object.keys(progressData).forEach(gameType => {
+                progressData[gameType].forEach(score => {
+                    allScores.push({
+                        type: gameType,
+                        date: score.date,
+                        score: score.score
+                    });
+                });
+            });
+            
+            // Sort by date (newest first) and take top 5
+            allScores.sort((a, b) => new Date(b.date) - new Date(a.date));
+            const recentScores = allScores.slice(0, 5);
+            
+            if (recentScores.length === 0) {
+                recentScoresList.innerHTML = '<li>No scores yet. Play some games!</li>';
+            } else {
+                recentScores.forEach(score => {
+                    const li = document.createElement('li');
+                    let scoreText = '';
+                    
+                    if (score.type === 'typing') {
+                        scoreText = `Typing: ${score.score.wpm} WPM, ${score.score.accuracy}% accuracy`;
+                    } else if (score.type === 'reaction') {
+                        scoreText = `Reaction: ${score.score.bestTime} ms best time`;
+                    } else if (score.type === 'memory') {
+                        scoreText = `Memory: ${score.score.matches} matches in ${score.score.flips} flips`;
+                    } else if (score.type === 'quizzes') {
+                        scoreText = `Quiz: ${score.score.correct}/${score.score.total} correct`;
+                    }
+                    
+                    li.textContent = `${new Date(score.date).toLocaleDateString()} - ${scoreText}`;
+                    recentScoresList.appendChild(li);
+                });
+            }
+        }
+
+        // Customizable Dashboard
+        const widgetCheckboxes = document.querySelectorAll('input[name="widget"]');
+        const dashboardTheme = document.getElementById('dashboard-theme');
+        
+        // Load saved dashboard preferences
+        const dashboardPrefs = JSON.parse(localStorage.getItem('dashboardPrefs')) || {
+            widgets: ['recent-scores', 'favorite-games', 'suggestions'],
+            theme: 'light'
+        };
+        
+        // Apply saved preferences
+        widgetCheckboxes.forEach(checkbox => {
+            checkbox.checked = dashboardPrefs.widgets.includes(checkbox.value);
+            toggleWidget(checkbox.value, checkbox.checked);
+        });
+        
+        dashboardTheme.value = dashboardPrefs.theme;
+        document.getElementById('dashboard').setAttribute('data-theme', dashboardPrefs.theme);
+        
+        // Add event listeners
+        widgetCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                toggleWidget(checkbox.value, checkbox.checked);
+                saveDashboardPrefs();
+            });
+        });
+        
+        dashboardTheme.addEventListener('change', () => {
+            document.getElementById('dashboard').setAttribute('data-theme', dashboardTheme.value);
+            saveDashboardPrefs();
+        });
+        
+        function toggleWidget(widgetId, isVisible) {
+            const widget = document.querySelector(`[data-widget="${widgetId}"]`);
+            if (widget) {
+                widget.style.display = isVisible ? 'block' : 'none';
+            }
+        }
+        
+        function saveDashboardPrefs() {
+            const selectedWidgets = Array.from(widgetCheckboxes)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
+                
+            const prefs = {
+                widgets: selectedWidgets,
+                theme: dashboardTheme.value
+            };
+            
+            localStorage.setItem('dashboardPrefs', JSON.stringify(prefs));
+        }
+
+        // Offline Mode
+        const offlineIndicator = document.getElementById('offline-indicator');
+        
+        window.addEventListener('online', () => {
+            offlineIndicator.classList.remove('visible');
+        });
+        
+        window.addEventListener('offline', () => {
+            offlineIndicator.classList.add('visible');
+        });
+        
+        // Register service worker for offline functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('SW registered: ', registration);
+                }).catch(registrationError => {
+                    console.log('SW registration failed: ', registrationError);
+                });
+            });
+        }
+
+        // Accessibility Enhancements
+        const increaseTextBtn = document.getElementById('increase-text');
+        const decreaseTextBtn = document.getElementById('decrease-text');
+        const readPageBtn = document.getElementById('read-page');
+        const highContrastToggle = document.getElementById('high-contrast-toggle');
+        
+        let textSize = 1;
+        
+        increaseTextBtn.addEventListener('click', () => {
+            if (textSize < 1.5) {
+                textSize += 0.1;
+                document.body.style.fontSize = `${textSize}rem`;
+            }
+        });
+        
+        decreaseTextBtn.addEventListener('click', () => {
+            if (textSize > 0.8) {
+                textSize -= 0.1;
+                document.body.style.fontSize = `${textSize}rem`;
+            }
+        });
+        
+        readPageBtn.addEventListener('click', () => {
+            // Simple screen reader simulation - would use Web Speech API in a real implementation
+            const content = document.querySelector('section.section-visible h2')?.textContent || 
+                          document.querySelector('section.section-visible p')?.textContent ||
+                          "No content found";
+            
+            alert(`Screen Reader: ${content.substring(0, 150)}...`);
+        });
+        
+        highContrastToggle.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'high-contrast') {
+                // Revert to previous theme
+                body.setAttribute('data-theme', localStorage.getItem('theme') || 'light');
+            } else {
+                // Save current theme and switch to high contrast
+                localStorage.setItem('previousTheme', body.getAttribute('data-theme'));
+                body.setAttribute('data-theme', 'high-contrast');
+            }
+        });
+
         // Initialize
         resetTypingGame();
         resetReactionGame();
         resetMemoryGame();
+        updateProgressUI();
     </script>
 </body>
 </html>
