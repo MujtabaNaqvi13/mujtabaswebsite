@@ -404,6 +404,81 @@
             box-shadow: 0 20px 40px var(--shadow);
         }
 
+        /* Journey Section */
+        .journey-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .journey-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .journey-timeline:before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            border: 3px solid var(--bg-primary);
+            z-index: 1;
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .timeline-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px var(--shadow);
+            border-left: 4px solid var(--accent-light);
+            transition: var(--transition);
+        }
+
+        .timeline-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+
+        .timeline-card h3 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .timeline-card p {
+            color: var(--text-secondary);
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
         /* Skills Section */
         .skills-container {
             display: grid;
@@ -465,7 +540,7 @@
             font-size: 3rem;
             font-weight: 700;
             color: var(--accent);
-            margin-bottom: 10px;
+            margin-bottom: 11px;
             display: block;
         }
 
@@ -892,129 +967,6 @@
             color: var(--text-primary);
         }
 
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            h1 {
-                font-size: 3rem;
-            }
-            
-            h2 {
-                font-size: 2.2rem;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .about-text h2 {
-                text-align: center;
-            }
-            
-            .about-text h2:after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background-color: var(--nav-bg);
-                flex-direction: column;
-                align-items: center;
-                padding: 20px 0;
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-                transition: var(--transition);
-            }
-            
-            .nav-links.active {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
-            
-            .nav-links li {
-                margin: 15px 0;
-            }
-            
-            .hamburger {
-                display: block;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .stats-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 576px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
-            section {
-                padding: 60px 0;
-            }
-            
-            .hero-btns .btn {
-                display: block;
-                margin: 10px auto;
-                width: 80%;
-            }
-            
-            .stats-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .funfacts-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .games-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .lessons-container, .books-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        .large-text {
-            font-size: 1.3rem;
-        }
-
-        /* Utility Classes */
-        .mt-20 {
-            margin-top: 20px;
-        }
-
-        .mb-20 {
-            margin-bottom: 20px;
-        }
-
-        .mx-auto {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
         /* NEW STYLES FOR ADDED FEATURES */
 
         /* AI Chat Assistant */
@@ -1307,6 +1259,145 @@
         [data-theme="high-contrast"] a:focus {
             outline: 3px solid var(--accent);
         }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .about-text h2 {
+                text-align: center;
+            }
+            
+            .about-text h2:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--nav-bg);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .journey-timeline {
+                padding-left: 20px;
+            }
+            
+            .journey-timeline:before {
+                left: 10px;
+            }
+            
+            .timeline-item:before {
+                left: -26px;
+            }
+            
+            .timeline-card {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .hero-btns .btn {
+                display: block;
+                margin: 10px auto;
+                width: 80%;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .funfacts-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .games-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .lessons-container, .books-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        .large-text {
+            font-size: 1.3rem;
+        }
+
+        /* Utility Classes */
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
 <body>
@@ -1319,6 +1410,7 @@
             </button>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#about">About</a></li>
+                <li><a href="#journey">Journey</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#stats">Stats</a></li>
                 <li><a href="#funfacts">Funfacts</a></li>
@@ -1389,6 +1481,52 @@
                 </div>
                 <div class="about-image">
                     <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Coding Setup">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section class="journey" id="journey">
+        <div class="container">
+            <h2>My Journey</h2>
+            <div class="journey-content">
+                <div class="journey-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Early Days</div>
+                        <div class="timeline-card">
+                            <h3>First Steps in Technology</h3>
+                            <p>Your one sentence about your early interest in technology goes here.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2022</div>
+                        <div class="timeline-card">
+                            <h3>Learning Web Development</h3>
+                            <p>Your one sentence about learning web development goes here.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023</div>
+                        <div class="timeline-card">
+                            <h3>Exploring Advanced Languages</h3>
+                            <p>Your one sentence about learning GoLang and C# goes here.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Present</div>
+                        <div class="timeline-card">
+                            <h3>Building This Website</h3>
+                            <p>Your one sentence about creating this portfolio goes here.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Future Goals</div>
+                        <div class="timeline-card">
+                            <h3>Looking Ahead</h3>
+                            <p>Your one sentence about future aspirations goes here.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1551,7 +1689,6 @@
         <div class="container">
             <h2>Tech Funfacts</h2>
             <div class="funfacts-container">
-                <!-- 10 funfact cards shown here, would add all 30 in real implementation -->
                 <div class="funfact-card">
                     <div class="funfact-inner">
                         <div class="funfact-front">
@@ -2293,49 +2430,6 @@
             { joke: "Why did the CPU break up with the RAM?", punchline: "It needed more space." },
             { joke: "How does a hacker break up with their partner?", punchline: "Ctrl + Alt + Del." },
             { joke: "Why did the coder cross the road?", punchline: "To optimize the chicken's path." }
-            [
-    { joke: "Why did the developer go broke?", punchline: "Because he used up all his cache." },
-    { joke: "Why did the computer get glasses?", punchline: "To improve its web sight." },
-    { joke: "Why did the programmer get stuck in the shower?", punchline: "The instructions said: lather, rinse, repeat." },
-    { joke: "Why did the computer go to art school?", punchline: "It wanted to learn how to draw its own conclusions." },
-    { joke: "Why did the Java developer wear glasses?", punchline: "Because he couldn't C#." },
-    { joke: "Why did the computer break up with the internet?", punchline: "Too many connections." },
-    { joke: "Why did the developer bring a ladder to work?", punchline: "Because he was climbing the tech stack." },
-    { joke: "Why did the computer fail its driving test?", punchline: "It kept crashing." },
-    { joke: "Why did the coder get kicked out of school?", punchline: "He kept skipping classes." },
-    { joke: "Why did the computer get promoted?", punchline: "It had great bytes." },
-    { joke: "Why did the programmer get fired?", punchline: "He kept pushing bugs to production." },
-    { joke: "Why did the computer go to the doctor?", punchline: "It had a virus." },
-    { joke: "Why did the developer go camping?", punchline: "To debug in the wild." },
-    { joke: "Why did the computer join a band?", punchline: "It had great RAM rhythm." },
-    { joke: "Why did the coder love coffee?", punchline: "Because it helped him Java." },
-    { joke: "Why did the computer get detention?", punchline: "It wouldn't stop talking back." },
-    { joke: "Why did the programmer love nature?", punchline: "Because it had trees and branches." },
-    { joke: "Why did the computer get a job?", punchline: "It wanted to improve its processing power." },
-    { joke: "Why did the developer hate meetings?", punchline: "Because they weren’t asynchronous." },
-    { joke: "Why did the computer go to school?", punchline: "To improve its class." },
-    { joke: "Why did the coder bring a pillow to work?", punchline: "He wanted to catch some Zzz in the sleep function." },
-    { joke: "Why did the computer get a tan?", punchline: "It spent too much time in the cloud." },
-    { joke: "Why did the developer love pizza?", punchline: "Because it had all the right slices." },
-    { joke: "Why did the computer get a speeding ticket?", punchline: "It had too many tabs open." },
-    { joke: "Why did the coder go to therapy?", punchline: "He had too many unresolved issues." },
-    { joke: "Why did the laptop go to the gym?", punchline: "To get more RAM." },
-    { joke: "Why did the developer get lost?", punchline: "He didn’t follow the breadcrumbs." },
-    { joke: "Why did the computer get a promotion?", punchline: "It was outstanding in its field." },
-    { joke: "Why did the coder love hiking?", punchline: "Because he enjoyed exploring new paths." },
-    { joke: "Why did the computer get a haircut?", punchline: "Its cache was full." },
-    { joke: "Why did the developer love dark mode?", punchline: "Because light attracts bugs." },
-    { joke: "Why did the computer take a nap?", punchline: "It needed to reboot." },
-    { joke: "Why did the coder bring a flashlight?", punchline: "To debug in the dark." },
-    { joke: "Why did the computer go to the beach?", punchline: "To surf the web." },
-    { joke: "Why did the developer love silence?", punchline: "Because it meant no errors." },
-    { joke: "Why did the computer get a medal?", punchline: "It had the best performance." },
-    { joke: "Why did the coder love puzzles?", punchline: "Because he liked solving problems." },
-    { joke: "Why did the computer get a tattoo?", punchline: "To show off its code." },
-    { joke: "Why did the developer love weekends?", punchline: "Because he could finally commit." },
-    { joke: "Why did the computer go to space?", punchline: "To find more storage in the cloud." }
-]
-
         ];
 
         const jokeText = document.getElementById('joke-text');
@@ -2777,231 +2871,6 @@
                 question: "Who wrote Romeo and Juliet?",
                 options: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
                 answer: 1
-            },
-            {
-                question: "What is the largest planet in our solar system?",
-                options: ["Earth", "Saturn", "Jupiter", "Neptune"],
-                answer: 2
-            },
-            {
-                question: "In which year did World War II end?",
-                options: ["1943", "1945", "1947", "1950"],
-                answer: 1
-            },
-            {
-                question: "What is the fastest land animal?",
-                options: ["Lion", "Cheetah", "Pronghorn Antelope", "Greyhound"],
-                answer: 1
-            },
-            {
-                question: "Who invented the telephone?",
-                options: ["Thomas Edison", "Alexander Graham Bell", "Nikola Tesla", "Guglielmo Marconi"],
-                answer: 1
-            },
-            {
-                question: "What is 12 × 12?",
-                options: ["121", "144", "132", "156"],
-                answer: 1
-            },
-            {
-                question: "Which is the smallest continent?",
-                options: ["Europe", "Australia", "Antarctica", "South America"],
-                answer: 1
-            },
-            {
-                question: "What is the boiling point of water in Celsius?",
-                options: ["90°C", "100°C", "110°C", "120°C"],
-                answer: 1
-            },
-            {
-                question: "Who discovered gravity under an apple tree?",
-                options: ["Albert Einstein", "Isaac Newton", "Galileo Galilei", "Stephen Hawking"],
-                answer: 1
-            },
-            {
-                question: "What is the longest river in the world?",
-                options: ["Amazon River", "Nile River", "Mississippi River", "Yangtze River"],
-                answer: 1
-            },
-            {
-                question: "Which is the tallest mountain on Earth?",
-                options: ["K2", "Mount Kilimanjaro", "Mount Everest", "Matterhorn"],
-                answer: 2
-            },
-            {
-                question: "What is the currency of the United Kingdom?",
-                options: ["Euro", "Dollar", "Pound Sterling", "Yen"],
-                answer: 2
-            },
-            {
-                question: "Who painted Starry Night?",
-                options: ["Pablo Picasso", "Claude Monet", "Vincent van Gogh", "Salvador Dalí"],
-                answer: 2
-            },
-            {
-                question: "What is the main gas humans exhale?",
-                options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
-                answer: 2
-            },
-            {
-                question: "Who was the first man on the moon?",
-                options: ["Buzz Aldrin", "Neil Armstrong", "Yuri Gagarin", "John Glenn"],
-                answer: 1
-            },
-            {
-                question: "What does 'CPU' stand for in computers?",
-                options: ["Central Processing Unit", "Computer Processing Unit", "Central Program Utility", "Computer Primary Unit"],
-                answer: 0
-            },
-            {
-                question: "Which country gifted the Statue of Liberty to the USA?",
-                options: ["England", "Spain", "France", "Italy"],
-                answer: 2
-            },
-            {
-                question: "What is the hardest natural substance on Earth?",
-                options: ["Platinum", "Titanium", "Diamond", "Quartz"],
-                answer: 2
-            },
-            {
-                question: "Which ocean is the largest?",
-                options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
-                answer: 3
-            },
-            {
-                question: "Who discovered penicillin?",
-                options: ["Marie Curie", "Alexander Fleming", "Louis Pasteur", "Robert Koch"],
-                answer: 1
-            },
-            {
-                question: "What is the square root of 81?",
-                options: ["7", "8", "9", "10"],
-                answer: 2
-            },
-            {
-                question: "What is the longest bone in the human body?",
-                options: ["Tibia", "Humerus", "Femur", "Radius"],
-                answer: 2
-            },
-            {
-                question: "Who was the first President of the United States?",
-                options: ["Thomas Jefferson", "Abraham Lincoln", "George Washington", "John Adams"],
-                answer: 2
-            },
-            {
-                question: "Which is the largest desert in the world?",
-                options: ["Gobi Desert", "Sahara Desert", "Arabian Desert", "Kalahari Desert"],
-                answer: 1
-            },
-            {
-                question: "What is the main language spoken in Brazil?",
-                options: ["Spanish", "Portuguese", "French", "English"],
-                answer: 1
-            },
-            {
-                question: "Which planet is closest to the sun?",
-                options: ["Venus", "Earth", "Mars", "Mercury"],
-                answer: 3
-            },
-            {
-                question: "What is the currency of Japan?",
-                options: ["Yuan", "Won", "Yen", "Ringgit"],
-                answer: 2
-            },
-            {
-                question: "Who painted The Last Supper?",
-                options: ["Michelangelo", "Raphael", "Leonardo da Vinci", "Caravaggio"],
-                answer: 2
-            },
-            {
-                question: "Which blood type is known as the universal donor?",
-                options: ["A positive", "AB negative", "O negative", "B positive"],
-                answer: 2
-            },
-            {
-                question: "How many players are there in a football (soccer) team?",
-                options: ["9", "10", "11", "12"],
-                answer: 2
-            },
-            {
-                question: "Who wrote Harry Potter?",
-                options: ["J.R.R. Tolkien", "J.K. Rowling", "C.S. Lewis", "Stephen King"],
-                answer: 1
-            },
-            {
-                question: "What is the chemical formula for water?",
-                options: ["HO", "H₂O", "H₂O₂", "HO₂"],
-                answer: 1
-            },
-            {
-                question: "Which country is famous for the Great Wall?",
-                options: ["Japan", "India", "China", "Mongolia"],
-                answer: 2
-            },
-            {
-                question: "Who was known as the 'Maid of Orléans'?",
-                options: ["Queen Elizabeth I", "Catherine the Great", "Joan of Arc", "Marie Antoinette"],
-                answer: 2
-            },
-            {
-                question: "What is the capital of Australia?",
-                options: ["Sydney", "Melbourne", "Canberra", "Perth"],
-                answer: 2
-            },
-            {
-                question: "Which instrument has black and white keys?",
-                options: ["Guitar", "Violin", "Piano", "Flute"],
-                answer: 2
-            },
-            {
-                question: "What is the process plants use to make food?",
-                options: ["Respiration", "Photosynthesis", "Transpiration", "Germination"],
-                answer: 1
-            },
-            {
-                question: "Which planet is known as the Red Planet?",
-                options: ["Venus", "Jupiter", "Mars", "Saturn"],
-                answer: 2
-            },
-            {
-                question: "Who is the Greek god of the sea?",
-                options: ["Zeus", "Hades", "Apollo", "Poseidon"],
-                answer: 3
-            },
-            {
-                question: "Which is the longest-running TV show in history?",
-                options: ["The Simpsons", "Friends", "Doctor Who", "Gunsmoke"],
-                answer: 0
-            },
-            {
-                question: "What is the national animal of China?",
-                options: ["Tiger", "Dragon", "Giant Panda", "Red-Crowned Crane"],
-                answer: 2
-            },
-            {
-                question: "Who was the first woman to win a Nobel Prize?",
-                options: ["Rosalind Franklin", "Marie Curie", "Dorothy Crowfoot Hodgkin", "Maria Goeppert-Mayer"],
-                answer: 1
-            },
-            {
-                question: "What is the capital of Canada?",
-                options: ["Toronto", "Vancouver", "Ottawa", "Montreal"],
-                answer: 2
-            },
-            {
-                question: "Which country hosted the 2016 Olympics?",
-                options: ["China", "Russia", "Brazil", "Japan"],
-                answer: 2
-            },
-            {
-                question: "What is the largest mammal on Earth?",
-                options: ["African Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
-                answer: 1
-            },
-            {
-                question: "Who is considered the 'Father of Computers'?",
-                options: ["Alan Turing", "Charles Babbage", "Bill Gates", "Steve Jobs"],
-                answer: 1
             }
         ];
 
@@ -3055,6 +2924,7 @@
         const searchableSections = [
             { title: 'Home', id: 'home', content: 'Hello, I\'m Mujtaba Naqvi A Year 8 student with a passion for technology, coding, and creativity' },
             { title: 'About', id: 'about', content: 'Hi! My name is Mujtaba Naqvi and I\'m a Year 8 student with a big interest in technology and creativity.' },
+            { title: 'Journey', id: 'journey', content: 'My journey through technology and programming milestones.' },
             { title: 'Skills', id: 'skills', content: 'Coding Skills: HTML, CSS, JavaScript, Python, GoLang, C#. School Skills: Mathematics, Science, English, Problem Solving, Creativity.' },
             { title: 'Stats', id: 'stats', content: 'Projects Completed, Hours Coding, Thousand Lines of Code, GitHub Commits, Cups of Coffee, Languages Learned, Funfacts Collected.' },
             { title: 'Funfacts', id: 'funfacts', content: 'Tech Funfacts like the first computer bug was a moth, Apollo 11 computer power, etc.' },
