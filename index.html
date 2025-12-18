@@ -1398,11 +1398,59 @@
             margin-left: auto;
             margin-right: auto;
         }
+
+        /* Dropdown behavior: only show when open */
+        .nav-dropdown .dropdown-menu {
+            display: none;
+            min-width: 180px;
+            padding: 6px 0;
+        }
+
+        .nav-dropdown.open .dropdown-menu {
+            display: block;
+        }
+
+        /* Prevent Lessons & Books heading from wrapping */
+        .lessons-books h2 {
+            white-space: nowrap;
+        }
+
+        /* Tic Tac Toe styles */
+        .tictactoe-board {
+            display: grid;
+            grid-template-columns: repeat(3, 80px);
+            gap: 8px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .tictactoe-cell {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background-color: var(--bg-primary);
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .tictactoe-cell.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
+        <style>
+            /* Small layout tweaks for search/dropdown */
+            .search-container { position: relative; }
+        </style>
         <div class="container nav-container">
             <a href="#" class="logo">Mujtaba Naqvi</a>
             <button class="hamburger" id="hamburger">
@@ -1413,11 +1461,16 @@
                 <li><a href="#journey">Journey</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#stats">Stats</a></li>
-                <li><a href="#funfacts">Funfacts</a></li>
-                <li><a href="#jokes">Jokes</a></li>
-                <li><a href="#games">Games</a></li>
-                <li><a href="#quizzes">Quizzes</a></li>
-                <li><a href="#lessons-books">Lessons & Books</a></li>
+                <li class="nav-dropdown">
+                    <a href="#" class="dropdown-toggle" aria-expanded="false">Fun <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu" aria-label="Fun menu">
+                        <li><a href="#jokes">Jokes</a></li>
+                        <li><a href="#games">Games</a></li>
+                        <li><a href="#funfacts">Fun Facts</a></li>
+                        <li><a href="#quizzes">Quizzes</a></li>
+                    </ul>
+                </li>
+                <li><a href="#lessons-books">Lessons&nbsp;&amp;&nbsp;Books</a></li>
                 <li><a href="#progress-tracker">Progress</a></li>
                 <li><a href="#dashboard">Dashboard</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -1428,8 +1481,11 @@
                 </li>
             </ul>
             <div class="search-container">
-                <input type="text" id="search-input" placeholder="Search...">
-                <div id="search-results"></div>
+                <div class="search-box">
+                    <i class="fas fa-search search-icon" aria-hidden="true"></i>
+                    <input type="search" id="search-input" placeholder="Search the site — try \"jokes\", \"funfacts\", or \"typing\"..." aria-label="Search the site" autocomplete="off">
+                </div>
+                <div id="search-results" class="search-results" role="listbox" aria-live="polite"></div>
             </div>
         </div>
     </nav>
@@ -1489,44 +1545,117 @@
     <!-- Journey Section -->
     <section class="journey" id="journey">
         <div class="container">
-            <h2>My Journey</h2>
+            <h2>Personal Timeline (2011–2025)</h2>
             <div class="journey-content">
                 <div class="journey-timeline">
+                    <p class="journey-note"><em>Editable timeline — replace any text as needed.</em></p>
+
                     <div class="timeline-item">
-                        <div class="timeline-date">Early Days</div>
+                        <div class="timeline-date">2011 — Birth and Early Life</div>
                         <div class="timeline-card">
-                            <h3>First Steps in Technology</h3>
-                            <p>Your one sentence about your early interest in technology goes here.</p>
+                            <h3>16 August 2011 — Birth</h3>
+                            <p>I was born on 16 August 2011 at Gulshan Hospital, Karachi, Pakistan. I was born into a Shia Muslim family and community, which formed the cultural and religious foundation of my life.</p>
+
+                            <h4>August–October 2011 — Early Infancy in Karachi</h4>
+                            <p>I lived in Karachi for the first two months of my life before my family moved overseas due to my father’s employment.</p>
                         </div>
                     </div>
+
                     <div class="timeline-item">
-                        <div class="timeline-date">2022</div>
+                        <div class="timeline-date">2011–2018 — Early Childhood Abroad</div>
                         <div class="timeline-card">
-                            <h3>Learning Web Development</h3>
-                            <p>Your one sentence about learning web development goes here.</p>
+                            <h3>Late 2011 — Relocation Due to Father’s Job</h3>
+                            <p>My family moved overseas because my father received a work opportunity. We lived there for approximately seven years, which covered most of my early childhood.</p>
+                            <p>During this period:</p>
+                            <ul>
+                                <li>I grew up in a Muslim environment outside Pakistan</li>
+                                <li>I learned a basic level of Arabic (which I later forgot)</li>
+                                <li>My family travelled back to Pakistan roughly every six months, helping me stay connected to relatives and culture</li>
+                            </ul>
+
+                            <h4>2014 — Family Milestone</h4>
+                            <p>10 August 2014 — Sister Born: My sister was born on 10 August 2014. I was nearly three years old at the time, and this marked my first experience of becoming an older sibling.</p>
                         </div>
                     </div>
+
                     <div class="timeline-item">
-                        <div class="timeline-date">2023</div>
+                        <div class="timeline-date">2017–2018 — Transition Years</div>
                         <div class="timeline-card">
-                            <h3>Exploring Advanced Languages</h3>
-                            <p>Your one sentence about learning GoLang and C# goes here.</p>
+                            <h3>2017 — First Visit to Australia</h3>
+                            <p>In 2017, my family visited Australia for the first time. This visit later became significant, as Australia eventually became our permanent home.</p>
+
+                            <h3>Around 2018 — Move to Sharjah</h3>
+                            <p>My family moved to Sharjah, where we lived for approximately three to four years. This period exposed me to a multicultural environment while still living in a Muslim-majority society.</p>
                         </div>
                     </div>
+
                     <div class="timeline-item">
-                        <div class="timeline-date">Present</div>
+                        <div class="timeline-date">2019 — Permanent Move to Australia</div>
                         <div class="timeline-card">
-                            <h3>Building This Website</h3>
-                            <p>Your one sentence about creating this portfolio goes here.</p>
+                            <h3>2019 — Migration to Auburn, NSW</h3>
+                            <p>In 2019, my family permanently moved to Australia, settling in Auburn, New South Wales. I was around eight years old. Auburn was important because it had a strong Muslim community and helped ease the transition into Australian life and schooling.</p>
                         </div>
                     </div>
+
                     <div class="timeline-item">
-                        <div class="timeline-date">Future Goals</div>
+                        <div class="timeline-date">2020–2021 — Family Growth & Global Events</div>
                         <div class="timeline-card">
-                            <h3>Looking Ahead</h3>
-                            <p>Your one sentence about future aspirations goes here.</p>
+                            <h3>2 April 2020 — Younger Brother Born</h3>
+                            <p>My younger brother was born on 2 April 2020. I was eight years old at the time, and this increased my sense of responsibility within the family.</p>
+
+                            <h3>2020–2021 — COVID-19 Pandemic</h3>
+                            <p>During the COVID-19 pandemic: schools shifted to remote learning, families spent extended time at home, and daily routines changed significantly. This period indirectly influenced my growing interest in technology and computers.</p>
                         </div>
                     </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">2022 — Hebersham & Beginning Coding</div>
+                        <div class="timeline-card">
+                            <h3>October 2022 — Move to Hebersham</h3>
+                            <p>In October 2022, my family moved to Hebersham. I attended Hebersham Public School.</p>
+
+                            <h3>2022 — Starting My Coding Journey</h3>
+                            <p>In 2022, I began learning coding seriously. I developed an interest in how software and websites work, which later became a long-term skill and passion.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023–Mid 2024 — School Transition</div>
+                        <div class="timeline-card">
+                            <h3>Blacktown Boys High School</h3>
+                            <p>After Hebersham Public School, I attended Blacktown Boys High School until mid-2024. This helped me adjust to high school expectations and responsibilities.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">2024 — Sunbury & Skill Development</div>
+                        <div class="timeline-card">
+                            <h3>26 August 2024 — Move to Sunbury, Victoria</h3>
+                            <p>On 26 August 2024, my family moved to Sunbury, Victoria. This was a major cultural adjustment, as the area felt more traditionally Australian and less diverse than previous locations.</p>
+
+                            <h3>2024 — Coding Certifications & AI Exposure</h3>
+                            <p>In 2024, I earned Coddy Tech certificates in Golang, HTML, CSS, and JavaScript. Around this time, I also began exploring artificial intelligence tools, alongside my programming studies.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">Late 2025 — Tarneit & Present Day</div>
+                        <div class="timeline-card">
+                            <h3>November 2025 — Move to Tarneit, Victoria</h3>
+                            <p>In November 2025, my family moved to Tarneit. The area has a larger Indian, Pakistani, and Muslim community, which felt more familiar after living in Sunbury.</p>
+
+                            <p>I am currently 14 years old, continuing my education and developing my skills in coding, technology, and AI.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">Reflection</div>
+                        <div class="timeline-card">
+                            <h3>Overall Reflection</h3>
+                            <p>My life has involved growing up across Pakistan, the Middle East, and Australia. Frequent moves, exposure to different cultures, and strong community influences have shaped my adaptability and interests. Beginning coding in 2022 and earning certifications in 2024 marked an important step toward my future goals in technology.</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -1828,6 +1957,278 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Added user funfacts -->
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-lemon"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Bananas are berries, but strawberries aren’t.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-water"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Octopuses have three hearts.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-honey-pot"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Honey never spoils — jars found in ancient tombs are still edible.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-fish"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Sharks existed before trees.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-smile"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>The human nose can remember about 50,000 different scents.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-chess"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>There are more possible games of chess than atoms in the observable universe.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-cube"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Wombats produce cube-shaped poop.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-brain"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Your brain burns about 20% of your body’s energy.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-bolt"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Lightning is hotter than the surface of the sun.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-ants"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Ants don’t sleep like humans — they take tiny power naps.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-leaf"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Butterflies can taste with their feet.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-building"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>The Eiffel Tower grows about 15 cm taller in summer.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-cow"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Cows have best friends and get stressed when separated.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-dolphin"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Dolphins have names for each other.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-clock"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>A day on Venus is longer than a year on Venus.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-dna"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Humans share about 60% of DNA with bananas.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-history"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>The shortest war in history lasted 38–45 minutes.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-eye"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>You blink about 20,000 times a day.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-fire"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Some metals explode in water.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-cloud"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>The average cloud can weigh over a million tons.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-cat"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Cats can’t taste sweetness.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-ghost"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Your stomach acid can dissolve metal.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-tree"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>There are more trees on Earth than stars in the Milky Way.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-spider"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Spiders can’t fly — but some use wind to travel long distances.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-heartbeat"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Your body replaces most of its cells every 7–10 years.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-feather"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Birds don’t pee — it comes out with their poop.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-feather-alt"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>A group of flamingos is called a flamboyance.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-lightbulb"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Humans glow slightly in the dark (we just can’t see it).</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-cloud-rain"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>Rain has a smell called petrichor.</p></div>
+                    </div>
+                </div>
+
+                <div class="funfact-card">
+                    <div class="funfact-inner">
+                        <div class="funfact-front">
+                            <div><i class="fas fa-brain"></i><h3>Did you know?</h3></div>
+                        </div>
+                        <div class="funfact-back"><p>The brain named itself.</p></div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -1875,6 +2276,14 @@
                     <h3>Memory Game</h3>
                     <p>Test your memory by matching pairs</p>
                     <button class="btn mt-20" id="memory-game-btn">Play Game</button>
+                </div>
+                <div class="card game-card">
+                    <div class="game-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Tic Tac Toe</h3>
+                    <p>Play a quick game against a friend or the CPU</p>
+                    <button class="btn mt-20" id="tictactoe-game-btn">Play Game</button>
                 </div>
             </div>
         </div>
@@ -1985,7 +2394,7 @@
     <!-- Lessons & Books Section -->
     <section class="lessons-books" id="lessons-books">
         <div class="container">
-            <h2>Lessons & Books</h2>
+            <h2>Lessons&nbsp;&amp;&nbsp;Books</h2>
             
             <h3 class="text-center" style="margin-top: 40px;">📚 Wise Life Lessons</h3>
             <div class="lessons-container">
@@ -2280,6 +2689,32 @@
         </div>
     </div>
 
+    <!-- Tic Tac Toe Modal -->
+    <div class="modal" id="tictactoe-game-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-tictactoe-modal">&times;</button>
+            <h2>Tic Tac Toe</h2>
+            <div class="tictactoe-game">
+                <div class="tictactoe-controls">
+                    <label><input type="checkbox" id="cpu-opponent" checked> Play vs CPU</label>
+                    <button class="btn" id="restart-tictactoe">Restart</button>
+                </div>
+                <div class="tictactoe-board" id="tictactoe-board" role="grid" aria-label="Tic Tac Toe board">
+                    <div class="tictactoe-cell" data-index="0" role="button" aria-label="cell 0"></div>
+                    <div class="tictactoe-cell" data-index="1" role="button" aria-label="cell 1"></div>
+                    <div class="tictactoe-cell" data-index="2" role="button" aria-label="cell 2"></div>
+                    <div class="tictactoe-cell" data-index="3" role="button" aria-label="cell 3"></div>
+                    <div class="tictactoe-cell" data-index="4" role="button" aria-label="cell 4"></div>
+                    <div class="tictactoe-cell" data-index="5" role="button" aria-label="cell 5"></div>
+                    <div class="tictactoe-cell" data-index="6" role="button" aria-label="cell 6"></div>
+                    <div class="tictactoe-cell" data-index="7" role="button" aria-label="cell 7"></div>
+                    <div class="tictactoe-cell" data-index="8" role="button" aria-label="cell 8"></div>
+                </div>
+                <div id="tictactoe-status" style="margin-top:12px; text-align:center;"></div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Theme Toggling
         const themeToggle = document.getElementById('theme-toggle');
@@ -2334,11 +2769,13 @@
                 : '<i class="fas fa-bars"></i>';
         });
 
-        // Close mobile nav when clicking on a link
+        // Close mobile nav when clicking on a link (ignore dropdown toggles)
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                if (!link.classList.contains('dropdown-toggle')) {
+                    navLinks.classList.remove('active');
+                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                }
             });
         });
 
@@ -2429,7 +2866,35 @@
             { joke: "Why don't computers take their hats off?", punchline: "They have bad caps lock." },
             { joke: "Why did the CPU break up with the RAM?", punchline: "It needed more space." },
             { joke: "How does a hacker break up with their partner?", punchline: "Ctrl + Alt + Del." },
-            { joke: "Why did the coder cross the road?", punchline: "To optimize the chicken's path." }
+            { joke: "Why did the coder cross the road?", punchline: "To optimize the chicken's path." },
+            { joke: "Why don’t scientists trust atoms?", punchline: "Because they make up everything." },
+            { joke: "I told my computer I needed a break.", punchline: "It froze." },
+            { joke: "Why did the math book look sad?", punchline: "Too many problems." },
+            { joke: "I tried to catch fog yesterday.", punchline: "Mist." },
+            { joke: "Why don’t skeletons fight each other?", punchline: "They don’t have the guts." },
+            { joke: "Parallel lines have so much in common.", punchline: "It’s a shame they’ll never meet." },
+            { joke: "Why did the scarecrow win an award?", punchline: "Outstanding in his field." },
+            { joke: "I used to play piano by ear…", punchline: "Now I use my hands." },
+            { joke: "Why was six afraid of seven?", punchline: "Because seven eight nine." },
+            { joke: "I asked my dog what’s two minus two.", punchline: "He said nothing." },
+            { joke: "Why can’t you hear a pterodactyl go to the bathroom?", punchline: "The 'P' is silent." },
+            { joke: "I bought shoes from a drug dealer once…", punchline: "I don’t know what he laced them with." },
+            { joke: "Why did the bicycle fall over?", punchline: "It was two-tired." },
+            { joke: "I told a joke about time travel…", punchline: "You didn’t like it." },
+            { joke: "Why don’t eggs tell jokes?", punchline: "They’d crack up." },
+            { joke: "What do you call fake spaghetti?", punchline: "An impasta." },
+            { joke: "Why did the golfer bring two pairs of pants?", punchline: "In case he got a hole in one." },
+            { joke: "I used to be addicted to soap…", punchline: "But I’m clean now." },
+            { joke: "Why did the tomato blush?", punchline: "It saw the salad dressing." },
+            { joke: "I tried reading a book on anti-gravity.", punchline: "I couldn’t put it down." },
+            { joke: "Why did the math teacher go to the beach?", punchline: "To work on tan." },
+            { joke: "Why don’t oysters donate to charity?", punchline: "They’re shellfish." },
+            { joke: "I once ate a clock.", punchline: "It was time-consuming." },
+            { joke: "Why was the stadium so cool?", punchline: "It was full of fans." },
+            { joke: "What do you call cheese that isn’t yours?", punchline: "Nacho cheese." },
+            { joke: "Why did the picture go to jail?", punchline: "It was framed." },
+            { joke: "Why did the cookie go to the doctor?", punchline: "It felt crummy." },
+            { joke: "I told my suitcase there will be no vacations this year.", punchline: "Now it’s depressed." }
         ];
 
         const jokeText = document.getElementById('joke-text');
@@ -2840,6 +3305,107 @@
             saveGameScore('memory', { matches, flips });
         }
 
+        // Tic Tac Toe Game
+        const tttBtn = document.getElementById('tictactoe-game-btn');
+        const tttModal = document.getElementById('tictactoe-game-modal');
+        const closeTttModal = document.getElementById('close-tictactoe-modal');
+        const tttBoard = document.getElementById('tictactoe-board');
+        const tttCells = Array.from(document.querySelectorAll('.tictactoe-cell'));
+        const tttStatus = document.getElementById('tictactoe-status');
+        const restartTttBtn = document.getElementById('restart-tictactoe');
+        const cpuOpponentCheckbox = document.getElementById('cpu-opponent');
+
+        let tttState = Array(9).fill(null);
+        let tttTurn = 'X'; // player is X
+        let tttActive = false;
+
+        function openTtt() {
+            tttModal.classList.add('visible');
+            resetTtt();
+        }
+
+        function closeTtt() {
+            tttModal.classList.remove('visible');
+            tttActive = false;
+        }
+
+        function resetTtt() {
+            tttState = Array(9).fill(null);
+            tttTurn = 'X';
+            tttActive = true;
+            tttCells.forEach(c => { c.textContent = ''; c.classList.remove('disabled'); c.style.backgroundColor = ''; });
+            tttStatus.textContent = "Your turn (X)";
+        }
+
+        function checkTttWin(state) {
+            const wins = [
+                [0,1,2],[3,4,5],[6,7,8],
+                [0,3,6],[1,4,7],[2,5,8],
+                [0,4,8],[2,4,6]
+            ];
+            for (const combo of wins) {
+                const [a,b,c] = combo;
+                if (state[a] && state[a] === state[b] && state[a] === state[c]) return { winner: state[a], combo };
+            }
+            if (state.every(Boolean)) return { winner: 'draw' };
+            return null;
+        }
+
+        function cpuMove() {
+            const empty = tttState.map((v,i)=>v?null:i).filter(v=>v!==null);
+            if (empty.length === 0) return;
+            // simple random move
+            const pick = empty[Math.floor(Math.random()*empty.length)];
+            makeMove(pick, 'O');
+        }
+
+        function makeMove(index, mark) {
+            if (!tttActive || tttState[index]) return;
+            tttState[index] = mark;
+            const cell = tttCells[index];
+            cell.textContent = mark;
+            cell.classList.add('disabled');
+
+            const result = checkTttWin(tttState);
+            if (result) {
+                tttActive = false;
+                if (result.winner === 'draw') {
+                    tttStatus.textContent = 'Draw!';
+                } else {
+                    tttStatus.textContent = `${result.winner} wins!`;
+                    // highlight winning combo
+                    result.combo.forEach(i => tttCells[i].style.backgroundColor = 'var(--accent)');
+                }
+                return;
+            }
+
+            // switch turn
+            if (mark === 'X') {
+                if (cpuOpponentCheckbox.checked) {
+                    // allow slight delay for CPU
+                    setTimeout(() => cpuMove(), 350);
+                    tttStatus.textContent = 'CPU thinking...';
+                } else {
+                    tttStatus.textContent = "O's turn";
+                }
+            } else {
+                tttStatus.textContent = "Your turn (X)";
+            }
+        }
+
+        tttCells.forEach(cell => {
+            cell.addEventListener('click', () => {
+                const idx = Number(cell.dataset.index);
+                if (!tttActive) return;
+                if (tttState[idx]) return;
+                makeMove(idx, tttTurn);
+            });
+        });
+
+        tttBtn.addEventListener('click', openTtt);
+        closeTttModal.addEventListener('click', closeTtt);
+        restartTttBtn.addEventListener('click', resetTtt);
+
         // Interactive Quizzes
         const quizQuestion = document.getElementById('quiz-question');
         const quizOptions = document.getElementById('quiz-options');
@@ -2870,6 +3436,156 @@
             {
                 question: "Who wrote Romeo and Juliet?",
                 options: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
+                answer: 1
+            },
+            {
+                question: "What planet is known as the red planet?",
+                options: ["Venus", "Mars", "Jupiter"],
+                answer: 1
+            },
+            {
+                question: "How many continents are there?",
+                options: ["5", "6", "7"],
+                answer: 2
+            },
+            {
+                question: "What gas do plants absorb?",
+                options: ["Oxygen", "Carbon Dioxide", "Nitrogen"],
+                answer: 1
+            },
+            {
+                question: "Who invented the light bulb (commonly credited)?",
+                options: ["Edison", "Tesla", "Newton"],
+                answer: 0
+            },
+            {
+                question: "What is the largest ocean?",
+                options: ["Atlantic", "Indian", "Pacific"],
+                answer: 2
+            },
+            {
+                question: "How many bones are in the adult human body?",
+                options: ["206", "210", "198"],
+                answer: 0
+            },
+            {
+                question: "What is the fastest land animal?",
+                options: ["Lion", "Horse", "Cheetah"],
+                answer: 2
+            },
+            {
+                question: "Which planet has rings?",
+                options: ["Saturn", "Earth", "Mars"],
+                answer: 0
+            },
+            {
+                question: "What is H₂O?",
+                options: ["Salt", "Water", "Hydrogen"],
+                answer: 1
+            },
+            {
+                question: "What country has the most people?",
+                options: ["India", "China", "USA"],
+                answer: 1
+            },
+            {
+                question: "What force keeps us on the ground?",
+                options: ["Magnetism", "Gravity", "Friction"],
+                answer: 1
+            },
+            {
+                question: "Which animal is known as man’s best friend?",
+                options: ["Cat", "Horse", "Dog"],
+                answer: 2
+            },
+            {
+                question: "What part of the plant does photosynthesis happen in?",
+                options: ["Root", "Leaf", "Stem"],
+                answer: 1
+            },
+            {
+                question: "How many days are in a leap year?",
+                options: ["365", "366", "364"],
+                answer: 1
+            },
+            {
+                question: "Which organ pumps blood?",
+                options: ["Lungs", "Brain", "Heart"],
+                answer: 2
+            },
+            {
+                question: "What is the capital of Australia?",
+                options: ["Sydney", "Melbourne", "Canberra"],
+                answer: 2
+            },
+            {
+                question: "What shape has 3 sides?",
+                options: ["Square", "Triangle", "Circle"],
+                answer: 1
+            },
+            {
+                question: "Which metal is liquid at room temperature?",
+                options: ["Iron", "Mercury", "Aluminum"],
+                answer: 1
+            },
+            {
+                question: "What do bees make?",
+                options: ["Wax", "Honey", "Milk"],
+                answer: 1
+            },
+            {
+                question: "How many colors are in a rainbow?",
+                options: ["6", "7", "8"],
+                answer: 1
+            },
+            {
+                question: "What organ helps you breathe?",
+                options: ["Stomach", "Lungs", "Liver"],
+                answer: 1
+            },
+            {
+                question: "What planet do we live on?",
+                options: ["Mars", "Earth", "Venus"],
+                answer: 1
+            },
+            {
+                question: "Which animal is the largest?",
+                options: ["Elephant", "Blue Whale", "Giraffe"],
+                answer: 1
+            },
+            {
+                question: "What is frozen water called?",
+                options: ["Ice", "Steam", "Snow"],
+                answer: 0
+            },
+            {
+                question: "How many legs does a spider have?",
+                options: ["6", "8", "10"],
+                answer: 1
+            },
+            {
+                question: "What star is closest to Earth?",
+                options: ["Sirius", "Sun", "Alpha Centauri"],
+                answer: 1
+            },
+            {
+                question: "What do you call a baby cat?",
+                options: ["Cub", "Puppy", "Kitten"],
+                answer: 2
+            },
+            {
+                question: "What do plants need to grow?",
+                options: ["Sunlight", "Darkness", "Noise"],
+                answer: 0
+            },
+            {
+                question: "Which sense do you use to hear?",
+                options: ["Sight", "Smell", "Hearing"],
+                answer: 2
+            },
+            {
+                question: "What instrument has keys, pedals, and strings?",
+                options: ["Guitar", "Piano", "Violin"],
                 answer: 1
             }
         ];
@@ -2916,60 +3632,174 @@
         // Initialize with a quiz
         showNewQuiz();
 
-        // Search Function
+        // Search Function (improved)
         const searchInput = document.getElementById('search-input');
         const searchResults = document.getElementById('search-results');
 
-        // Define searchable content (sections)
-        const searchableSections = [
-            { title: 'Home', id: 'home', content: 'Hello, I\'m Mujtaba Naqvi A Year 8 student with a passion for technology, coding, and creativity' },
-            { title: 'About', id: 'about', content: 'Hi! My name is Mujtaba Naqvi and I\'m a Year 8 student with a big interest in technology and creativity.' },
-            { title: 'Journey', id: 'journey', content: 'My journey through technology and programming milestones.' },
-            { title: 'Skills', id: 'skills', content: 'Coding Skills: HTML, CSS, JavaScript, Python, GoLang, C#. School Skills: Mathematics, Science, English, Problem Solving, Creativity.' },
-            { title: 'Stats', id: 'stats', content: 'Projects Completed, Hours Coding, Thousand Lines of Code, GitHub Commits, Cups of Coffee, Languages Learned, Funfacts Collected.' },
-            { title: 'Funfacts', id: 'funfacts', content: 'Tech Funfacts like the first computer bug was a moth, Apollo 11 computer power, etc.' },
-            { title: 'Jokes', id: 'jokes', content: 'Computer Jokes like Why don\'t programmers like nature? Too many bugs.' },
-            { title: 'Games', id: 'games', content: 'Mini-Games: Typing Test, Reaction Time, Memory Game.' },
-            { title: 'Quizzes', id: 'quizzes', content: 'Interactive Quizzes about tech, coding, school subjects.' },
-            { title: 'Progress Tracker', id: 'progress-tracker', content: 'Track your performance in games and quizzes over time.' },
-            { title: 'Dashboard', id: 'dashboard', content: 'Customizable dashboard with favorite games and recent scores.' },
-            { title: 'Lessons & Books', id: 'lessons-books', content: 'Life lessons and recommended books for personal growth and learning.' },
-            { title: 'Contact', id: 'contact', content: 'Get In Touch: Have a question or want to work together? Feel free to contact me!' }
-        ];
+        function buildSearchIndex() {
+            const index = [];
 
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase();
+            // Sections
+            document.querySelectorAll('section').forEach(sec => {
+                const title = sec.querySelector('h2')?.innerText || sec.id;
+                const snippet = Array.from(sec.querySelectorAll('p, h3')).map(el => el.innerText).join(' ').slice(0, 200);
+                index.push({ title, type: 'section', snippet, href: `#${sec.id}` });
+            });
+
+            // Funfacts
+            document.querySelectorAll('.funfact-back p').forEach((p, i) => {
+                index.push({ title: p.innerText.slice(0, 60), type: 'funfact', snippet: p.innerText, href: '#funfacts', dataIndex: i });
+            });
+
+            // Jokes
+            jokes.forEach((j, i) => {
+                index.push({ title: j.joke, type: 'joke', snippet: j.punchline, href: '#jokes', dataIndex: i });
+            });
+
+            // Quizzes
+            quizzes.forEach((q, i) => {
+                index.push({ title: q.question, type: 'quiz', snippet: q.options.slice(0,2).join(', '), href: '#quizzes', dataIndex: i });
+            });
+
+            return index;
+        }
+
+        let searchIndex = buildSearchIndex();
+        let activeSearch = -1;
+
+        function renderSearchResults(results) {
             searchResults.innerHTML = '';
-            if (query.length < 2) {
+            if (!results || results.length === 0) {
                 searchResults.style.display = 'none';
                 return;
             }
 
-            const filtered = searchableSections.filter(section => 
-                section.title.toLowerCase().includes(query) || section.content.toLowerCase().includes(query)
-            );
+            const ul = document.createElement('ul');
+            results.forEach((r, idx) => {
+                const li = document.createElement('li');
+                li.setAttribute('role', 'option');
+                li.dataset.index = idx;
+                li.innerHTML = `<strong>${r.title}</strong> <small style="opacity:.7"> — ${r.type}</small><div style="font-size:0.9rem;color:var(--text-secondary)">${r.snippet.slice(0,120)}</div>`;
+                li.addEventListener('click', () => selectSearchResult(r));
+                ul.appendChild(li);
+            });
+            searchResults.appendChild(ul);
+            searchResults.style.display = 'block';
+        }
 
-            if (filtered.length > 0) {
-                const ul = document.createElement('ul');
-                filtered.forEach(section => {
-                    const li = document.createElement('li');
-                    const a = document.createElement('a');
-                    a.href = `#${section.id}`;
-                    a.textContent = section.title;
-                    li.appendChild(a);
-                    ul.appendChild(li);
-                });
-                searchResults.appendChild(ul);
-                searchResults.style.display = 'block';
+        function selectSearchResult(item) {
+            searchResults.style.display = 'none';
+            searchInput.value = '';
+
+            if (item.type === 'joke') {
+                // show the specific joke
+                currentJokeIndex = item.dataIndex;
+                typewriterEffect(jokeText, jokes[currentJokeIndex].joke, 24);
+                punchline.style.opacity = '0';
+                punchline.textContent = '';
+                window.location.hash = '#jokes';
+            } else if (item.type === 'quiz') {
+                window.location.hash = '#quizzes';
+                showQuizByIndex(item.dataIndex);
             } else {
+                window.location.hash = item.href;
+            }
+        }
+
+        function showQuizByIndex(i) {
+            if (typeof i === 'number' && quizzes[i]) {
+                currentQuizIndex = i;
+                const quiz = quizzes[currentQuizIndex];
+                quizQuestion.textContent = quiz.question;
+                quizOptions.innerHTML = '';
+                quiz.options.forEach((option, index) => {
+                    const optionElem = document.createElement('div');
+                    optionElem.classList.add('quiz-option');
+                    optionElem.textContent = option;
+                    optionElem.addEventListener('click', () => checkAnswer(index));
+                    quizOptions.appendChild(optionElem);
+                });
+                quizResult.textContent = '';
+            } else {
+                showNewQuiz();
+            }
+        }
+
+        // Simple debounce
+        function debounce(fn, wait = 220) {
+            let t;
+            return (...args) => {
+                clearTimeout(t);
+                t = setTimeout(() => fn(...args), wait);
+            };
+        }
+
+        searchInput.addEventListener('input', debounce((e) => {
+            const q = e.target.value.trim().toLowerCase();
+            if (q.length < 2) {
                 searchResults.style.display = 'none';
+                return;
+            }
+
+            const matches = searchIndex.filter(item => (item.title + ' ' + item.snippet).toLowerCase().includes(q));
+            renderSearchResults(matches.slice(0, 8));
+        }, 180));
+
+        // keyboard navigation
+        searchInput.addEventListener('keydown', (e) => {
+            const list = searchResults.querySelectorAll('li');
+            if (!list.length) return;
+            if (e.key === 'ArrowDown') {
+                activeSearch = (activeSearch + 1) % list.length;
+                updateActive(list);
+                e.preventDefault();
+            } else if (e.key === 'ArrowUp') {
+                activeSearch = (activeSearch - 1 + list.length) % list.length;
+                updateActive(list);
+                e.preventDefault();
+            } else if (e.key === 'Enter') {
+                const idx = activeSearch === -1 ? 0 : activeSearch;
+                list[idx].click();
             }
         });
 
+        function updateActive(list) {
+            list.forEach((li, i) => li.classList.toggle('active', i === activeSearch));
+            if (list[activeSearch]) list[activeSearch].scrollIntoView({ block: 'nearest' });
+        }
+
+        // rebuild index when content changes (e.g., we add facts/jokes dynamically)
+        function refreshSearchIndex() {
+            searchIndex = buildSearchIndex();
+        }
+
         // Hide search results when clicking outside
         document.addEventListener('click', (e) => {
-            if (!searchResults.contains(e.target) && e.target !== searchInput) {
+            if (!searchResults.contains(e.target) && e.target !== searchInput && !e.target.classList.contains('dropdown-toggle')) {
                 searchResults.style.display = 'none';
+                activeSearch = -1;
+            }
+        });
+
+        // Make dropdown toggle work on mobile
+        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const parent = toggle.closest('.nav-dropdown');
+                parent.classList.toggle('open');
+                const expanded = parent.classList.contains('open');
+                toggle.setAttribute('aria-expanded', expanded);
+            });
+        });
+
+        // Close any open dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-dropdown')) {
+                document.querySelectorAll('.nav-dropdown.open').forEach(d => {
+                    d.classList.remove('open');
+                    const t = d.querySelector('.dropdown-toggle');
+                    if (t) t.setAttribute('aria-expanded', 'false');
+                });
             }
         });
 
@@ -3254,6 +4084,9 @@
         resetReactionGame();
         resetMemoryGame();
         updateProgressUI();
+        
+        // Refresh search index now that jokes/funfacts/quizzes were updated
+        if (typeof refreshSearchIndex === 'function') refreshSearchIndex();
     </script>
 </body>
 </html>
